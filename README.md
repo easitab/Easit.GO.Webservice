@@ -20,4 +20,4 @@ All documentation regarding Easit.GO.Webservice can be found [here](https://docs
 
 Questions and issue can be sent to [supportATeasit](mailto:support@easit.com) or open a issue from the Issues tab and label it with one of the predefined labels.
 
-You can also join our Slack chanel [gowebservice here](https://join.slack.com/t/easit-powershell/shared_invite/zt-smxca3na-0CqUMNpOP2W8DoCiMU0MgQ).
+You can also join our Slack channel gowebservice [here](https://join.slack.com/t/easit-powershell/shared_invite/zt-smxca3na-0CqUMNpOP2W8DoCiMU0MgQ).
