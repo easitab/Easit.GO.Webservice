@@ -14,7 +14,7 @@ BeforeAll {
         Write-Output "Unable to locate code file ($codeFileName) to test against!" -ForegroundColor Red
     }
 }
-Describe "New-XMLRequestObject" -Tag 'function','private' {
+Describe "New-RequestXMLObject" -Tag 'function','private' {
     It 'should have a parameter named NamespaceURI that is mandatory and accepts a string.' {
         Get-Command "$commandName" | Should -HaveParameter NamespaceURI -Mandatory -Type String
     }

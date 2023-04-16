@@ -29,7 +29,9 @@ function New-ItemToImportAttachmentXMLObject {
         [Parameter()]
         [String]$Name,
         [Parameter()]
-        [String]$Value
+        [String]$Value,
+        [Parameter(Mandatory)]
+        [String]$RequestPrefix
     )
     
     begin {
@@ -59,10 +61,10 @@ function New-ItemToImportAttachmentXMLObject {
             }
         }
         try {
-            $envelopeItemAttachment = $xmlRequestObject.CreateElement("sch:Attachment","$NamespaceSchema")
-            $envelopeItemAttachment.SetAttribute('name',"$Name")
-            $envelopeItemAttachment.InnerText = "$base64string"
-            $script:schItemToImport.AppendChild($envelopeItemAttachment) | Out-Null
+            $requestItemToImportAttachmentElement = $requestXMLObject.CreateElement("${RequestPrefix}:Attachment","$NamespaceSchema")
+            $requestItemToImportAttachmentElement.SetAttribute('name',"$Name")
+            $requestItemToImportAttachmentElement.InnerText = "$base64string"
+            $requestItemToImportElement.AppendChild($requestItemToImportAttachmentElement) | Out-Null
         } catch {
             Write-Warning "Failed to add attachment $Name to request"
             throw $_

@@ -1,20 +1,11 @@
-function New-PingRequestObject {
+function New-PingRequestXMLObject {
     <#
     .SYNOPSIS
         Creates a XML object that can be used for sending a ping request to Easit GO.
     .DESCRIPTION
-        Creates a new baseline XML request object with *New-XMLRequestObject* and add the *PingRequest* element to that object.
-
-        ```xml
-        <soapenv:Envelope xmlns:sch="http://www.easit.com/bps/schemas" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
-            <soapenv:Header />
-            <soapenv:Body>
-                <sch:PingRequest>?</sch:PingRequest>
-            </soapenv:Body>
-        </soapenv:Envelope>
-        ```
+        Creates a new baseline XML request object with *New-PingRequestXMLObject* and add the *PingRequest* element to that object.
     .EXAMPLE 
-        New-XMLRequestObject -NamespaceURI "http://schemas.xmlsoap.org/soap/envelope/" -NamespaceSchema "http://www.easit.com/bps/schemas"
+        New-PingRequestXMLObject -NamespaceURI "http://schemas.xmlsoap.org/soap/envelope/" -NamespaceSchema "http://www.easit.com/bps/schemas"
     .PARAMETER NamespaceURI
         URI used for the envelope namespace (xmlns:soapenv).
     .PARAMETER NamespaceSchema
@@ -25,7 +16,11 @@ function New-PingRequestObject {
         [Parameter(Mandatory)]
         [String]$NamespaceURI,
         [Parameter(Mandatory)]
-        [String]$NamespaceSchema
+        [String]$NamespaceSchema,
+        [Parameter(Mandatory)]
+        [String]$EnvelopePrefix,
+        [Parameter(Mandatory)]
+        [String]$RequestPrefix
     )
     
     begin {
@@ -39,16 +34,21 @@ function New-PingRequestObject {
         if ([string]::IsNullOrWhiteSpace($NamespaceSchema)) {
             throw "NamespaceSchema is null or empty"
         }
+        $newRequestXMLObjectParams = @{
+            NamespaceURI = $NamespaceURI
+            NamespaceSchema = $NamespaceSchema
+            EnvelopePrefix = $EnvelopePrefix
+            RequestPrefix = $RequestPrefix
+        }
         try {
-            New-XMLRequestObject -NamespaceURI $NamespaceURI -NamespaceSchema $NamespaceSchema
+            New-RequestXMLObject @newRequestXMLObjectParams
         } catch {
             throw $_
         }
         try {
             Write-Debug "Creating xml element for PingRequest"
-            $envelopePingRequest = $xmlRequestObject.CreateElement('sch:PingRequest',"$NamespaceSchema")
-            $envelopePingRequest.InnerText  = '?'
-            $soapEnvBody.AppendChild($envelopePingRequest) | Out-Null
+            $requestPingRequestElement = New-XMLElementObject -Name 'PingRequest' -Prefix $RequestPrefix -Value '?' -NamespaceSchema $NamespaceSchema
+            $requestBodyElement.AppendChild($requestPingRequestElement) | Out-Null
         } catch {
             Write-Warning "Failed to create xml element for PingRequest"
             throw $_
