@@ -4,7 +4,7 @@ function New-ItemToImportXMLObject {
         Creates a base ItemToImport XML object that can be used for sending requests to Easit GO.
     .DESCRIPTION
         Creates a base ItemToImport XML object, based on the XML created by *New-RequestXMLObject* and *New-ImportItemRequestXMLObject*.
-        This function first checks if the variable *xmlRequestObject* is null or not and if so calls *New-RequestXMLObject* to set it.
+        This function first checks if the variable *requestXMLObject* is null or not and if so calls *New-RequestXMLObject* to set it.
         This function then checks if the variable *schImportItemsRequest* is null or not and if so calls *New-ImportItemRequestXMLObject* to set it.
         It adds the element *ItemToImport* with the following attributes:
 
@@ -59,7 +59,11 @@ function New-ItemToImportXMLObject {
         [Parameter()]
         [Int]$UID = 1,
         [Parameter()]
-        [Int]$ID = 1
+        [Int]$ID = 1,
+        [Parameter(Mandatory)]
+        [String]$EnvelopePrefix,
+        [Parameter(Mandatory)]
+        [String]$RequestPrefix
     )
     
     begin {
@@ -73,26 +77,46 @@ function New-ItemToImportXMLObject {
         if ([string]::IsNullOrWhiteSpace($NamespaceSchema)) {
             throw "NamespaceSchema is null or empty"
         }
-        if ($null -eq $xmlRequestObject) {
+        if ($null -eq $requestXMLObject) {
+            $newRequestXMLObjectParams = @{
+                NamespaceURI = $NamespaceURI
+                NamespaceSchema = $NamespaceSchema
+                EnvelopePrefix = $EnvelopePrefix
+                RequestPrefix = $RequestPrefix
+            }
             try {
-                New-XMLRequestObject -NamespaceURI $NamespaceURI -NamespaceSchema $NamespaceSchema
+                New-RequestXMLObject @newRequestXMLObjectParams
             } catch {
                 throw $_
             }
         }
         if ($null -eq $schImportItemsRequest) {
+            $newImportItemRequestXMLObjectParams = @{
+                ImportHandlerIdentifier = $ImportHandlerIdentifier
+                NamespaceURI = $NamespaceURI
+                NamespaceSchema = $NamespaceSchema
+                EnvelopePrefix = $EnvelopePrefix
+                RequestPrefix = $RequestPrefix
+            }
             try {
-                New-ImportItemRequestXMLObject -ImportHandlerIdentifier $ImportHandlerIdentifier -NamespaceURI $NamespaceURI -NamespaceSchema $NamespaceSchema
+                New-ImportItemRequestXMLObject @newImportItemRequestXMLObjectParams
             } catch {
                 throw $_
             }
         }
+        $requestItemToImportElementParams = @{
+            Name = 'ItemToImport'
+            Prefix = $RequestPrefix
+            NamespaceSchema = $NamespaceSchema
+            Attributes = @{
+                id = $ID
+                uid = $UID
+            }
+        }
         try {
             Write-Debug "Creating xml element for ItemToImport"
-            $script:schItemToImport = $xmlRequestObject.CreateElement("sch:ItemToImport","$NamespaceSchema")
-            $schItemToImport.SetAttribute("id","$uid")
-            $schItemToImport.SetAttribute("uid","$uid")
-            $schImportItemsRequest.AppendChild($schItemToImport) | Out-Null
+            New-Variable -Name 'requestItemToImportElement' -Value (New-XMLElementObject @requestItemToImportElementParams) -Scope Script
+            $requestImportItemsRequestElement.AppendChild($requestItemToImportElement) | Out-Null
         } catch {
             Write-Warning "Failed to create xml element for ItemToImport"
             throw $_
@@ -102,8 +126,17 @@ function New-ItemToImportXMLObject {
             if ($property.Value -is [system.array]) {
                 Write-Debug "Property is a array"
                 foreach ($propertyValue in $property.Value) {
+                    $newitemToImportPropertyElementParams = @{
+                        Name = 'Property'
+                        Value = $propertyValue
+                        Prefix = $RequestPrefix
+                        NamespaceSchema = $NamespaceSchema
+                        Attributes = @{
+                            name = $property.Name
+                        }
+                    }
                     try {
-                        New-ItemToImportPropertyXMLObject -NamespaceSchema $NamespaceSchema -Name $property.Name -Value $propertyValue
+                        $requestItemToImportElement.AppendChild((New-XMLElementObject @newitemToImportPropertyElementParams)) | Out-Null
                     } catch {
                         throw $_
                     }
@@ -113,24 +146,45 @@ function New-ItemToImportXMLObject {
                     Write-Debug "Property value is a hashtable and name ($($property.Name)) is attachment(s)"
                     foreach ($attachment in $property.Value.GetEnumerator()) {
                         try {
-                            New-ItemToImportAttachmentXMLObject -NamespaceSchema $NamespaceSchema -Name $attachment.Name -Value $attachment.Value
+                            New-ItemToImportAttachmentXMLObject -NamespaceSchema $NamespaceSchema -Name $attachment.Name -Value $attachment.Value -RequestPrefix $RequestPrefix
                         } catch {
                             throw $_
                         }
                     }
                 } else {
                     Write-Debug "Property value is a hashtable but name ($($property.Name)) is NOT attachment(s)"
-                    foreach ($property in $property.Value.GetEnumerator()) {
+                    #foreach ($property in $property.Value.GetEnumerator()) {
+                        $newitemToImportPropertyElementParams = @{
+                            Name = 'Property'
+                            Value = $property.Value.Value
+                            Prefix = $RequestPrefix
+                            NamespaceSchema = $NamespaceSchema
+                            Attributes = @{
+                                'name' = $property.Value.Name
+                            }
+                        }
+                        if ($property.Value.rawValue) {
+                            $newitemToImportPropertyElementParams.Attributes.Add('rawValue',$property.Value.rawValue)
+                        }
                         try {
-                            New-ItemToImportPropertyXMLObject -NamespaceSchema $NamespaceSchema -Name $property.Name -Value $property.Value
+                            $requestItemToImportElement.AppendChild((New-XMLElementObject @newitemToImportPropertyElementParams)) | Out-Null
                         } catch {
                             throw $_
                         }
-                    }
+                    #}
                 }
             } else {
+                $newitemToImportPropertyElementParams = @{
+                    Name = 'Property'
+                    Value = $property.Value
+                    Prefix = $RequestPrefix
+                    NamespaceSchema = $NamespaceSchema
+                    Attributes = @{
+                        name = $property.Name
+                    }
+                }
                 try {
-                    New-ItemToImportPropertyXMLObject -NamespaceSchema $NamespaceSchema -Name $property.Name -Value $property.Value
+                    $requestItemToImportElement.AppendChild((New-XMLElementObject @newitemToImportPropertyElementParams)) | Out-Null
                 } catch {
                     throw $_
                 }

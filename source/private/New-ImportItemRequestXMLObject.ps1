@@ -28,7 +28,11 @@ function New-ImportItemRequestXMLObject {
         [Parameter(Mandatory)]
         [String]$NamespaceSchema,
         [Parameter(Mandatory)]
-        [String]$ImportHandlerIdentifier
+        [String]$ImportHandlerIdentifier,
+        [Parameter(Mandatory)]
+        [String]$EnvelopePrefix,
+        [Parameter(Mandatory)]
+        [String]$RequestPrefix
     )
     
     begin {
@@ -45,17 +49,23 @@ function New-ImportItemRequestXMLObject {
         if ([string]::IsNullOrWhiteSpace($ImportHandlerIdentifier)) {
             throw "ImportHandlerIdentifier is null or empty"
         }
-        if ($null -eq $xmlRequestObject) {
+        if ($null -eq $requestXMLObject) {
+            $newRequestXMLObjectParams = @{
+                NamespaceURI = $NamespaceURI
+                NamespaceSchema = $NamespaceSchema
+                EnvelopePrefix = $EnvelopePrefix
+                RequestPrefix = $RequestPrefix
+            }
             try {
-                New-RequestXMLObject -NamespaceURI $NamespaceURI -NamespaceSchema $NamespaceSchema
+                New-RequestXMLObject @newRequestXMLObjectParams
             } catch {
                 throw $_
             }
         }
         try {
             Write-Verbose "Creating xml element for ImportItemsRequest"
-            $script:schImportItemsRequest = $xmlRequestObject.CreateElement("sch:ImportItemsRequest","$NamespaceSchema")
-            $soapEnvBody.AppendChild($schImportItemsRequest) | Out-Null
+            $script:requestImportItemsRequestElement = $requestXMLObject.CreateElement("${RequestPrefix}:ImportItemsRequest","$NamespaceSchema")
+            $requestBodyElement.AppendChild($requestImportItemsRequestElement) | Out-Null
         } catch {
             Write-Error "Failed to create xml element for ImportItemsRequest"
             Write-Error "$_"
@@ -63,9 +73,9 @@ function New-ImportItemRequestXMLObject {
         }
         try {
             Write-Verbose "Creating xml element for Importhandler"
-            $envelopeImportHandlerIdentifier = $xmlRequestObject.CreateElement('sch:ImportHandlerIdentifier',"$NamespaceSchema")
-            $envelopeImportHandlerIdentifier.InnerText  = "$ImportHandlerIdentifier"
-            $schImportItemsRequest.AppendChild($envelopeImportHandlerIdentifier) | Out-Null
+            $requestImportHandlerIdentifierElement = $requestXMLObject.CreateElement("${RequestPrefix}:ImportHandlerIdentifier","$NamespaceSchema")
+            $requestImportHandlerIdentifierElement.InnerText  = "$ImportHandlerIdentifier"
+            $requestImportItemsRequestElement.AppendChild($requestImportHandlerIdentifierElement) | Out-Null
         } catch {
             Write-Error "Failed to create xml element for Importhandler"
             Write-Error "$_"
