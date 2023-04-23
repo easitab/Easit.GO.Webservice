@@ -3,15 +3,15 @@ function New-ItemToImportXMLObject {
     .SYNOPSIS
         Creates a base ItemToImport XML object that can be used for sending requests to Easit GO.
     .DESCRIPTION
-        Creates a base ItemToImport XML object, based on the XML created by *New-RequestXMLObject* and *New-ImportItemRequestXMLObject*.
-        This function first checks if the variable *requestXMLObject* is null or not and if so calls *New-RequestXMLObject* to set it.
-        This function then checks if the variable *schImportItemsRequest* is null or not and if so calls *New-ImportItemRequestXMLObject* to set it.
+        Creates a base ItemToImport XML object, based on the XML created by **New-RequestXMLObject** and **New-ImportItemRequestXMLObject**.
+        This function first checks if the variable *requestXMLObject* is null or not and if so calls **New-RequestXMLObject** to set it.
+        This function then checks if the variable *requestImportItemsRequestElement* is null or not and if so calls **New-ImportItemRequestXMLObject** to set it.
         It adds the element *ItemToImport* with the following attributes:
 
         - id
         - uid
 
-        With help of *New-ItemToImportPropertyXMLObject* and *New-ItemToImportAttachmentXMLObject* it iterates the InputObjects properties and add them
+        With help of **New-ItemToImportPropertyXMLObject** and **New-ItemToImportAttachmentXMLObject** it iterates the InputObjects properties and add them
         as a *Property element* with the property name as the attribute *name* and the property value as the elements innerText.
 
         If the property value is an array, each item in the array will be added as its own Property element. The elements attribute name will be the 
@@ -34,9 +34,13 @@ function New-ItemToImportXMLObject {
 
         In this example we are sending an object to Easit GO that has an array, an hashtable and a string as its properties.
     .PARAMETER NamespaceURI
-        URI used for the envelope namespace (xmlns:soapenv).
+        URI used for the envelope namespace.
     .PARAMETER NamespaceSchema
-        URI to schema used to for the body elements namespace (xmlns:sch).
+        URI to schema used to for the body elements namespace.
+    .PARAMETER RequestPrefix
+        Prefix used for elements appended to the Body element.
+    .PARAMETER EnvelopePrefix
+        Prefix used for elements appended to the Envelope element.
     .PARAMETER ImportHandlerIdentifier
         Value set as ImportHandlerIdentifier for request.
     .PARAMETER InputObject
@@ -90,7 +94,7 @@ function New-ItemToImportXMLObject {
                 throw $_
             }
         }
-        if ($null -eq $schImportItemsRequest) {
+        if ($null -eq $requestImportItemsRequestElement) {
             $newImportItemRequestXMLObjectParams = @{
                 ImportHandlerIdentifier = $ImportHandlerIdentifier
                 NamespaceURI = $NamespaceURI
