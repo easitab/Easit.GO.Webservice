@@ -4,22 +4,37 @@ function New-ImportItemRequestXMLObject {
         Creates a base ImportItemRequest XML object that can be used for sending requests to Easit GO.
     .DESCRIPTION
         Creates a base ImportItemRequest XML object, based on the XML returned by *New-RequestXMLObject*.
-        *New-ImportItemRequestXMLObject* checks if the variable *xmlRequestObject* is null and if so calls *New-RequestXMLObject*
-        to create a new request base XML object as value for the variable *xmlRequestObject* in the script scope. It then adds the following elements:
+        **New-ImportItemRequestXMLObject** checks if the variable *requestXMLObject* is null and if so calls **New-RequestXMLObject**
+        to create a new request base XML object as value for the variable *requestXMLObject* in the script scope. It then adds the following elements:
 
         - ImportItemsRequest
         - ImportHandlerIdentifier
     .EXAMPLE
-        New-ImportItemRequestXMLObject -ImportHandlerIdentifier $ImportHandlerIdentifier -NamespaceURI $NamespaceURI -NamespaceSchema $NamespaceSchema
+        $newImportItemRequestXMLObjectParams = @{
+            ImportHandlerIdentifier = $ImportHandlerIdentifier
+            NamespaceURI = $NamespaceURI
+            NamespaceSchema = $NamespaceSchema
+            EnvelopePrefix = $EnvelopePrefix
+            RequestPrefix = $RequestPrefix
+        }
+        try {
+            New-ImportItemRequestXMLObject @newImportItemRequestXMLObjectParams
+        } catch {
+            throw $_
+        }
     .PARAMETER ImportHandlerIdentifier
         Value set as ImportHandlerIdentifier for request.
+    .PARAMETER RequestPrefix
+        Prefix used for elements appended to the Body element.
+    .PARAMETER EnvelopePrefix
+        Prefix used for elements appended to the Envelope element.
     .PARAMETER NamespaceURI
-        URI used for the envelope namespace (xmlns:soapenv).
+        URI used for the envelope namespace.
     .PARAMETER NamespaceSchema
-        URI to schema used to for the body elements namespace (xmlns:sch).
+        URI used for the body elements namespace.
     .OUTPUTS
         This function does not output anything.
-        This function sets a script variable named *schImportItemsRequest* ($script:schImportItemsRequest).
+        This function sets a script variable named *requestImportItemsRequestElement*.
     #>
     [CmdletBinding()]
     param (
@@ -64,8 +79,8 @@ function New-ImportItemRequestXMLObject {
         }
         try {
             Write-Verbose "Creating xml element for ImportItemsRequest"
-            $script:requestImportItemsRequestElement = $requestXMLObject.CreateElement("${RequestPrefix}:ImportItemsRequest","$NamespaceSchema")
-            $requestBodyElement.AppendChild($requestImportItemsRequestElement) | Out-Null
+            $script:importItemsRequest = $requestXMLObject.CreateElement("${RequestPrefix}:ImportItemsRequest","$NamespaceSchema")
+            $requestBodyElement.AppendChild($importItemsRequest) | Out-Null
         } catch {
             Write-Error "Failed to create xml element for ImportItemsRequest"
             Write-Error "$_"
@@ -75,7 +90,7 @@ function New-ImportItemRequestXMLObject {
             Write-Verbose "Creating xml element for Importhandler"
             $requestImportHandlerIdentifierElement = $requestXMLObject.CreateElement("${RequestPrefix}:ImportHandlerIdentifier","$NamespaceSchema")
             $requestImportHandlerIdentifierElement.InnerText  = "$ImportHandlerIdentifier"
-            $requestImportItemsRequestElement.AppendChild($requestImportHandlerIdentifierElement) | Out-Null
+            $importItemsRequest.AppendChild($requestImportHandlerIdentifierElement) | Out-Null
         } catch {
             Write-Error "Failed to create xml element for Importhandler"
             Write-Error "$_"
