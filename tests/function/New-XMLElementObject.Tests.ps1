@@ -14,7 +14,7 @@ BeforeAll {
         Write-Output "Unable to locate code file ($codeFileName) to test against!" -ForegroundColor Red
     }
 }
-Describe "New-ItemToImportPropertyXMLObject" -Tag 'function','private' {
+Describe "New-XMLElementObject" -Tag 'function','private' {
     It 'should have a parameter named NamespaceSchema that is mandatory and accepts a string.' {
         Get-Command "$commandName" | Should -HaveParameter NamespaceSchema -Mandatory -Type String
     }
