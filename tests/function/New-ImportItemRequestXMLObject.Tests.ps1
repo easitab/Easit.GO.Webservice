@@ -7,11 +7,20 @@ BeforeAll {
     $testDataRoot = Join-Path -Path "$testRoot" -ChildPath "data"
     $projectRoot = Split-Path -Path $testRoot -Parent
     $sourceRoot = Join-Path -Path "$projectRoot" -ChildPath "source"
-    $codeFile = Get-ChildItem -Path "$sourceRoot" -Include "$codeFileName" -Recurse
-    if (Test-Path $codeFile) {
-        . $codeFile
-    } else {
-        Write-Output "Unable to locate code file ($codeFileName) to test against!" -ForegroundColor Red
+    $codeFiles = Get-ChildItem -Path "$sourceRoot" -Include "*.ps1" -Recurse
+    foreach ($codeFile in $codeFiles) {
+        try {
+            . $codeFile
+        } catch {
+            Write-Output "Unable to locate code file ($codeFileName) to test against!" -ForegroundColor Red
+            return
+        }
+    }
+    $newImportItemsRequestXMLObjectParams = @{
+        EnvelopePrefix = 'soapenv'
+        RequestPrefix = 'sch'
+        NamespaceURI = 'http://schemas.xmlsoap.org/soap/envelope/'
+        NamespaceSchema = 'http://www.easit.com/bps/schemas'
     }
 }
 Describe "New-ImportItemRequestXMLObject" -Tag 'function','private' {
@@ -24,13 +33,22 @@ Describe "New-ImportItemRequestXMLObject" -Tag 'function','private' {
     It 'should have a parameter named ImportHandlerIdentifier that is mandatory and accepts a string.' {
         Get-Command "$commandName" | Should -HaveParameter ImportHandlerIdentifier -Mandatory -Type String
     }
-    It 'should check if input for NamespaceURI is null or whitespace, and if so throw an error' {
-        {New-PingRequestObject -NamespaceURI ' ' -NamespaceSchema 'validinput' -ImportHandlerIdentifier 'validinput' -ErrorAction Stop} | Should -Throw
+    It 'should have a parameter named RequestPrefix that is mandatory and accepts a string.' {
+        Get-Command "$commandName" | Should -HaveParameter RequestPrefix -Mandatory -Type String
     }
-    It 'should check if input for NamespaceSchema is null or whitespace, and if so throw an error' {
-        {New-PingRequestObject -NamespaceURI 'validinput' -NamespaceSchema ' ' -ImportHandlerIdentifier 'validinput' -ErrorAction Stop} | Should -Throw
+    It 'should have a parameter named EnvelopePrefix that is mandatory and accepts a string.' {
+        Get-Command "$commandName" | Should -HaveParameter EnvelopePrefix -Mandatory -Type String
     }
-    It 'should check if input for ImportHandlerIdentifier is null or whitespace, and if so throw an error' {
-        {New-PingRequestObject -ImportHandlerIdentifier ' ' -NamespaceURI 'validinput' -NamespaceSchema 'validinput' -ErrorAction Stop} | Should -Throw
+    It 'should not throw if all input is valid' {
+        {New-ImportItemRequestXMLObject @newImportItemsRequestXMLObjectParams -ImportHandlerIdentifier 'newImportItemsRequestXMLObjectParams'} | Should -Not -Throw
+    }
+    It 'should throw if input for ItemViewIdentifier is whitespace' {
+        {New-ImportItemRequestXMLObject @newImportItemsRequestXMLObjectParams -ImportHandlerIdentifier ' '} | Should -Throw
+    }
+    It 'should throw if input for ItemViewIdentifier is nothing' {
+        {New-ImportItemRequestXMLObject @newImportItemsRequestXMLObjectParams -ImportHandlerIdentifier ''} | Should -Throw
+    }
+    It 'should throw if input for ItemViewIdentifier is $null' {
+        {New-ImportItemRequestXMLObject @newImportItemsRequestXMLObjectParams -ImportHandlerIdentifier $null} | Should -Throw
     }
 }
