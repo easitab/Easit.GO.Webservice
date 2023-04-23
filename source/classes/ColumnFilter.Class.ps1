@@ -11,4 +11,25 @@ Class ColumnFilter {
         $this.Comparator = $Comparator
         $this.ColumnValue = $ColumnValue
     }
+    [System.Xml.XmlElement] ConvertToXMLElement ([hashtable]$NewElementParams) {
+        $columnFilterElementParams = @{
+            Name = 'ColumnFilter'
+            Attributes = [ordered]@{
+                columnName = $this.ColumnName
+                comparator = $this.Comparator
+            }
+        }
+        if ($this.RawValue) {
+            $columnFilterElementParams.Attributes.Add('rawValue',"$($this.RawValue)")
+        }
+        if ($this.ColumnValue) {
+            $columnFilterElementParams.Add('Value',"$($this.ColumnValue)")
+        }
+        try {
+            return (New-XMLElementObject @columnFilterElementParams @newElementParams)
+        } catch {
+            Write-Warning "Failed to create xml element for IdFilter"
+            throw $_
+        }
+    }
 }
