@@ -6,14 +6,29 @@ function New-RequestXMLObject {
         Creates a new XML object with the elements 'Envelope', 'Header' and 'Body' and saves it to a variable named *requestXmlObject* in the script scope.
         These elements are the baseline for any request sent to Easit GO.
     .EXAMPLE
-        New-RequestXMLObject -NamespaceURI "http://schemas.xmlsoap.org/soap/envelope/" -NamespaceSchema "http://www.easit.com/bps/schemas"
+        $newRequestXMLObjectParams = @{
+            NamespaceURI = $NamespaceURI
+            NamespaceSchema = $NamespaceSchema
+            EnvelopePrefix = $EnvelopePrefix
+            RequestPrefix = $RequestPrefix
+        }
+        New-RequestXMLObject @newRequestXMLObjectParams
+    .PARAMETER RequestPrefix
+        Prefix used for elements appended to the Body element.
+    .PARAMETER EnvelopePrefix
+        Prefix used for elements appended to the Envelope element.
     .PARAMETER NamespaceURI
-        URI used for the envelope namespace (xmlns:soapenv).
+        URI used for the envelope namespace.
     .PARAMETER NamespaceSchema
-        URI to schema used to for the body elements namespace (xmlns:sch).
+        URI used for the body elements namespace.
+    .PARAMETER EnvelopeElements
+        Specifies what elements should be appended to the Envelope element.
     .OUTPUTS
         This function does not output anything.
-        This function sets a script variable named *requestXmlObject* ($script:requestXmlObject).
+        This function sets script variables named *requestXMLObject*, *envelopeBody* and *envelopeHeader*.
+    .LINK
+        - XmlDocument = https://learn.microsoft.com/en-us/dotnet/api/system.xml.xmldocument
+        - CreateXmlDeclaration = https://learn.microsoft.com/en-us/dotnet/api/system.xml.xmldocument.createxmldeclaration
     #>
     [CmdletBinding()]
     param (
@@ -71,9 +86,12 @@ function New-RequestXMLObject {
             Name = 'Envelope'
             Prefix = $EnvelopePrefix
             NamespaceSchema = $NamespaceURI
-            Attributes = @{
-                "xmlns:${RequestPrefix}" = $NamespaceSchema
-            }
+            Attributes = @(
+                @{
+                    LocalName = "xmlns:${RequestPrefix}"
+                    Value = $NamespaceSchema
+                }
+            )
         }
         try {
             Write-Debug "Creating xml element for Envelope"
@@ -91,8 +109,8 @@ function New-RequestXMLObject {
                 NamespaceSchema = $NamespaceURI
             }
             try {
-                New-Variable -Name "request${EnvelopeElement}Element" -Scope Script -Value (New-XMLElementObject @envelopeElementParams)
-                $requestRootElement.AppendChild((Get-Variable -Name "request${EnvelopeElement}Element" -ValueOnly)) | Out-Null
+                New-Variable -Name "envelope${EnvelopeElement}" -Scope Script -Value (New-XMLElementObject @envelopeElementParams)
+                $requestRootElement.AppendChild((Get-Variable -Name "envelope${EnvelopeElement}" -ValueOnly)) | Out-Null
             } catch {
                 Write-Warning "Failed to create xml element for $EnvelopeElement"
                 throw $_
