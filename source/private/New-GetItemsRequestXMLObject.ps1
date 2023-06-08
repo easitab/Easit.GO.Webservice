@@ -1,20 +1,27 @@
 function New-GetItemsRequestXMLObject {
     <#
     .SYNOPSIS
-        Creates a base ImportItemRequest XML object that can be used for sending requests to Easit GO.
+        Creates a base GetItemsRequest XML object that can be used for sending requests to Easit GO.
     .DESCRIPTION
-        Creates a base ImportItemRequest XML object, based on the XML returned by *New-RequestXMLObject*.
-        *New-ImportItemRequestXMLObject* checks if the variable *xmlRequestObject* is null and if so calls *New-RequestXMLObject*
-        to create a new request base XML object as value for the variable *xmlRequestObject* in the script scope. It then adds the following elements:
+        **New-GetItemsRequestXMLObject** checks if the variable *xmlRequestObject* is null and if so calls **New-RequestXMLObject**.
+        **New-GetItemsRequestXMLObject** then creates a new *GetItemsRequest* element and saves it in a script scoped variable named *GetItemsRequest*,
+        it then adds at least the following elements to that GetItemsRequest element:
 
-        - ImportItemsRequest
-        - ImportHandlerIdentifier
+        - ItemViewIdentifier
+        - Page
     .EXAMPLE
-        New-ImportItemRequestXMLObject -ImportHandlerIdentifier $ImportHandlerIdentifier -NamespaceURI $NamespaceURI -NamespaceSchema $NamespaceSchema
+        $params = @{
+            EnvelopePrefix = 'soapenv'
+            RequestPrefix = 'sch'
+            ItemViewIdentifier = 'view'
+            NamespaceURI = 'http://schemas.xmlsoap.org/soap/envelope/'
+            NamespaceSchema = 'http://www.easit.com/bps/schemas'
+        }
+        New-GetItemsRequestXMLObject @params
     .EXAMPLE
         $columnFilters = @()
         $columnFilters += New-ColumnFilter -ColumnName '[name]' -Comparator '[comparator]' -ColumnValue '[value]'
-        $newGetItemsRequestXMLObjectParams = @{
+        $params = @{
             EnvelopePrefix = 'soapenv'
             RequestPrefix = 'sch'
             ItemViewIdentifier = 'view'
@@ -22,13 +29,13 @@ function New-GetItemsRequestXMLObject {
             NamespaceURI = 'http://schemas.xmlsoap.org/soap/envelope/'
             NamespaceSchema = 'http://www.easit.com/bps/schemas'
         }
-        New-GetItemsRequestXMLObject @newGetItemsRequestXMLObjectParams
+        New-GetItemsRequestXMLObject @params
     .EXAMPLE
         $columnFilters = @()
         $columnFilters += New-ColumnFilter -ColumnName '[name]' -RawValue '[rawValue]' -Comparator '[comparator]'
         $sortColumn = New-SortColumn -Name '[columnName]' -Order '[sortOrder]'
         $sortColumn = New-SortColumn -Name 'Uppdaterad' -Order 'Descending'
-        $newGetItemsRequestXMLObjectParams = @{
+        $params = @{
             EnvelopePrefix = 'soapenv'
             RequestPrefix = 'sch'
             ItemViewIdentifier = 'view'
@@ -37,9 +44,9 @@ function New-GetItemsRequestXMLObject {
             NamespaceURI = 'http://schemas.xmlsoap.org/soap/envelope/'
             NamespaceSchema = 'http://www.easit.com/bps/schemas'
         }
-        New-GetItemsRequestXMLObject @newGetItemsRequestXMLObjectParams
+        New-GetItemsRequestXMLObject @params
     .EXAMPLE
-        $newGetItemsRequestXMLObjectParams = @{
+        $params = @{
             EnvelopePrefix = 'soapenv'
             RequestPrefix = 'sch'
             ItemViewIdentifier = 'view'
@@ -47,9 +54,9 @@ function New-GetItemsRequestXMLObject {
             NamespaceURI = 'http://schemas.xmlsoap.org/soap/envelope/'
             NamespaceSchema = 'http://www.easit.com/bps/schemas'
         }
-        New-GetItemsRequestXMLObject @newGetItemsRequestXMLObjectParams
+        New-GetItemsRequestXMLObject @params
     .EXAMPLE
-        $newGetItemsRequestXMLObjectParams = @{
+        $params = @{
             EnvelopePrefix = 'soapenv'
             RequestPrefix = 'sch'
             ItemViewIdentifier = 'view'
@@ -57,7 +64,7 @@ function New-GetItemsRequestXMLObject {
             NamespaceURI = 'http://schemas.xmlsoap.org/soap/envelope/'
             NamespaceSchema = 'http://www.easit.com/bps/schemas'
         }
-        New-GetItemsRequestXMLObject @newGetItemsRequestXMLObjectParams
+        New-GetItemsRequestXMLObject @params
     .PARAMETER ItemViewIdentifier
         Value set as ItemViewIdentifier for request.
     .PARAMETER Page
@@ -67,7 +74,7 @@ function New-GetItemsRequestXMLObject {
     .PARAMETER SortColumn
         If specifiied, a element named SortColumn will be appended to the GetItemsRequest element and its input used to create a SortColumn element.
     .PARAMETER ColumnFilters
-        If specifiied, a element named SortColumn will be appended to the GetItemsRequest element and its input used to create a ColumnFilter element.
+        If specifiied, one or more elements named ColumnFilter will be appended to the GetItemsRequest element and its input used to create one or more ColumnFilter elements.
     .PARAMETER FreeTextFilter
         If specifiied, a element named FreeTextFilter will be appended to the GetItemsRequest element and its input set as the element innertext.
     .PARAMETER IdFilter
@@ -82,7 +89,7 @@ function New-GetItemsRequestXMLObject {
         URI used for the body elements namespace.
     .OUTPUTS
         This function does not output anything.
-        This function sets a script variable named *requestGetItemsRequestElement*.
+        This function sets a script variable named *GetItemsRequest*.
     #>
     [CmdletBinding()]
     param (
@@ -128,7 +135,7 @@ function New-GetItemsRequestXMLObject {
             throw "EnvelopePrefix is null or empty"
         }
         if ([string]::IsNullOrWhiteSpace($RequestPrefix)) {
-            throw "ItemViewIdentifier is null or empty"
+            throw "RequestPrefix is null or empty"
         }
         if ($null -eq $xmlRequestObject) {
             $newRequestXMLObjectParams = @{
@@ -136,6 +143,7 @@ function New-GetItemsRequestXMLObject {
                 NamespaceSchema = $NamespaceSchema
                 EnvelopePrefix = $EnvelopePrefix
                 RequestPrefix = $RequestPrefix
+                ErrorAction = 'Stop'
             }
             try {
                 New-RequestXMLObject @newRequestXMLObjectParams
@@ -143,24 +151,33 @@ function New-GetItemsRequestXMLObject {
                 throw $_
             }
         }
-        $newElementParams = @{
-            Prefix = $RequestPrefix
-            NamespaceSchema = $NamespaceSchema
-            ErrorAction = 'Stop'
-        }
         try {
-            Write-Debug "Creating xml element for GetItemsRequest"
-            New-Variable -Name 'requestGetItemsRequestElement' -Scope Script -Value (New-XMLElementObject -Name 'GetItemsRequest' @newElementParams)
-            $requestBodyElement.AppendChild((Get-Variable -Name 'requestGetItemsRequestElement' -ValueOnly)) | Out-Null
+            $newElementParams = @{
+                Prefix = $RequestPrefix
+                NamespaceSchema = $NamespaceSchema
+                ErrorAction = 'Stop'
+            }
+        } catch {
+            Write-Warning "Failed to create newElementParams"
+            throw $_
+        }
+        Write-Debug "Creating xml element for GetItemsRequest"
+        try {
+            New-Variable -Name 'GetItemsRequest' -Scope Script -Value (New-XMLElementObject -Name 'GetItemsRequest' @newElementParams)
+            $envelopeBody.AppendChild((Get-Variable -Name 'GetItemsRequest' -ValueOnly)) | Out-Null
         } catch {
             Write-Warning "Failed to create xml element for GetItemsRequest"
             throw $_
         }
-        $getItemsRequestElements = New-Object System.Collections.Generic.List[System.Xml.XmlElement]
+        try {
+            $getItemsRequestElements = New-Object System.Collections.Generic.List[System.Xml.XmlElement]
+        } catch {
+            Write-Warning "Failed to create new list for XmlElements"
+            throw $_
+        }
         Write-Debug "Creating xml element for ItemViewIdentifier"
         try {
-            $requestItemViewIdentifierElement = New-XMLElementObject -Name 'ItemViewIdentifier' -Value $ItemViewIdentifier @newElementParams
-            $getItemsRequestElements.Add($requestItemViewIdentifierElement)
+            $getItemsRequestElements.Add((New-XMLElementObject -Name 'ItemViewIdentifier' -Value $ItemViewIdentifier @newElementParams))
         } catch {
             Write-Warning "Failed to create xml element for Page"
             throw $_
@@ -170,8 +187,7 @@ function New-GetItemsRequestXMLObject {
         }
         Write-Debug "Creating xml element for Page"
         try {
-            $requestPageElement = New-XMLElementObject -Name 'Page' -Value $Page @newElementParams
-            $getItemsRequestElements.Add($requestPageElement)
+            $getItemsRequestElements.Add((New-XMLElementObject -Name 'Page' -Value $Page @newElementParams))
         } catch {
             Write-Warning "Failed to create xml element for Page"
             throw $_
@@ -179,8 +195,7 @@ function New-GetItemsRequestXMLObject {
         if ($PageSize -gt 0) {
             Write-Debug "Creating xml element for PageSize"
             try {
-                $requestPageSizeElement = New-XMLElementObject -Name 'PageSize' -Value $PageSize @newElementParams
-                $getItemsRequestElements.Add($requestPageSizeElement)
+                $getItemsRequestElements.Add((New-XMLElementObject -Name 'PageSize' -Value $PageSize @newElementParams))
             } catch {
                 Write-Warning "Failed to create xml element for Page"
                 throw $_
@@ -198,8 +213,7 @@ function New-GetItemsRequestXMLObject {
         if (!([string]::IsNullOrWhiteSpace($FreeTextFilter))) {
             Write-Debug "Creating xml element for FreeTextFilter"
             try {
-                $requestFreeTextFilterElement = New-XMLElementObject -Name 'FreeTextFilter' -Value $IdFilter @newElementParams
-                $getItemsRequestElements.Add($requestFreeTextFilterElement)
+                $getItemsRequestElements.Add((New-XMLElementObject -Name 'FreeTextFilter' -Value $IdFilter @newElementParams))
             } catch {
                 Write-Warning "Failed to create xml element for FreeTextFilter"
                 throw $_
@@ -217,8 +231,7 @@ function New-GetItemsRequestXMLObject {
         if (!([string]::IsNullOrWhiteSpace($IdFilter))) {
             Write-Debug "Creating xml element for IdFilter"
             try {
-                $requestIdFilterElement = New-XMLElementObject -Name 'IdFilter' -Value $IdFilter @newElementParams
-                $getItemsRequestElements.Add($requestIdFilterElement)
+                $getItemsRequestElements.Add((New-XMLElementObject -Name 'IdFilter' -Value $IdFilter @newElementParams))
             } catch {
                 Write-Warning "Failed to create xml element for IdFilter"
                 throw $_
@@ -226,7 +239,7 @@ function New-GetItemsRequestXMLObject {
         }
         foreach ($getItemsRequestElement in $getItemsRequestElements) {
             try {
-                $requestGetItemsRequestElement.AppendChild($getItemsRequestElement) | Out-Null
+                $GetItemsRequest.AppendChild($getItemsRequestElement) | Out-Null
             } catch {
                 throw $_
             }

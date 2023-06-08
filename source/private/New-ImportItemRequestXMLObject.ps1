@@ -3,11 +3,10 @@ function New-ImportItemRequestXMLObject {
     .SYNOPSIS
         Creates a base ImportItemRequest XML object that can be used for sending requests to Easit GO.
     .DESCRIPTION
-        Creates a base ImportItemRequest XML object, based on the XML returned by *New-RequestXMLObject*.
-        **New-ImportItemRequestXMLObject** checks if the variable *requestXMLObject* is null and if so calls **New-RequestXMLObject**
-        to create a new request base XML object as value for the variable *requestXMLObject* in the script scope. It then adds the following elements:
+        **New-ImportItemRequestXMLObject** checks if the variable *requestXMLObject* is null and if so calls **New-RequestXMLObject**.
+        **New-ImportItemRequestXMLObject** then creates a new *ImportItemsRequest* element and saves it in a script scoped variable named *ImportItemsRequest*,
+        it then adds the following elements to that ImportItemsRequest element:
 
-        - ImportItemsRequest
         - ImportHandlerIdentifier
     .EXAMPLE
         $newImportItemRequestXMLObjectParams = @{
@@ -34,7 +33,7 @@ function New-ImportItemRequestXMLObject {
         URI used for the body elements namespace.
     .OUTPUTS
         This function does not output anything.
-        This function sets a script variable named *requestImportItemsRequestElement*.
+        This function sets a script variable named *ImportItemsRequest*.
     #>
     [CmdletBinding()]
     param (
@@ -70,6 +69,7 @@ function New-ImportItemRequestXMLObject {
                 NamespaceSchema = $NamespaceSchema
                 EnvelopePrefix = $EnvelopePrefix
                 RequestPrefix = $RequestPrefix
+                ErrorAction = 'Stop'
             }
             try {
                 New-RequestXMLObject @newRequestXMLObjectParams
@@ -78,23 +78,29 @@ function New-ImportItemRequestXMLObject {
             }
         }
         try {
-            Write-Verbose "Creating xml element for ImportItemsRequest"
-            $script:importItemsRequest = $requestXMLObject.CreateElement("${RequestPrefix}:ImportItemsRequest","$NamespaceSchema")
-            $requestBodyElement.AppendChild($importItemsRequest) | Out-Null
+            $newElementParams = @{
+                Prefix = $RequestPrefix
+                NamespaceSchema = $NamespaceSchema
+                ErrorAction = 'Stop'
+            }
         } catch {
-            Write-Error "Failed to create xml element for ImportItemsRequest"
-            Write-Error "$_"
-            break
+            Write-Warning "Failed to create newElementParams"
+            throw $_
         }
+        Write-Debug "Creating xml element for ImportItemsRequest"
         try {
-            Write-Verbose "Creating xml element for Importhandler"
-            $requestImportHandlerIdentifierElement = $requestXMLObject.CreateElement("${RequestPrefix}:ImportHandlerIdentifier","$NamespaceSchema")
-            $requestImportHandlerIdentifierElement.InnerText  = "$ImportHandlerIdentifier"
-            $importItemsRequest.AppendChild($requestImportHandlerIdentifierElement) | Out-Null
+            New-Variable -Name 'ImportItemsRequest' -Scope Script -Value (New-XMLElementObject -Name 'ImportItemsRequest' @newElementParams)
+            $envelopeBody.AppendChild((Get-Variable -Name 'ImportItemsRequest' -ValueOnly)) | Out-Null
         } catch {
-            Write-Error "Failed to create xml element for Importhandler"
-            Write-Error "$_"
-            break
+            Write-Warning "Failed to create xml element for ImportItemsRequest"
+            throw $_
+        }
+        Write-Debug "Creating xml element for ImportHandlerIdentifier"
+        try {
+            $ImportItemsRequest.AppendChild((New-XMLElementObject -Name 'ImportHandlerIdentifier' -Value $ImportHandlerIdentifier @newElementParams)) | Out-Null
+        } catch {
+            Write-Warning "Failed to create xml element for ImportHandlerIdentifier"
+            throw $_
         }
     }
     

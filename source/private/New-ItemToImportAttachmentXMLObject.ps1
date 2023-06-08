@@ -3,7 +3,7 @@ function New-ItemToImportAttachmentXMLObject {
     .SYNOPSIS
         Creates a attachment XML element for attachments.
     .DESCRIPTION
-        Creates a attachment XML element and appends it to requestItemToImportElement.
+        Creates a attachment XML element and returns it.
         The element will have a attribute called *name* with the value of the input for the Name parameter.
         If the Value parameter does not contain *[IO.Path]::DirectorySeparatorChar*, the value will be treated as a base64 string.
         
@@ -27,6 +27,8 @@ function New-ItemToImportAttachmentXMLObject {
         Value to be set as innertext for element.
     .PARAMETER RequestPrefix
         Prefix used for elements appended to the Body element.
+    .OUTPUTS
+        [System.Xml.XmlElement]
     #>
     [CmdletBinding()]
     param (
@@ -72,12 +74,25 @@ function New-ItemToImportAttachmentXMLObject {
             $base64string = $Value
         }
         try {
-            $requestItemToImportAttachmentElement = $requestXMLObject.CreateElement("${RequestPrefix}:Attachment","$NamespaceSchema")
-            $requestItemToImportAttachmentElement.SetAttribute('name',"$Name")
-            $requestItemToImportAttachmentElement.InnerText = "$base64string"
-            $requestItemToImportElement.AppendChild($requestItemToImportAttachmentElement) | Out-Null
+            $newAttachmentElementParams = @{
+                Name = 'Attachment'
+                Value = $base64string
+                Prefix = $RequestPrefix
+                NamespaceSchema = $NamespaceSchema
+                Attributes = @{
+                    'name' = $Name
+                }
+                ErrorAction = 'Stop'
+            }
         } catch {
-            Write-Warning "Failed to add attachment $Name to request"
+            Write-Warning "Failed to set newAttachmentElementParams"
+            throw $_
+        }
+        Write-Debug "Creating xml element for Attachment ($Name)"
+        try {
+            New-XMLElementObject @newAttachmentElementParams
+        } catch {
+            Write-Warning "Failed to create xml element for Attachment ($Name)"
             throw $_
         }
     }

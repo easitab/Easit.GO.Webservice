@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:sch="http://www.easit.com/bps/schemas" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+  <soapenv:Header />
+  <soapenv:Body>
+    <sch:GetItemsRequest>
+      <sch:ItemViewIdentifier>anthsAllRequests</sch:ItemViewIdentifier>
+      <sch:Page>3</sch:Page>
+      <sch:PageSize>145</sch:PageSize>
+      <sch:SortColumn order="Descending">Uppdaterad</sch:SortColumn>
+      <sch:FreeTextFilter>46:5</sch:FreeTextFilter>
+      <sch:ColumnFilter columnName="Beskrivning" comparator="LIKE">b</sch:ColumnFilter>
+      <sch:ColumnFilter columnName="Status" comparator="IN" rawValue="81:1" />
+      <sch:ColumnFilter columnName="Status" comparator="IN" rawValue="73:1">Registrerad</sch:ColumnFilter>
+      <sch:IdFilter>46:5</sch:IdFilter>
+    </sch:GetItemsRequest>
+  </soapenv:Body>
+</soapenv:Envelope>

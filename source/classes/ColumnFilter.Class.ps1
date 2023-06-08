@@ -1,3 +1,25 @@
+<#
+.SYNOPSIS
+    Initializes a new instance of the ColumnFilter class.
+.DESCRIPTION
+    Initializes a new instance of the ColumnFilter class with the provided input. This class only have 1 contructor and that contructor looks like this:
+
+    - [ColumnFilter]::New(String,String,String,String)
+
+    Available methods:
+    - ConvertToXMLElement (Used by private functions)
+.EXAMPLE
+    [ColumnFilter]::New($ColumnName,$RawValue,$Comparator,$ColumnValue)
+.EXAMPLE
+    $newElementParams = @{
+        Prefix = $RequestPrefix
+        NamespaceSchema = $NamespaceSchema
+        ErrorAction = 'Stop'
+    }
+    foreach ($columnFilter in $ColumnFilters) {    
+        $columnFilter.ConvertToXMLElement($newElementParams)
+    }
+#>
 Class ColumnFilter {
     [ValidatePattern("^[a-zA-Z0-9]+$")]
     [String]$ColumnName
@@ -14,13 +36,24 @@ Class ColumnFilter {
     [System.Xml.XmlElement] ConvertToXMLElement ([hashtable]$NewElementParams) {
         $columnFilterElementParams = @{
             Name = 'ColumnFilter'
-            Attributes = [ordered]@{
-                columnName = $this.ColumnName
-                comparator = $this.Comparator
-            }
+            Attributes = [System.Collections.Generic.List[hashtable]]@(
+                @{
+                    LocalName = 'columnName'
+                    Value = $this.ColumnName
+                },
+                @{
+                    LocalName = 'comparator'
+                    Value = $this.Comparator
+                }
+            )
         }
         if ($this.RawValue) {
-            $columnFilterElementParams.Attributes.Add('rawValue',"$($this.RawValue)")
+            $columnFilterElementParams.Attributes.Add(
+                @{
+                    LocalName = 'rawValue'
+                    Value = "$($this.RawValue)"
+                }
+            )
         }
         if ($this.ColumnValue) {
             $columnFilterElementParams.Add('Value',"$($this.ColumnValue)")

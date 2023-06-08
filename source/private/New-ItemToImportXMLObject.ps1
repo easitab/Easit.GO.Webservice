@@ -5,13 +5,13 @@ function New-ItemToImportXMLObject {
     .DESCRIPTION
         Creates a base ItemToImport XML object, based on the XML created by **New-RequestXMLObject** and **New-ImportItemRequestXMLObject**.
         This function first checks if the variable *requestXMLObject* is null or not and if so calls **New-RequestXMLObject** to set it.
-        This function then checks if the variable *requestImportItemsRequestElement* is null or not and if so calls **New-ImportItemRequestXMLObject** to set it.
-        It adds the element *ItemToImport* with the following attributes:
+        This function then checks if the variable *ImportItemsRequest* is null or not and if so calls **New-ImportItemRequestXMLObject** to set it.
+        It creates the element *ItemToImport* with the following attributes and adds it to the element created by **New-ImportItemRequestXMLObject**:
 
         - id
         - uid
 
-        With help of **New-ItemToImportPropertyXMLObject** and **New-ItemToImportAttachmentXMLObject** it iterates the InputObjects properties and add them
+        With help of **New-XMLElementObject** and **New-ItemToImportAttachmentXMLObject** it iterates the InputObjects properties and adds them
         as a *Property element* with the property name as the attribute *name* and the property value as the elements innerText.
 
         If the property value is an array, each item in the array will be added as its own Property element. The elements attribute name will be the 
@@ -25,7 +25,7 @@ function New-ItemToImportXMLObject {
         $anArray = Get-ChildItem -Path 'C:\testPath\files\' -Recurse -Include '*.txt'
         $customObject = [PSCustomObject]@{propertyName1='propertyValue1';anArray=$anArray;attachments = $hash}
         $newItemToImportXMLObjectParams = @{
-            InputObject = $contact
+            InputObject = $customObject
             ImportHandlerIdentifier = 'test'
             NamespaceURI = 'http://schemas.xmlsoap.org/soap/envelope/'
             NamespaceSchema = 'http://www.easit.com/bps/'
@@ -46,9 +46,12 @@ function New-ItemToImportXMLObject {
     .PARAMETER InputObject
         Object to be "converted" to a ItemToImport.
     .PARAMETER UID
-        Unique identifier for item in the XML document.
+        Unique identifier for item in the total if items sent to Easit GO.
     .PARAMETER ID
         Identifier for item in the XML document.
+    .OUTPUTS
+        This function does not output anything.
+        This function sets a script variable named *ItemToImport*.
     #>
     [CmdletBinding()]
     param (
@@ -94,7 +97,7 @@ function New-ItemToImportXMLObject {
                 throw $_
             }
         }
-        if ($null -eq $requestImportItemsRequestElement) {
+        if ($null -eq $ImportItemsRequest) {
             $newImportItemRequestXMLObjectParams = @{
                 ImportHandlerIdentifier = $ImportHandlerIdentifier
                 NamespaceURI = $NamespaceURI
@@ -117,10 +120,10 @@ function New-ItemToImportXMLObject {
                 uid = $UID
             }
         }
+        Write-Debug "Creating xml element for ItemToImport"
         try {
-            Write-Debug "Creating xml element for ItemToImport"
-            New-Variable -Name 'requestItemToImportElement' -Value (New-XMLElementObject @requestItemToImportElementParams) -Scope Script
-            $requestImportItemsRequestElement.AppendChild($requestItemToImportElement) | Out-Null
+            New-Variable -Name 'ItemToImport' -Value (New-XMLElementObject @requestItemToImportElementParams) -Scope Script
+            $ImportItemsRequest.AppendChild($ItemToImport) | Out-Null
         } catch {
             Write-Warning "Failed to create xml element for ItemToImport"
             throw $_
@@ -140,7 +143,7 @@ function New-ItemToImportXMLObject {
                         }
                     }
                     try {
-                        $requestItemToImportElement.AppendChild((New-XMLElementObject @newitemToImportPropertyElementParams)) | Out-Null
+                        $ItemToImport.AppendChild((New-XMLElementObject @newitemToImportPropertyElementParams)) | Out-Null
                     } catch {
                         throw $_
                     }
@@ -149,33 +152,37 @@ function New-ItemToImportXMLObject {
                 if ($property.Name -eq 'Attachment' -OR $property.Name -eq 'Attachments') {
                     Write-Debug "Property value is a hashtable and name ($($property.Name)) is attachment(s)"
                     foreach ($attachment in $property.Value.GetEnumerator()) {
+                        $newItemToImportAttachmentParams = @{
+                            NamespaceSchema = $NamespaceSchema 
+                            Name = $attachment.Name
+                            Value = $attachment.Value
+                            RequestPrefix = $RequestPrefix
+                        }
                         try {
-                            New-ItemToImportAttachmentXMLObject -NamespaceSchema $NamespaceSchema -Name $attachment.Name -Value $attachment.Value -RequestPrefix $RequestPrefix
+                            $ItemToImport.AppendChild((New-ItemToImportAttachmentXMLObject @newItemToImportAttachmentParams)) | Out-Null
                         } catch {
                             throw $_
                         }
                     }
                 } else {
                     Write-Debug "Property value is a hashtable but name ($($property.Name)) is NOT attachment(s)"
-                    #foreach ($property in $property.Value.GetEnumerator()) {
-                        $newitemToImportPropertyElementParams = @{
-                            Name = 'Property'
-                            Value = $property.Value.Value
-                            Prefix = $RequestPrefix
-                            NamespaceSchema = $NamespaceSchema
-                            Attributes = @{
-                                'name' = $property.Value.Name
-                            }
+                    $newitemToImportPropertyElementParams = @{
+                        Name = 'Property'
+                        Value = $property.Value.Value
+                        Prefix = $RequestPrefix
+                        NamespaceSchema = $NamespaceSchema
+                        Attributes = @{
+                            'name' = $property.Value.Name
                         }
-                        if ($property.Value.rawValue) {
-                            $newitemToImportPropertyElementParams.Attributes.Add('rawValue',$property.Value.rawValue)
-                        }
-                        try {
-                            $requestItemToImportElement.AppendChild((New-XMLElementObject @newitemToImportPropertyElementParams)) | Out-Null
-                        } catch {
-                            throw $_
-                        }
-                    #}
+                    }
+                    if ($property.Value.rawValue) {
+                        $newitemToImportPropertyElementParams.Attributes.Add('rawValue',$property.Value.rawValue)
+                    }
+                    try {
+                        $ItemToImport.AppendChild((New-XMLElementObject @newitemToImportPropertyElementParams)) | Out-Null
+                    } catch {
+                        throw $_
+                    }
                 }
             } else {
                 $newitemToImportPropertyElementParams = @{
@@ -188,7 +195,7 @@ function New-ItemToImportXMLObject {
                     }
                 }
                 try {
-                    $requestItemToImportElement.AppendChild((New-XMLElementObject @newitemToImportPropertyElementParams)) | Out-Null
+                    $ItemToImport.AppendChild((New-XMLElementObject @newitemToImportPropertyElementParams)) | Out-Null
                 } catch {
                     throw $_
                 }
