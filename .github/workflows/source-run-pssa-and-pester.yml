@@ -1,4 +1,4 @@
-name: Test source with PSSA and Pester
+name: PSScriptAnalyzer and Pester
 
 on:
   pull_request:
@@ -22,7 +22,7 @@ jobs:
         settingsPath: ./.github/PSScriptAnalyzerSettings.psd1
 
   test:
-    name: Pester tests
+    name: Run tests
     needs: lint
     runs-on: ${{ matrix.os }}
     strategy:
