@@ -13,14 +13,7 @@ function Convert-GetItemsResponse {
     
     process {
         $Response.Envelope.Body.GetItemsResponse.Items.GetEnumerator() | ForEach-Object -Parallel {
-        #foreach ($item in $Response.Envelope.Body.GetItemsResponse.Items.GetEnumerator()) {
-            . 'C:\Users\anth\GitHub\easitanth\Easit.GO.Webservice\source\private\Convert-AttachmentElement.ps1'
-            . 'C:\Users\anth\GitHub\easitanth\Easit.GO.Webservice\source\private\Convert-PropertyElement.ps1'
-            . 'C:\Users\anth\GitHub\easitanth\Easit.GO.Webservice\source\private\New-ReturnObject.ps1'
-            . 'C:\Users\anth\GitHub\easitanth\Easit.GO.Webservice\source\private\Add-PropertyFromColumn.ps1'
-            . 'C:\Users\anth\GitHub\easitanth\Easit.GO.Webservice\source\private\Add-PropertyFromItemChildElement.ps1'
             $xmlResponse = $using:Response
-            #$xmlResponse = $Response
             if ($xmlResponse.Envelope.Body.GetItemsResponse.totalNumberOfItems -lt 1) {
                 Write-Warning "View did not return any Easit GO objects"
                 return
