@@ -1,4 +1,32 @@
 function Add-PropertyFromColumn {
+    <#
+    .SYNOPSIS
+        Adds each column in GetItemsResponse.Columns as properties to a PSCustomObject.
+    .DESCRIPTION
+        The **Add-PropertyFromColumn** functions adds all column elements from a GetItemsResponse XML object to a PSCustomObject as properties
+        with the innerText as the property name.
+        If the element attribute *collection* is true or if the innerText value occurre multiple times the property will be treated as an array.
+
+        For each column element a [propertyName]_details property is also added containing details about the value such as *datatype*, *connectiontype*,
+        *IsArray* and *IsCollection*.
+    
+    .EXAMPLE
+        $Response.Envelope.Body.GetItemsResponse.Items.GetEnumerator() | ForEach-Object -Parallel {
+            $xmlResponse = $using:Response
+            try {
+                $returnObject = New-ReturnObject -XML $xmlResponse
+                $returnObject = Add-PropertyFromColumn -XML $xmlResponse -InputObject $returnObject
+            } catch {
+                throw $_
+            }
+        }
+    .PARAMETER XML
+        XML reponse object to add properties from.
+    .PARAMETER InputObject
+        Object to add properties to.
+    .OUTPUTS
+        [PSCustomObject](https://learn.microsoft.com/en-us/dotnet/api/system.management.automation.pscustomobject)
+    #>
     [CmdletBinding()]
     param (
         [Parameter(Mandatory)]

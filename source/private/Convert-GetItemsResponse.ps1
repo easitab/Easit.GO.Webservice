@@ -20,13 +20,13 @@ function Convert-GetItemsResponse {
             }
             # Set up for creating a new object from an XML item
             try {
-                $returnObject = New-ReturnObject -XML $xmlResponse -Verbose
+                $returnObject = New-ReturnObject -XML $xmlResponse
             } catch {
                 throw $_
             }
             # We use the column details to build out a PSCustomObject base
             try {
-                $returnObject = Add-PropertyFromColumn -XML $xmlResponse -InputObject $returnObject -Verbose
+                $returnObject = Add-PropertyFromColumn -XML $xmlResponse -InputObject $returnObject
             } catch {
                 throw $_
             }
@@ -43,7 +43,7 @@ function Convert-GetItemsResponse {
                     }
                 }
                 try {
-                    $returnObject = Set-PropertyValueFromItemChildElement -ChildElement $itemProperty -InputObject $returnObject -Verbose
+                    $returnObject = Set-PropertyValueFromItemChildElement -ChildElement $itemProperty -InputObject $returnObject
                 } catch {
                     throw $_
                 }
