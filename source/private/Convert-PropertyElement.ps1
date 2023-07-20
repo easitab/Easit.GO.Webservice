@@ -1,4 +1,26 @@
 function Convert-PropertyElement {
+    <#
+    .SYNOPSIS
+        Converts a property element to a PSCustomObject.
+    .DESCRIPTION
+        The **Convert-AttachmentElement** takes an XML element and creates a PSCustomObject from that element.
+        If the element is part of an array or collection, the name property will be ommited from the new object.
+
+    .EXAMPLE
+        if ($ChildElement.LocalName -eq 'Property') {
+            Convert-PropertyElement -Property $ChildElement
+        }
+    .EXAMPLE
+        if ($ChildElement.LocalName -eq 'Property') {
+            Convert-PropertyElement -Property $ChildElement -ExcludeName
+        }
+    .PARAMETER Property
+        The XML element to be converted to a PSCustomObject
+    .PARAMETER ExcludeName
+        Lets the function now if a property named Name should be added or not to the new object.
+    .OUTPUTS
+        [PSCustomObject](https://learn.microsoft.com/en-us/dotnet/api/system.management.automation.pscustomobject)
+    #>
     [CmdletBinding()]
     param (
         [Parameter(Mandatory)]
