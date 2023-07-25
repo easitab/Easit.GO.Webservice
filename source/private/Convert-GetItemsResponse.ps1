@@ -1,4 +1,21 @@
 function Convert-GetItemsResponse {
+    <#
+    .SYNOPSIS
+        Function for converting items in a GetItems XML response (GetItemsResponse) to PSCustomObject.
+    .DESCRIPTION
+        **Convert-GetItemsResponse** converts each item in *GetItemsResponse.Items* to a PSCustomObject.
+        Each PSCustomObject gets its properties from GetItemsResponse.Columns.
+        Each PSCustomObject has a "hidden" property ([propertyName_details]) for each property from GetItemsResponse.Columns.
+    .EXAMPLE
+        $response = Invoke-EasitWebRequest -url $url -api $api -body $body
+        Convert-GetItemsResponse -Response $reponse
+    .PARAMETER Response
+        XML response to convert
+    .PARAMETER ThrottleLimit
+        Specifies the number of script blocks that run in parallel. Input objects are blocked until the running script block count falls below the ThrottleLimit.
+    .OUTPUTS
+        [PSCustomObject](https://learn.microsoft.com/en-us/dotnet/api/system.management.automation.pscustomobject)
+    #>
     [CmdletBinding()]
     param (
         [Parameter(Mandatory)]
