@@ -1,4 +1,24 @@
 function Set-PropertyValueFromItemChildElement {
+    <#
+    .SYNOPSIS
+        Set or add value for or to a property.
+    .DESCRIPTION
+        **Set-PropertyValueFromItemChildElement** takes the input for *ChildElement*, converts it to a PSCustomObject (with
+        the help of *Convert-PropertyElement*) and sets that object as value for the property with the same name as ChildElement.name.
+    .EXAMPLE
+        $Response.Envelope.Body.GetItemsResponse.Items.GetEnumerator() | ForEach-Object -Parallel {
+            $returnObject = New-ReturnObject -XML $xmlResponse
+            foreach ($itemProperty in $_.GetEnumerator()) {
+                $returnObject = Set-PropertyValueFromItemChildElement -ChildElement $itemProperty -InputObject $returnObject
+            }
+        }
+    .PARAMETER ChildElement
+        XmlElement to convert and set as value
+    .PARAMETER InputObject
+        PSCustomObject to set value for
+    .OUTPUTS
+        [PSCustomObject](https://learn.microsoft.com/en-us/dotnet/api/system.management.automation.pscustomobject)
+    #>
     [CmdletBinding()]
     param (
         [Parameter(Mandatory)]
