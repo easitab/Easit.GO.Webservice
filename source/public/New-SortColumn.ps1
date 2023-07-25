@@ -7,11 +7,9 @@ function New-SortColumn {
         [ValidateSet('Ascending','Descending')]
         [String]$Order
     )
-    
     begin {
         Write-Verbose "$($MyInvocation.MyCommand) initialized"
     }
-    
     process {
         try {
             [SortColumn]::New($Name,$Order)
@@ -19,7 +17,6 @@ function New-SortColumn {
             throw $_
         }
     }
-    
     end {
         Write-Verbose "$($MyInvocation.MyCommand) completed"
     }

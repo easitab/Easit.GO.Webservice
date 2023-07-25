@@ -26,11 +26,9 @@ function Set-PropertyValueFromItemChildElement {
         [Parameter(Mandatory)]
         [PSCustomObject]$InputObject
     )
-    
     begin {
         Write-Verbose "$($MyInvocation.MyCommand) initialized"
     }
-    
     process {
         if ($ChildElement.LocalName -eq 'Property') {
             $ChildElementName = "$($ChildElement.Name)"
@@ -60,7 +58,6 @@ function Set-PropertyValueFromItemChildElement {
         }
         $InputObject
     }
-    
     end {
         Write-Verbose "$($MyInvocation.MyCommand) completed"
     }

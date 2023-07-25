@@ -23,11 +23,9 @@ function Convert-GetItemsResponse {
         [Parameter()]
         [int]$ThrottleLimit
     )
-    
     begin {
         Write-Verbose "$($MyInvocation.MyCommand) initialized"
     }
-    
     process {
         $Response.Envelope.Body.GetItemsResponse.Items.GetEnumerator() | ForEach-Object -Parallel {
             $xmlResponse = $using:Response
@@ -75,7 +73,6 @@ function Convert-GetItemsResponse {
             $returnObject
         } -ThrottleLimit $ThrottleLimit
     }
-    
     end {
         Write-Verbose "$($MyInvocation.MyCommand) completed"
     }

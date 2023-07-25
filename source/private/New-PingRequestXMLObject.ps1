@@ -36,11 +36,9 @@ function New-PingRequestXMLObject {
         [Parameter(Mandatory)]
         [String]$RequestPrefix
     )
-    
     begin {
         Write-Verbose "$($MyInvocation.MyCommand) initialized"
     }
-    
     process {
         if ([string]::IsNullOrWhiteSpace($NamespaceURI)) {
             throw "NamespaceURI is null or empty"
@@ -87,7 +85,6 @@ function New-PingRequestXMLObject {
             throw $_
         }
     }
-    
     end {
         Write-Verbose "$($MyInvocation.MyCommand) completed"
     }

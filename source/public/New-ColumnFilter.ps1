@@ -11,11 +11,9 @@ function New-ColumnFilter {
         [Parameter()]
         [String]$ColumnValue
     )
-    
     begin {
         Write-Verbose "$($MyInvocation.MyCommand) initialized"
     }
-    
     process {
         if ([string]::IsNullOrWhiteSpace($RawValue) -and !([string]::IsNullOrWhiteSpace($ColumnValue))) {
             try {
@@ -44,7 +42,6 @@ function New-ColumnFilter {
             }
         }
     }
-    
     end {
         Write-Verbose "$($MyInvocation.MyCommand) completed"
     }

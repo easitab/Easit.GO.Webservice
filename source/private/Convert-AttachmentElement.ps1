@@ -22,11 +22,9 @@ function Convert-AttachmentElement {
         [Parameter(Mandatory)]
         [System.Xml.XmlElement]$Attachment
     )
-    
     begin {
         Write-Verbose "$($MyInvocation.MyCommand) initialized"
     }
-    
     process {
         $convertedAttachmentElement = New-Object PSCustomObject
         try {
@@ -46,7 +44,6 @@ function Convert-AttachmentElement {
         }
         $convertedAttachmentElement
     }
-    
     end {
         Write-Verbose "$($MyInvocation.MyCommand) completed"
     }

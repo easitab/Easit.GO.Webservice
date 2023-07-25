@@ -28,11 +28,9 @@ function Convert-PropertyElement {
         [Parameter()]
         [Switch]$ExcludeName
     )
-    
     begin {
         Write-Verbose "$($MyInvocation.MyCommand) initialized"
     }
-    
     process {
         $convertedPropertyElement = New-Object PSCustomObject
         if ($ExcludeName) {
@@ -56,7 +54,6 @@ function Convert-PropertyElement {
         }
         $convertedPropertyElement
     }
-    
     end {
         Write-Verbose "$($MyInvocation.MyCommand) completed"
     }

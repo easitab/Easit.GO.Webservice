@@ -4,11 +4,9 @@ function New-ReturnObject {
         [Parameter(Mandatory)]
         [XML]$XML
     )
-    
     begin {
         Write-Verbose "$($MyInvocation.MyCommand) initialized"
     }
-    
     process {
         $returnObject = New-Object PSCustomObject
         try {
@@ -21,7 +19,6 @@ function New-ReturnObject {
         }
         $returnObject
     }
-    
     end {
         Write-Verbose "$($MyInvocation.MyCommand) completed"
     }

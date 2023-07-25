@@ -9,7 +9,6 @@ function Add-PropertyFromColumn {
 
         For each column element a [propertyName]_details property is also added containing details about the value such as *datatype*, *connectiontype*,
         *IsArray* and *IsCollection*.
-    
     .EXAMPLE
         $Response.Envelope.Body.GetItemsResponse.Items.GetEnumerator() | ForEach-Object -Parallel {
             $xmlResponse = $using:Response
@@ -34,11 +33,9 @@ function Add-PropertyFromColumn {
         [Parameter(Mandatory)]
         [PSCustomObject]$InputObject
     )
-    
     begin {
         Write-Verbose "$($MyInvocation.MyCommand) initialized"
     }
-    
     process {
         foreach ($column in $XML.Envelope.Body.GetItemsResponse.Columns.GetEnumerator()) {
             $columnName = $column.InnerText
@@ -102,7 +99,6 @@ function Add-PropertyFromColumn {
         }
         $InputObject
     }
-    
     end {
         Write-Verbose "$($MyInvocation.MyCommand) completed"
     }

@@ -41,11 +41,9 @@ function New-ItemToImportAttachmentXMLObject {
         [Parameter(Mandatory)]
         [String]$RequestPrefix
     )
-    
     begin {
         Write-Verbose "$($MyInvocation.MyCommand) initialized"
     }
-    
     process {
         $directorySeparator = [IO.Path]::DirectorySeparatorChar
         $base64string = $null
@@ -96,7 +94,6 @@ function New-ItemToImportAttachmentXMLObject {
             throw $_
         }
     }
-    
     end {
         Write-Verbose "$($MyInvocation.MyCommand) completed"
     }
