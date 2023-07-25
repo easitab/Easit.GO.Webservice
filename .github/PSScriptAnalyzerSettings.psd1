@@ -8,4 +8,7 @@
             Placement = 'begin'
         }
     }
+    ExcludeRules = @(
+        'PSUseShouldProcessForStateChangingFunctions'
+    )
 }
