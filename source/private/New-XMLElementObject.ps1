@@ -3,7 +3,7 @@ function New-XMLElementObject {
     .SYNOPSIS
         Creates an XmlElement.
     .DESCRIPTION
-        Creates an XmlElement from the XML document created by **New-RequestXMLObject**. 
+        Creates an XmlElement from the XML document created by **New-RequestXMLObject**.
         If input is provided to the parameter *Attributes* that input will be used to set attribute names and values for the element.
 
         <sch:elementName>elementInnerText</sch:elementName>

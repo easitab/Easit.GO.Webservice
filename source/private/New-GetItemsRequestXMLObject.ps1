@@ -116,11 +116,9 @@ function New-GetItemsRequestXMLObject {
         [Parameter(Mandatory)]
         [String]$RequestPrefix
     )
-    
     begin {
         Write-Verbose "$($MyInvocation.MyCommand) initialized"
     }
-    
     process {
         if ([string]::IsNullOrWhiteSpace($NamespaceURI)) {
             throw "NamespaceURI is null or empty"

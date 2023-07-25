@@ -16,7 +16,7 @@
         NamespaceSchema = $NamespaceSchema
         ErrorAction = 'Stop'
     }
-    foreach ($columnFilter in $ColumnFilters) {    
+    foreach ($columnFilter in $ColumnFilters) {
         $columnFilter.ConvertToXMLElement($newElementParams)
     }
 #>

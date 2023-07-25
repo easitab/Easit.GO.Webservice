@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:sch="http://www.easit.com/bps/schemas" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+  <soapenv:Header />
+  <soapenv:Body>
+    <sch:GetItemsRequest>
+      <sch:ItemViewIdentifier>testView</sch:ItemViewIdentifier>
+      <sch:IdFilter>46:5</sch:IdFilter>
+    </sch:GetItemsRequest>
+  </soapenv:Body>
+</soapenv:Envelope>

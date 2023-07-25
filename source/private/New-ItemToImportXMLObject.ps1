@@ -14,7 +14,7 @@ function New-ItemToImportXMLObject {
         With help of **New-XMLElementObject** and **New-ItemToImportAttachmentXMLObject** it iterates the InputObjects properties and adds them
         as a *Property element* with the property name as the attribute *name* and the property value as the elements innerText.
 
-        If the property value is an array, each item in the array will be added as its own Property element. The elements attribute name will be the 
+        If the property value is an array, each item in the array will be added as its own Property element. The elements attribute name will be the
         name of the property holding the array. If the property value is an hashtable, each item in the hashtable will be added as its own Property element.
         The elements attribute name will be hash.key and the elements value will the keys value.
 
@@ -72,11 +72,9 @@ function New-ItemToImportXMLObject {
         [Parameter(Mandatory)]
         [String]$RequestPrefix
     )
-    
     begin {
         Write-Verbose "$($MyInvocation.MyCommand) initialized"
     }
-    
     process {
         if ([string]::IsNullOrWhiteSpace($NamespaceURI)) {
             throw "NamespaceURI is null or empty"
@@ -153,7 +151,7 @@ function New-ItemToImportXMLObject {
                     Write-Debug "Property value is a hashtable and name ($($property.Name)) is attachment(s)"
                     foreach ($attachment in $property.Value.GetEnumerator()) {
                         $newItemToImportAttachmentParams = @{
-                            NamespaceSchema = $NamespaceSchema 
+                            NamespaceSchema = $NamespaceSchema
                             Name = $attachment.Name
                             Value = $attachment.Value
                             RequestPrefix = $RequestPrefix
@@ -202,7 +200,6 @@ function New-ItemToImportXMLObject {
             }
         }
     }
-    
     end {
         Write-Verbose "$($MyInvocation.MyCommand) completed"
     }

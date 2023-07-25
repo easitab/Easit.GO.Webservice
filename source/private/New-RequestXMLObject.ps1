@@ -43,11 +43,9 @@ function New-RequestXMLObject {
         [Parameter()]
         [String[]]$EnvelopeElements = @('Header','Body')
     )
-    
     begin {
         Write-Verbose "$($MyInvocation.MyCommand) initialized"
     }
-    
     process {
         if ([string]::IsNullOrWhiteSpace($NamespaceURI)) {
             throw "NamespaceURI is null or empty"
@@ -117,7 +115,6 @@ function New-RequestXMLObject {
             }
         }
     }
-    
     end {
         Write-Verbose "$($MyInvocation.MyCommand) completed"
     }

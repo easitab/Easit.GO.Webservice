@@ -5,7 +5,7 @@ function New-PingRequestXMLObject {
     .DESCRIPTION
         **New-PingRequestXMLObject** checks if the variable *xmlRequestObject* is null and if so calls **New-RequestXMLObject**.
         **New-PingRequestXMLObject** then creates a new *PingRequest* element and appends it to the envelope body element.
-    .EXAMPLE 
+    .EXAMPLE
         $newPingRequestXMLObjectParams = @{
             EnvelopePrefix = 'soapenv'
             RequestPrefix = 'sch'
@@ -36,11 +36,9 @@ function New-PingRequestXMLObject {
         [Parameter(Mandatory)]
         [String]$RequestPrefix
     )
-    
     begin {
         Write-Verbose "$($MyInvocation.MyCommand) initialized"
     }
-    
     process {
         if ([string]::IsNullOrWhiteSpace($NamespaceURI)) {
             throw "NamespaceURI is null or empty"
@@ -87,7 +85,6 @@ function New-PingRequestXMLObject {
             throw $_
         }
     }
-    
     end {
         Write-Verbose "$($MyInvocation.MyCommand) completed"
     }

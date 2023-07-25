@@ -23,7 +23,8 @@ param (
 )
 
 begin {
-    Write-Host "Publish module script start"
+    $InformationPreference = 'Continue'
+    Write-Information "Publish module script start"
 }
 
 process {
@@ -51,7 +52,7 @@ process {
     }
     $moduleRoot = New-Item -Path $tempBuildDirectory -Name $ModuleName -ItemType Directory
     $psm1 = New-Item -Path $moduleRoot -Name "$ModuleName.psm1" -ItemType File
-    Write-Host "Generating new psm1"
+    Write-Information "Generating new psm1"
     foreach ($script in $allScripts) {
         $scriptContent = $null
         try {
@@ -82,24 +83,24 @@ process {
         Copyright         = "$Copyright"
     }
     try {
-        Write-Host "Creating new module manifest"
+        Write-Information "Creating new module manifest"
         New-ModuleManifest @manifest -ErrorAction Stop | Out-Null
     } catch {
         Write-Warning "Failed to create new module manifest"
         throw $_
     }
     if (Test-ModuleManifest -Path "$manifestFilePath") {
-        Write-Host "Publishing module to PSGallery"
+        Write-Information "Publishing module to PSGallery"
         try {
             Publish-Module -Path "$moduleRoot" -NuGetApiKey "$PSGalleryKey"
         } catch {
             Write-Warning "Failed to publish module to gallery"
             throw $_
         }
-        Write-Host "Module published!"
+        Write-Information "Module published!"
     }
 }
 
 end {
-    Write-Host "Publish module script end"
+    Write-Information "Publish module script end"
 }

@@ -6,11 +6,10 @@ function New-ItemToImportAttachmentXMLObject {
         Creates a attachment XML element and returns it.
         The element will have a attribute called *name* with the value of the input for the Name parameter.
         If the Value parameter does not contain *[IO.Path]::DirectorySeparatorChar*, the value will be treated as a base64 string.
-        
-        If the Value parameter contains *[IO.Path]::DirectorySeparatorChar*, the value be treated as a path. If the path failes 
+
+        If the Value parameter contains *[IO.Path]::DirectorySeparatorChar*, the value be treated as a path. If the path failes
         *Test-Path* an error is thrown, otherwise we convert the content of the file to base64 and set that string as innerText.
         If in put for Value is a path and the Name parameter is empty, the filename will be used as value for the name attribute.
-        
     .EXAMPLE
         if ($property.Value -is [hashtable]) {
             if ($property.Name -eq 'Attachment' -OR $property.Name -eq 'Attachments') {
@@ -41,11 +40,9 @@ function New-ItemToImportAttachmentXMLObject {
         [Parameter(Mandatory)]
         [String]$RequestPrefix
     )
-    
     begin {
         Write-Verbose "$($MyInvocation.MyCommand) initialized"
     }
-    
     process {
         $directorySeparator = [IO.Path]::DirectorySeparatorChar
         $base64string = $null
@@ -66,7 +63,7 @@ function New-ItemToImportAttachmentXMLObject {
             } else {
                 throw "Cannot find $Value"
             }
-        } 
+        }
         if (!($Value -match "\${directorySeparator}")) {
             if ([string]::IsNullOrWhiteSpace($Name)) {
                 throw "Missing name for attachment"
@@ -96,7 +93,6 @@ function New-ItemToImportAttachmentXMLObject {
             throw $_
         }
     }
-    
     end {
         Write-Verbose "$($MyInvocation.MyCommand) completed"
     }
