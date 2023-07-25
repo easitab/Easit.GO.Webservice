@@ -8,9 +8,4 @@
             Placement = 'begin'
         }
     }
-    ExcludeRules = @(
-        'PSReviewUnusedParameter',
-        'PSUseShouldProcessForStateChangingFunctions',
-        'PSUseDeclaredVarsMoreThanAssignments'
-    )
 }
