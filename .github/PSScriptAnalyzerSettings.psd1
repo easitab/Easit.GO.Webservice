@@ -9,6 +9,7 @@
         }
     }
     ExcludeRules = @(
-        'PSUseShouldProcessForStateChangingFunctions'
+        'PSUseShouldProcessForStateChangingFunctions',
+        'PSUseDeclaredVarsMoreThanAssignments'
     )
 }
