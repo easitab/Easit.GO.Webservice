@@ -4,7 +4,7 @@ function Convert-AttachmentElement {
         Converts an attachment element to a PSCustomObject.
     .DESCRIPTION
         The **Convert-AttachmentElement** takes an XML element and creates a PSCustomObject from that element.
-        The name attribute and innerText is used directly from the XML element. 
+        The name attribute and innerText is used directly from the XML element.
 
         **Convert-AttachmentElement** also adds a property named *ContentLength* to the return object with the value of
         *[element].InnerText.Length*.
