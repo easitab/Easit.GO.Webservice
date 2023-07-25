@@ -1,4 +1,42 @@
 function New-ColumnFilter {
+    <#
+    .SYNOPSIS
+        Creates a new instance of the ColumnFilter class.
+    .DESCRIPTION
+        **New-ColumnFilter** acts as a wrapper function for the ColumnFilter class included in the module Easit.GO.Webservice.
+        With the provided input it returns an instance of the ColumnFilter class.
+    .EXAMPLE
+        $columnFilters = @()
+        try {
+            $columnFilters += New-ColumnFilter -ColumnName 'Description' -Comparator 'LIKE' -ColumnValue 'A description'
+        } catch {
+            throw $_
+        }
+    .EXAMPLE
+        $columnFilters = @()
+        try {
+            $columnFilters += New-ColumnFilter -ColumnName 'Status' -RawValue '81:1' -Comparator 'IN'
+        } catch {
+            throw $_
+        }
+    .EXAMPLE
+        $columnFilters = @()
+        try {
+            $columnFilters += New-ColumnFilter -ColumnName 'Status' -RawValue '73:1' -Comparator 'IN' -ColumnValue 'Registrered'
+        } catch {
+            throw $_
+        }
+    .PARAMETER ColumnName
+        Name of the column / field to filter against.
+    .PARAMETER RawValue
+        The raw value (database id) for the value in the column / field.
+    .PARAMETER Comparator
+        What comparator to use and filter with.
+    .PARAMETER ColumnValue
+        String value for the column / field.
+    .OUTPUTS
+        [ColumnFilter](https://docs.easitgo.com/techspace/psmodules/)
+    #>
     [CmdletBinding()]
     param (
         [Parameter(Mandatory)]
