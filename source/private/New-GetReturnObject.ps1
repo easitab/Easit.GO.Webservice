@@ -3,12 +3,12 @@ function New-GetReturnObject {
     .SYNOPSIS
         Creates an base PSCustomObject returned by *Convert-GetItemsResponse*.
     .DESCRIPTION
-        **New-ReturnObject** creates a "base" object with some properties that a GetItemsResponse always contains.
+        **New-GetReturnObject** creates a "base" object with some properties that a GetItemsResponse always contains.
     .EXAMPLE
         $Response.Envelope.Body.GetItemsResponse.Items.GetEnumerator() | ForEach-Object -Parallel {
             $xmlResponse = $using:Response
             try {
-                $returnObject = New-ReturnObject -XML $xmlResponse
+                $returnObject = New-GetReturnObject -XML $xmlResponse
             } catch {
                 throw $_
             }
