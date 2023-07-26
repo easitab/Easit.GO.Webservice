@@ -1,4 +1,4 @@
-function New-ReturnObject {
+function New-GetReturnObject {
     <#
     .SYNOPSIS
         Creates an base PSCustomObject returned by *Convert-GetItemsResponse*.

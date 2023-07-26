@@ -35,7 +35,7 @@ function Convert-GetItemsResponse {
             }
             # Set up for creating a new object from an XML item
             try {
-                $returnObject = New-ReturnObject -XML $xmlResponse
+                $returnObject = New-GetReturnObject -XML $xmlResponse
             } catch {
                 throw $_
             }
