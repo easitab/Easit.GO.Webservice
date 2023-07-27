@@ -1,4 +1,4 @@
-function Get-EnvironmentSettings {
+function Get-EnvironmentSetting {
     [CmdletBinding()]
     param (
         [Parameter()]

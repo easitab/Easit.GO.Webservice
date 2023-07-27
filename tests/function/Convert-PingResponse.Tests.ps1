@@ -1,8 +1,8 @@
 BeforeAll {
     try {
-        $getEnvSetPath = Join-Path -Path (Split-Path -Path (Split-Path -Path $PSCommandPath -Parent) -Parent) -ChildPath 'getEnvironmentSettings.ps1'
+        $getEnvSetPath = Join-Path -Path (Split-Path -Path (Split-Path -Path $PSCommandPath -Parent) -Parent) -ChildPath 'getEnvironmentSetting.ps1'
         . $getEnvSetPath
-        $envSettings = Get-EnvironmentSettings -Path $PSCommandPath
+        $envSettings = Get-EnvironmentSetting -Path $PSCommandPath
     } catch {
         throw $_
     }
