@@ -13,6 +13,14 @@ BeforeAll {
     }
     [xml]$pingResponse = Get-Content -Path (Join-Path -Path $envSettings.TestDataDirectory -ChildPath 'pingResponse.xml') -Raw
     function New-PingReturnObject {
+        <#
+        .SYNOPSIS
+            Synposis
+        .DESCRIPTION
+            Description
+        .OUTPUTS
+            PSCustomObject
+        #>
         $returnObject = New-Object PSCustomObject
         $returnObject | Add-Member -MemberType Noteproperty -Name "Message" -Value "Pong!"
         $returnObject | Add-Member -MemberType Noteproperty -Name "Timestamp" -Value "2022-06-13T11:19:45.230Z"

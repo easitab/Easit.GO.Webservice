@@ -1,11 +1,29 @@
 function Get-EnvironmentSetting {
+    <#
+    .SYNOPSIS
+        Creates a PSCustomObject with details about environment / project.
+    .DESCRIPTION
+        **Get-EnvironmentSetting** is supposed to be used in Pester test files in order to make it easier to setup tests.
+    .EXAMPLE
+        try {
+            $getEnvSetPath = Join-Path -Path (Split-Path -Path (Split-Path -Path $PSCommandPath -Parent) -Parent) -ChildPath 'getEnvironmentSetting.ps1'
+            . $getEnvSetPath
+            $envSettings = Get-EnvironmentSetting -Path $PSCommandPath
+        } catch {
+            throw $_
+        }
+    .PARAMETER Path
+        Path of test script.
+    .OUTPUTS
+        [PSCustomObject](https://learn.microsoft.com/en-us/dotnet/api/system.management.automation.pscustomobject)
+    #>
     [CmdletBinding()]
     param (
         [Parameter()]
         [String]$Path
     )
     begin {
-        
+        Write-Verbose "$($MyInvocation.MyCommand) initialized"
     }
     process {
         try {
@@ -32,6 +50,6 @@ function Get-EnvironmentSetting {
         return $returnObject
     }
     end {
-        
+        Write-Verbose "$($MyInvocation.MyCommand) completed"
     }
 }
