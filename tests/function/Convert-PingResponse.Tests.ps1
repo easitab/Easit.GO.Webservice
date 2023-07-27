@@ -1,7 +1,8 @@
 BeforeAll {
     try {
         $getEnvSetPath = Join-Path -Path (Split-Path -Path (Split-Path -Path $PSCommandPath -Parent) -Parent) -ChildPath 'getEnvironmentSettings.ps1'
-        $envSettings = Invoke-Expression -Command "$getEnvSetPath -Path $PSCommandPath"
+        . $getEnvSetPath
+        $envSettings = Get-EnvironmentSettings -Path $PSCommandPath
     } catch {
         throw $_
     }
