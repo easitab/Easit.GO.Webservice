@@ -1,5 +1,10 @@
 BeforeAll {
-    $envSettings = & "..\getEnvironmentSettings.ps1 -Path $PSCommandPath"
+    try {
+        $getEnvSetPath = Join-Path -Path (Split-Path -Path (Split-Path -Path $PSCommandPath -Parent) -Parent) -ChildPath 'getEnvironmentSettings.ps1'
+        $envSettings = Invoke-Expression -Command "$getEnvSetPath -Path $PSCommandPath"
+    } catch {
+        throw $_
+    }
     if (Test-Path $envSettings.CodeFilePath) {
         . $envSettings.CodeFilePath
     } else {
