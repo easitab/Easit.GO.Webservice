@@ -1,5 +1,5 @@
 BeforeAll {
-    $envSettings = ..\getEnvironmentSettings.ps1 -Path $PSCommandPath
+    $envSettings = & "..\getEnvironmentSettings.ps1 -Path $PSCommandPath"
     if (Test-Path $envSettings.CodeFilePath) {
         . $envSettings.CodeFilePath
     } else {
