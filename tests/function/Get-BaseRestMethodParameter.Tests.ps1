@@ -12,7 +12,7 @@ BeforeAll {
         Write-Output "Unable to locate code file ($($envSettings.CodeFilePath)) to test against!" -ForegroundColor Red
     }
 }
-Describe "Get-BaseRestMethodParameters" -Tag 'function','private' {
+Describe "Get-BaseRestMethodParameter" -Tag 'function','private' {
     It 'should have a parameter named Ping that is a switch' {
         Get-Command "$($envSettings.CommandName)" | Should -HaveParameter Ping -Type 'Switch'
     }
@@ -23,24 +23,24 @@ Describe "Get-BaseRestMethodParameters" -Tag 'function','private' {
         Get-Command "$($envSettings.CommandName)" | Should -HaveParameter Post -Type 'Switch'
     }
     It 'help section should have a SYNOPSIS' {
-        ((Get-Help 'Get-BaseRestMethodParameters' -Full).SYNOPSIS).Length | Should -BeGreaterThan 0
+        ((Get-Help 'Get-BaseRestMethodParameter' -Full).SYNOPSIS).Length | Should -BeGreaterThan 0
     }
     It 'help section should have a DESCRIPTION' {
-        ((Get-Help 'Get-BaseRestMethodParameters' -Full).DESCRIPTION).Length | Should -BeGreaterThan 0
+        ((Get-Help 'Get-BaseRestMethodParameter' -Full).DESCRIPTION).Length | Should -BeGreaterThan 0
     }
     It 'help section should have EXAMPLES' {
-        ((Get-Help 'Get-BaseRestMethodParameters' -Full).EXAMPLES).Length | Should -BeGreaterThan 0
+        ((Get-Help 'Get-BaseRestMethodParameter' -Full).EXAMPLES).Length | Should -BeGreaterThan 0
     }
-    It '"Get-BaseRestMethodParameters" should return a Hashtable' {
-        (Get-BaseRestMethodParameters -Ping) | Should -BeOfType [hashtable]
+    It '"Get-BaseRestMethodParameter" should return a Hashtable' {
+        (Get-BaseRestMethodParameter -Ping) | Should -BeOfType [hashtable]
     }
-    It '"Get-BaseRestMethodParameters -Ping" should return a Hashtable' {
-        (Get-BaseRestMethodParameters -Ping) | Should -BeOfType [hashtable]
+    It '"Get-BaseRestMethodParameter -Ping" should return a Hashtable' {
+        (Get-BaseRestMethodParameter -Ping) | Should -BeOfType [hashtable]
     }
-    It '"Get-BaseRestMethodParameters -Get" should return a Hashtable' {
-        (Get-BaseRestMethodParameters -Get) | Should -BeOfType [hashtable]
+    It '"Get-BaseRestMethodParameter -Get" should return a Hashtable' {
+        (Get-BaseRestMethodParameter -Get) | Should -BeOfType [hashtable]
     }
-    It '"Get-BaseRestMethodParameters -Post" should return a Hashtable' {
-        (Get-BaseRestMethodParameters -Post) | Should -BeOfType [hashtable]
+    It '"Get-BaseRestMethodParameter -Post" should return a Hashtable' {
+        (Get-BaseRestMethodParameter -Post) | Should -BeOfType [hashtable]
     }
 }

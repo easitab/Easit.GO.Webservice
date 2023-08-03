@@ -44,6 +44,7 @@ function Get-BaseRestMethodParameter {
     .OUTPUTS
         [System.Collections.Hashtable](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_hash_tables)
     #>
+    [OutputType('System.Collections.Hashtable')]
     [CmdletBinding(DefaultParameterSetName="Ping")]
     param (
         [Parameter(ParameterSetName="Ping")]
@@ -58,7 +59,7 @@ function Get-BaseRestMethodParameter {
     }
     process {
         try {
-            $returnObect = @{
+            $returnObect = [System.Collections.Hashtable]@{
                 Uri = $null
                 Method = $null
                 ContentType = 'application/json'
@@ -89,7 +90,7 @@ function Get-BaseRestMethodParameter {
             } catch {
                 throw $_
             }
-        } 
+        }
         if ($Ping -or $Get) {
             try {
                 $returnObect.Method = 'GET'
