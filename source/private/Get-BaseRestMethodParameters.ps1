@@ -1,9 +1,9 @@
-function Get-BaseRestMethodParameters {
+function Get-BaseRestMethodParameter {
     <#
     .SYNOPSIS
         Creates and returns a hashtable of the needed parameters for invoking *IRM*.
     .DESCRIPTION
-        **Get-BaseRestMethodParameters** creates a hashtable with the parameters needed for running *Invoke-RestMethod* later.
+        **Get-BaseRestMethodParameter** creates a hashtable with the parameters needed for running *Invoke-RestMethod* later.
         Depending on what action have been specified (Ping, Get or Post) different keys will be added to the hashtable.
     .EXAMPLE
         Get-BaseRestMethodParameters -Ping
@@ -14,7 +14,7 @@ function Get-BaseRestMethodParameters {
         Method                         GET
         ContentType                    application/json
     .EXAMPLE
-        Get-BaseRestMethodParameters -Get 
+        Get-BaseRestMethodParameters -Get
 
         Name                           Value
         ----                           -----
@@ -42,7 +42,7 @@ function Get-BaseRestMethodParameters {
     .PARAMETER Post
         Specifies that parameters for a post request should be added to hashtable.
     .OUTPUTS
-        Hashtable
+        [System.Collections.Hashtable](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_hash_tables)
     #>
     [CmdletBinding(DefaultParameterSetName="Ping")]
     param (
@@ -89,7 +89,8 @@ function Get-BaseRestMethodParameters {
             } catch {
                 throw $_
             }
-        } else {
+        } 
+        if ($Ping -or $Get) {
             try {
                 $returnObect.Method = 'GET'
             } catch {
