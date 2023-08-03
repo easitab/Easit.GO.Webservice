@@ -19,8 +19,9 @@ function Resolve-EasitGOURL {
     .PARAMETER Endpoint
         Endpoint that URL should be solved for.
     .OUTPUTS
-        String
+        [System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
     #>
+    [OutputType('System.String')]
     [CmdletBinding()]
     param (
         [Parameter(Mandatory, Position=0)]
