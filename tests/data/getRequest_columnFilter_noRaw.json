@@ -1,0 +1,10 @@
+﻿{
+  "itemViewIdentifier": "testView",
+  "columnFilter": [
+    {
+      "columnName": "Description",
+      "comparator": "LIKE",
+      "content": "LIKE"
+    }
+  ]
+}
