@@ -1,0 +1,10 @@
+﻿{
+  "itemViewIdentifier": "testView",
+  "columnFilter": [
+    {
+      "columnName": "Status",
+      "comparator": "IN",
+      "rawValue": "81:1"
+    }
+  ]
+}
