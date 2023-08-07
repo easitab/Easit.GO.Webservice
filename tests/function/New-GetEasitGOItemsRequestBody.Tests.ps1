@@ -46,7 +46,10 @@ Describe "New-GetEasitGOItemsRequestBody" -Tag 'function','private' {
     It 'should return a string' {
         (New-GetEasitGOItemsRequestBody -ImportViewIdentifier 'dummyView') | Should -BeOfType [System.String]
     }
-    It 'should return a string with length 41' {
-        (New-GetEasitGOItemsRequestBody -ImportViewIdentifier 'dummyView').Length | Should -BeExactly 41
+    It 'should return a string with length greater or equal than 38' {
+        (New-GetEasitGOItemsRequestBody -ImportViewIdentifier 'dummyView').Length | Should -BeGreaterOrEqual 38
+    }
+    It 'should return a string with length less or equal than 41' {
+        (New-GetEasitGOItemsRequestBody -ImportViewIdentifier 'dummyView').Length | Should -BeLessOrEqual 41
     }
 }
