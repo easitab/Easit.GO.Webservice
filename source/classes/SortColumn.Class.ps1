@@ -7,37 +7,24 @@
     - [SortColumn]::New(String,String)
 
     Available methods:
-    - ConvertToXMLElement (Used by private functions)
+    - ToPSCustomObject (Used by private functions)
 .EXAMPLE
-    [SortColumn]::New($Name,$Order)
+    $SortColumn = [SortColumn]::New($Name,$Order)
 .EXAMPLE
-    $newElementParams = @{
-        Prefix = $RequestPrefix
-        NamespaceSchema = $NamespaceSchema
-        ErrorAction = 'Stop'
-    }
-    $SortColumn.ConvertToXMLElement($newElementParams)
+    $SortColumn.ConvertToPSCustomObject()
 #>
 Class SortColumn {
-    [ValidatePattern("^[a-zA-Z]+$")]
     [String]$Name
-    [ValidatePattern("^[a-zA-Z]+$")]
+    [ValidateSet('Ascending','Descending')]
     [String]$Order
     SortColumn ($Name,$Order) {
         $this.Name = $Name
         $this.Order = $Order
     }
-    [System.Xml.XmlElement] ConvertToXMLElement ([hashtable]$NewElementParams) {
-        $sortColumnElementParams = @{
-            Name = 'SortColumn'
-            Value = $this.Name
-            Attributes = [System.Collections.Generic.List[hashtable]]@(
-                @{
-                    LocalName = 'order'
-                    Value = $this.Order
-                }
-            )
+    [PSCustomObject] ToPSCustomObject () {
+        return [PSCustomObject]@{
+            content = $this.Name
+            order = $this.Order
         }
-        return (New-XMLElementObject @sortColumnElementParams @NewElementParams)
     }
 }
