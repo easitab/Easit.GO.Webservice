@@ -1,27 +1,31 @@
 BeforeAll {
-    $testFilePath = $PSCommandPath.Replace('.Tests.ps1','.ps1')
-    $codeFileName = Split-Path -Path $testFilePath -Leaf
-    $commandName = ((Split-Path -Leaf $PSCommandPath) -replace '.ps1','') -replace '.Tests', ''
-    $testFunctionRoot = Split-Path -Path $PSCommandPath -Parent
-    $testsRoot = Split-Path -Path $testFunctionRoot -Parent
-    $testsDataRoot = Join-Path -Path $testsRoot -ChildPath 'data'
-    $projectRoot = Split-Path -Path $testsRoot -Parent
-    $sourceRoot = Join-Path -Path "$projectRoot" -ChildPath "source"
-    $codeFiles = Get-ChildItem -Path "$sourceRoot" -Include "*.ps1" -Recurse
-    foreach ($codeFile in $codeFiles) {
-        try {
-            . $codeFile
-        } catch {
-            Write-Output "Unable to locate code file ($codeFileName) to test against!" -ForegroundColor Red
-            return
-        }
+    try {
+        $getEnvSetPath = Join-Path -Path (Split-Path -Path (Split-Path -Path $PSCommandPath -Parent) -Parent) -ChildPath 'getEnvironmentSetting.ps1'
+        . $getEnvSetPath
+        $envSettings = Get-EnvironmentSetting -Path $PSCommandPath
+    } catch {
+        throw $_
+    }
+    if (Test-Path $envSettings.CodeFilePath) {
+        . $envSettings.CodeFilePath
+    } else {
+        Write-Output "Unable to locate code file ($($envSettings.CodeFilePath)) to test against!" -ForegroundColor Red
     }
 }
 Describe "Convert-GetItemsResponse" {
-    It 'should have a parameter named Response that is mandatory and accepts a Xml object.' {
-        Get-Command "$commandName" | Should -HaveParameter Response -Mandatory -Type Xml
+    It 'should have a parameter named Response that is mandatory and accepts a PSCustomObject.' {
+        Get-Command "$($envSettings.CommandName)" | Should -HaveParameter Response -Mandatory -Type PSCustomObject
     }
-    It 'should have a parameter named ThrottleLimit.' {
-        Get-Command "$commandName" | Should -HaveParameter ThrottleLimit
+    It 'should have a parameter named ThrottleLimit' {
+        Get-Command "$($envSettings.CommandName)" | Should -HaveParameter ThrottleLimit
+    }
+    It 'help section should have a SYNOPSIS' {
+        ((Get-Help 'Convert-GetItemsResponse' -Full).SYNOPSIS).Length | Should -BeGreaterThan 0
+    }
+    It 'help section should have a DESCRIPTION' {
+        ((Get-Help 'Convert-GetItemsResponse' -Full).DESCRIPTION).Length | Should -BeGreaterThan 0
+    }
+    It 'help section should have EXAMPLES' {
+        ((Get-Help 'Convert-GetItemsResponse' -Full).EXAMPLES).Length | Should -BeGreaterThan 0
     }
 }
