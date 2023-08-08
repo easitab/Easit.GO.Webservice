@@ -6,6 +6,9 @@ BeforeAll {
     } catch {
         throw $_
     }
+    foreach ($class in (Get-ChildItem -Path (Join-Path -Path $envSettings.SourceDirectory -ChildPath 'classes') -Recurse)) {
+        . $class.FullName
+    }
     if (Test-Path $envSettings.CodeFilePath) {
         . $envSettings.CodeFilePath
     } else {
