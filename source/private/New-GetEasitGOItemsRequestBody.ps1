@@ -64,6 +64,7 @@ function New-GetEasitGOItemsRequestBody {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory)]
+        [Alias('itemViewIdentifier')]
         [string]$ImportViewIdentifier,
         [Parameter()]
         [SortColumn]$SortColumn,
