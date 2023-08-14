@@ -21,13 +21,13 @@ Describe "New-GetItemsReturnObject" {
         Get-Command "$($envSettings.CommandName)" | Should -HaveParameter Item -Mandatory -Type PSCustomObject
     }
     It 'help section should have a SYNOPSIS' {
-        ((Get-Help 'New-GetItemsReturnObject' -Full).SYNOPSIS).Length | Should -BeGreaterThan 0
+        ((Get-Help "$($envSettings.CommandName)" -Full).SYNOPSIS).Length | Should -BeGreaterThan 0
     }
     It 'help section should have a DESCRIPTION' {
-        ((Get-Help 'New-GetItemsReturnObject' -Full).DESCRIPTION).Length | Should -BeGreaterThan 0
+        ((Get-Help "$($envSettings.CommandName)" -Full).DESCRIPTION).Length | Should -BeGreaterThan 0
     }
     It 'help section should have EXAMPLES' {
-        ((Get-Help 'New-GetItemsReturnObject' -Full).EXAMPLES).Length | Should -BeGreaterThan 0
+        ((Get-Help "$($envSettings.CommandName)" -Full).EXAMPLES).Length | Should -BeGreaterThan 0
     }
     It 'should not throw' {
         {New-GetItemsReturnObject -Response $reponseObject -Item $reponseObject.items.item[0]} | Should -Not -Throw

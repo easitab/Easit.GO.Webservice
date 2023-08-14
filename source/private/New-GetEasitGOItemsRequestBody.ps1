@@ -11,7 +11,6 @@ function New-GetEasitGOItemsRequestBody {
             PageSize = 50
         }
         New-GetEasitGOItemsRequestBody @newGetEasitGOItemsRequestBodyParams
-
         {
             "pageSize": 50,
             "page": 2,
@@ -25,7 +24,6 @@ function New-GetEasitGOItemsRequestBody {
             ColumnFilter = $columnFilters
         }
         New-GetEasitGOItemsRequestBody @newGetEasitGOItemsRequestBodyParams
-
         {
             "pageSize": 100,
             "ColumnFilter": [

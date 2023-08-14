@@ -38,13 +38,13 @@ Describe "New-GetEasitGOItemsRequestBody" -Tag 'function','private' {
         Get-Command "$($envSettings.CommandName)" | Should -HaveParameter FreeTextFilter -Type 'String'
     }
     It 'help section should have a SYNOPSIS' {
-        ((Get-Help 'New-GetEasitGOItemsRequestBody' -Full).SYNOPSIS).Length | Should -BeGreaterThan 0
+        ((Get-Help "$($envSettings.CommandName)" -Full).SYNOPSIS).Length | Should -BeGreaterThan 0
     }
     It 'help section should have a DESCRIPTION' {
-        ((Get-Help 'New-GetEasitGOItemsRequestBody' -Full).DESCRIPTION).Length | Should -BeGreaterThan 0
+        ((Get-Help "$($envSettings.CommandName)" -Full).DESCRIPTION).Length | Should -BeGreaterThan 0
     }
     It 'help section should have EXAMPLES' {
-        ((Get-Help 'New-GetEasitGOItemsRequestBody' -Full).EXAMPLES).Length | Should -BeGreaterThan 0
+        ((Get-Help "$($envSettings.CommandName)" -Full).EXAMPLES).Length | Should -BeGreaterThan 0
     }
     It 'should return a string' {
         (New-GetEasitGOItemsRequestBody -ImportViewIdentifier 'dummyView') | Should -BeOfType [System.String]

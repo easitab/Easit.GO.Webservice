@@ -6,8 +6,6 @@ This is the repository for the PowerShell 7 module for Easit GO webAPI.
 
 [![Test source with PSSA and Pester](https://github.com/easitab/Easit.GO.Webservice/actions/workflows/source-run-pssa-and-pester.yml/badge.svg)](https://github.com/easitab/Easit.GO.Webservice/actions/workflows/source-run-pssa-and-pester.yml)
 
-[![Test tests with Pester](https://github.com/easitab/Easit.GO.Webservice/actions/workflows/tests-run-pester.yml/badge.svg)](https://github.com/easitab/Easit.GO.Webservice/actions/workflows/tests-run-pester.yml)
-
 [![Release notes](https://github.com/easitab/Easit.GO.Webservice/actions/workflows/release-drafter.yml/badge.svg)](https://github.com/easitab/Easit.GO.Webservice/actions/workflows/release-drafter.yml)
 
 [![Publish module](https://github.com/easitab/Easit.GO.Webservice/actions/workflows/publishmodule.yml/badge.svg?branch=main)](https://github.com/easitab/Easit.GO.Webservice/actions/workflows/publishmodule.yml)
