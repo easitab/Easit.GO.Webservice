@@ -35,12 +35,12 @@ Describe "Resolve-EasitGOURL" -Tag 'function','private' {
         Resolve-EasitGOURL -URL 'https://test.easit.com/integration-api/ping' -Endpoint 'ping' | Should -BeExactly 'https://test.easit.com/integration-api/ping'
     }
     It 'should have SYNOPSIS' {
-        ((Get-Help 'Resolve-EasitGOURL' -Full).SYNOPSIS).Length | Should -BeGreaterThan 0
+        ((Get-Help "$($envSettings.CommandName)" -Full).SYNOPSIS).Length | Should -BeGreaterThan 0
     }
     It 'should have DESCRIPTION' {
-        ((Get-Help 'Resolve-EasitGOURL' -Full).DESCRIPTION).Length | Should -BeGreaterThan 0
+        ((Get-Help "$($envSettings.CommandName)" -Full).DESCRIPTION).Length | Should -BeGreaterThan 0
     }
     It 'should have EXAMPLES' {
-        ((Get-Help 'Resolve-EasitGOURL' -Full).EXAMPLES).Length | Should -BeGreaterThan 0
+        ((Get-Help "$($envSettings.CommandName)" -Full).EXAMPLES).Length | Should -BeGreaterThan 0
     }
 }

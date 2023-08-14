@@ -31,7 +31,7 @@ function Get-EasitGOCredentialObject {
             throw $_
         }
         try {
-            New-Object System.Management.Automation.PSCredential (' ', $secString)
+            New-Object System.Management.Automation.PSCredential ($Apikey, $secString)
         } catch {
             throw $_
         }

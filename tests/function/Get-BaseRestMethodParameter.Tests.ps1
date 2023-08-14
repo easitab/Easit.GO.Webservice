@@ -32,7 +32,7 @@ Describe "Get-BaseRestMethodParameter" -Tag 'function','private' {
         ((Get-Help 'Get-BaseRestMethodParameter' -Full).EXAMPLES).Length | Should -BeGreaterThan 0
     }
     It '"Get-BaseRestMethodParameter" should return a Hashtable' {
-        (Get-BaseRestMethodParameter -Ping) | Should -BeOfType [hashtable]
+        (Get-BaseRestMethodParameter) | Should -BeOfType [hashtable]
     }
     It '"Get-BaseRestMethodParameter -Ping" should return a Hashtable' {
         (Get-BaseRestMethodParameter -Ping) | Should -BeOfType [hashtable]

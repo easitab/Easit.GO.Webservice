@@ -1,12 +1,12 @@
-function Convert-GetItemsResponse {
+function Convert-EasitGODatasourceResponse {
     <#
     .SYNOPSIS
-        Converts items in a GetItems JSON response to PSCustomObjects.
+        Converts datasources in a GetDatasources JSON response to PSCustomObjects.
     .DESCRIPTION
-        **Convert-GetItemsResponse** converts each item in a GetItems JSON response to a PSCustomObject.
+        **Convert-GetItemsResponse** converts each datasource in a GetDatasources JSON response to a PSCustomObject.
     .EXAMPLE
-        $response = Invoke-EasitGOWebRequest -url $url -api $api -body $body
-        Convert-GetItemsResponse -Response $reponse
+        $response = Invoke-EasitGOWebRequest @baseParams
+        Convert-EasitGODatasourceResponse -Response $reponse
     .PARAMETER Response
         Response object to convert
     .PARAMETER ThrottleLimit
@@ -26,13 +26,12 @@ function Convert-GetItemsResponse {
         Write-Verbose "$($MyInvocation.MyCommand) initialized"
     }
     process {
-        if ($Response.totalNumberOfItems -lt 1) {
-            Write-Warning "View did not return any Easit GO objects"
-            return
+        if ($Response.datasource.Count -eq 0) {
+            Write-Warning "Response does not contain any datasources"
         }
-        $Response.items.item.GetEnumerator() | ForEach-Object -Parallel {
+        $Response.datasource.GetEnumerator() | ForEach-Object -Parallel {
             try {
-                New-GetItemsReturnObject -Response $using:Response -Item $_
+                return [PSCustomObject]$_
             } catch {
                 throw $_
             }
