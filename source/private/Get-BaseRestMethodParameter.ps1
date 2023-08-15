@@ -45,27 +45,42 @@ function Get-BaseRestMethodParameter {
         [System.Collections.Hashtable](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_hash_tables)
     #>
     [OutputType('System.Collections.Hashtable')]
-    [CmdletBinding(DefaultParameterSetName="Ping")]
+    [CmdletBinding()]
     param (
-        [Parameter(ParameterSetName="Ping")]
+        [Parameter()]
         [Switch]$Ping,
-        [Parameter(Mandatory, ParameterSetName="Get")]
+        [Parameter()]
         [Switch]$Get,
-        [Parameter(Mandatory, ParameterSetName="Post")]
+        [Parameter()]
         [Switch]$Post
     )
     begin {
         Write-Verbose "$($MyInvocation.MyCommand) initialized"
     }
     process {
+        if (!($Ping) -and !($Get) -and !($Post)) {
+            throw "No request type specified"
+        }
         try {
             $returnObect = [System.Collections.Hashtable]@{
                 Uri = $null
-                Method = $null
                 ContentType = 'application/json'
             }
         } catch {
             throw $_
+        }
+        if ($Post) {
+            try {
+                $returnObect.Add('Method','Post')
+            } catch {
+                throw $_
+            }
+        } else {
+            try {
+                $returnObect.Add('Method','Get')
+            } catch {
+                throw $_
+            }
         }
         if ($Get -or $Post) {
             try {
@@ -80,20 +95,6 @@ function Get-BaseRestMethodParameter {
             }
             try {
                 $returnObect.Add('Credential',$null)
-            } catch {
-                throw $_
-            }
-        }
-        if ($Post) {
-            try {
-                $returnObect.Method = 'POST'
-            } catch {
-                throw $_
-            }
-        }
-        if ($Ping -or $Get) {
-            try {
-                $returnObect.Method = 'GET'
             } catch {
                 throw $_
             }

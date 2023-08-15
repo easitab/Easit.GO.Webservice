@@ -31,8 +31,8 @@ Describe "Get-BaseRestMethodParameter" -Tag 'function','private' {
     It 'help section should have EXAMPLES' {
         ((Get-Help 'Get-BaseRestMethodParameter' -Full).EXAMPLES).Length | Should -BeGreaterThan 0
     }
-    It '"Get-BaseRestMethodParameter" should return a Hashtable' {
-        (Get-BaseRestMethodParameter) | Should -BeOfType [hashtable]
+    It '"Get-BaseRestMethodParameter" should throw if no request type is specified' {
+        {Get-BaseRestMethodParameter} | Should -Throw
     }
     It '"Get-BaseRestMethodParameter -Ping" should return a Hashtable' {
         (Get-BaseRestMethodParameter -Ping) | Should -BeOfType [hashtable]
