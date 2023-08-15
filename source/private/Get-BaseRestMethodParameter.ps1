@@ -58,7 +58,7 @@ function Get-BaseRestMethodParameter {
         Write-Verbose "$($MyInvocation.MyCommand) initialized"
     }
     process {
-        if (!($Ping) -and !($Get) -and !($Post)) {        
+        if (!($Ping) -and !($Get) -and !($Post)) {
             throw "No request type specified"
         }
         try {
