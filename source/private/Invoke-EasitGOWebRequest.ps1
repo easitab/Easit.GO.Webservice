@@ -16,6 +16,7 @@ function Invoke-EasitGOWebRequest {
         Invoke-EasitGOWebRequest -BaseParameters $baseRMParams -CustomParameters $InvokeRestMethodParameters
     .PARAMETER BaseParameters
         Set of "base parameters" needed for sending a request to Easit GO WebAPI.
+        Base parameters sent to Invoke-RestMethod is 'Uri','ContentType', 'Method', 'Body', 'Authentication' and 'Credential'.
     .PARAMETER CustomParameters
         Set of additional parameters for Invoke-RestMethod.
     .OUTPUTS
