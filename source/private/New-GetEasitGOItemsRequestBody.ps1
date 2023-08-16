@@ -124,7 +124,7 @@ function New-GetEasitGOItemsRequestBody {
                 }
             }
             try {
-                $bodyObject.Add('ColumnFilter',$ColumnFilterArray)
+                $bodyObject.Add('columnFilter',$ColumnFilterArray)
             } catch {
                 throw $_
             }
