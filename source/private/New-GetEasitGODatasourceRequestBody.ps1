@@ -21,7 +21,9 @@ function New-GetEasitGODatasourceRequestBody {
         [Parameter(Mandatory)]
         [int]$ModuleId,
         [Parameter()]
-        [string]$ParentRawValue
+        [string]$ParentRawValue,
+        [Parameter()]
+        [System.Collections.Hashtable]$ConvertToJsonParameters
     )
     begin {
         Write-Verbose "$($MyInvocation.MyCommand) initialized"
@@ -40,8 +42,15 @@ function New-GetEasitGODatasourceRequestBody {
                 throw $_
             }
         }
+        if ($null -eq $ConvertToJsonParameters) {
+            $ConvertToJsonParameters = @{
+                Depth = 4
+                EscapeHandling = 'EscapeNonAscii'
+                WarningAction = 'SilentlyContinue'
+            }
+        }
         try {
-            $bodyObject | ConvertTo-Json
+            Convert-ToEasitGOJson -InputObject $bodyObject -Parameters $ConvertToJsonParameters
         } catch {
             throw $_
         }
