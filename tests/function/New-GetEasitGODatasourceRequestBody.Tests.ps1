@@ -11,6 +11,15 @@ BeforeAll {
     } else {
         Write-Output "Unable to locate code file ($($envSettings.CodeFilePath)) to test against!" -ForegroundColor Red
     }
+    function Convert-ToEasitGOJson {
+        param (
+            [Parameter(Mandatory)]
+            [PSCustomObject]$InputObject,
+            [Parameter()]
+            [System.Collections.Hashtable]$Parameters
+        )
+        Get-Content -Path (Join-Path -Path $envSettings.TestDataDirectory -ChildPath 'getDatasourceRequest.json') -Raw
+    }
 }
 Describe "New-GetEasitGODatasourceRequestBody" {
     It 'should have a parameter named ModuleId that is mandatory and accepts an integer.' {

@@ -86,7 +86,9 @@ function Send-ToEasitGO {
         [Parameter(ParameterSetName='item')]
         [Parameter(ParameterSetName='legacy')]
         [Alias('irmParams')]
-        [System.Collections.Hashtable]$InvokeRestMethodParameters
+        [System.Collections.Hashtable]$InvokeRestMethodParameters,
+        [Parameter()]
+        [System.Collections.Hashtable]$ConvertToJsonParameters
     )
     begin {
         Write-Verbose "$($MyInvocation.MyCommand) initialized"
@@ -137,18 +139,19 @@ function Send-ToEasitGO {
             }
         }
         do {
-            $newGetEasitGOItemsRequestBodyParams = @{
+            $newPostEasitGOItemsRequestBodyParams = @{
                 ImportHandlerIdentifier = $ImportHandlerIdentifier
                 IDStart = $IDStart
                 Items = $null
+                ConvertToJsonParameters = $ConvertToJsonParameters
             }
             if ($tempItemArray.Count -ge $SendInBatchesOf) {
-                $newGetEasitGOItemsRequestBodyParams.Items = $tempItemArray.GetRange(0,$SendInBatchesOf)
+                $newPostEasitGOItemsRequestBodyParams.Items = $tempItemArray.GetRange(0,$SendInBatchesOf)
             } else {
-                $newGetEasitGOItemsRequestBodyParams.Items = $tempItemArray.GetRange(0,$tempItemArray.Count)
+                $newPostEasitGOItemsRequestBodyParams.Items = $tempItemArray.GetRange(0,$tempItemArray.Count)
             }
             try {
-                $baseRMParams.Body = New-PostEasitGOItemRequestBody @newGetEasitGOItemsRequestBodyParams
+                $baseRMParams.Body = New-PostEasitGOItemRequestBody @newPostEasitGOItemsRequestBodyParams
             } catch {
                 throw $_
             }

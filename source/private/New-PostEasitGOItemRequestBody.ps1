@@ -28,7 +28,9 @@ function New-PostEasitGOItemRequestBody {
         [Parameter(Mandatory)]
         [Object[]]$Items,
         [Parameter()]
-        [int]$IDStart
+        [int]$IDStart,
+        [Parameter()]
+        [System.Collections.Hashtable]$ConvertToJsonParameters
     )
     begin {
         Write-Verbose "$($MyInvocation.MyCommand) initialized"
@@ -62,8 +64,15 @@ function New-PostEasitGOItemRequestBody {
             }
             $IDStart++
         }
+        if ($null -eq $ConvertToJsonParameters) {
+            $ConvertToJsonParameters = @{
+                Depth = 4
+                EscapeHandling = 'EscapeNonAscii'
+                WarningAction = 'SilentlyContinue'
+            }
+        }
         try {
-            ConvertTo-Json -InputObject $returnObject -Depth 4 -WarningAction 'SilentlyContinue'
+            Convert-ToEasitGOJson -InputObject $returnObject -Parameters $ConvertToJsonParameters
         } catch {
             throw $_
         }

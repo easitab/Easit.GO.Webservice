@@ -96,7 +96,9 @@ BeforeAll {
             [Parameter()]
             [Int]$IDStart,
             [Parameter()]
-            [Object[]]$Items
+            [Object[]]$Items,
+            [Parameter()]
+            [System.Collections.Hashtable]$ConvertToJsonParameters
         )
         $itemsToImport = [System.Collections.Generic.List[Object]]::new()
         foreach ($item in $Items) {

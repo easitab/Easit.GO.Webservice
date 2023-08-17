@@ -75,7 +75,9 @@ function New-GetEasitGOItemsRequestBody {
         [Parameter()]
         [string]$IdFilter,
         [Parameter()]
-        [string]$FreeTextFilter
+        [string]$FreeTextFilter,
+        [Parameter()]
+        [System.Collections.Hashtable]$ConvertToJsonParameters
     )
     begin {
         Write-Verbose "$($MyInvocation.MyCommand) initialized"
@@ -143,8 +145,15 @@ function New-GetEasitGOItemsRequestBody {
                 throw $_
             }
         }
+        if ($null -eq $ConvertToJsonParameters) {
+            $ConvertToJsonParameters = @{
+                Depth = 4
+                EscapeHandling = 'EscapeNonAscii'
+                WarningAction = 'SilentlyContinue'
+            }
+        }
         try {
-            $bodyObject | ConvertTo-Json
+            Convert-ToEasitGOJson -InputObject $bodyObject -Parameters $ConvertToJsonParameters
         } catch {
             throw $_
         }
