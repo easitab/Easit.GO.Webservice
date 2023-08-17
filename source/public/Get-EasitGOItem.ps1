@@ -110,11 +110,13 @@ function Get-EasitGOItem {
         [string]$FreeTextFilter,
         [Parameter()]
         [Alias('irmParams')]
-        [hashtable]$InvokeRestMethodParameters,
+        [System.Collections.Hashtable]$InvokeRestMethodParameters,
         [Parameter()]
         [Switch]$GetAllPages,
         [Parameter()]
-        [Switch]$ReturnAsSeparateObjects
+        [Switch]$ReturnAsSeparateObjects,
+        [Parameter()]
+        [System.Collections.Hashtable]$ConvertToJsonParameters
     )
     begin {
         Write-Verbose "$($MyInvocation.MyCommand) initialized"
@@ -144,6 +146,7 @@ function Get-EasitGOItem {
                 ColumnFilter = $ColumnFilter
                 FreeTextFilter = $FreeTextFilter
                 IdFilter = $IdFilter
+                ConvertToJsonParameters = $ConvertToJsonParameters
             }
         } catch {
             throw $_
