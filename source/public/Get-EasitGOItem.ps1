@@ -5,63 +5,63 @@ function Get-EasitGOItem {
     .DESCRIPTION
         Sends an get request to the Easit GO WebAPI and returns the result of the request.
     .EXAMPLE
-        $getEasitGOObjectParams = @{
+        $getEasitGOItemParams = @{
             Url = 'https://go.easit.com'
             Apikey = 'myApikey'
             ImportViewIdentifier = 'myImportViewIdentifier'
         }
-        Get-EasitGOObject @getEasitGOObjectParams
+        Get-EasitGOItem @getEasitGOItemParams
     .EXAMPLE
-        $getEasitGOObjectParams = @{
+        $getEasitGOItemParams = @{
             Url = 'https://go.easit.com'
             Apikey = 'myApikey'
             ImportViewIdentifier = 'myImportViewIdentifier'
             Page = 2
         }
-        Get-EasitGOObject @getEasitGOObjectParams
+        Get-EasitGOItem @getEasitGOItemParams
     .EXAMPLE
-        $getEasitGOObjectParams = @{
+        $getEasitGOItemParams = @{
             Url = 'https://go.easit.com'
             Apikey = 'myApikey'
             ImportViewIdentifier = 'myImportViewIdentifier'
             IdFilter = '4659:3'
         }
-        Get-EasitGOObject @getEasitGOObjectParams
+        Get-EasitGOItem @getEasitGOItemParams
     .EXAMPLE
         $columnFilters = @()
         $columnFilters += New-ColumnFilter -ColumnName 'Status' -Comparator 'IN' -ColumnValue 'Open'
-        $getEasitGOObjectParams = @{
+        $getEasitGOItemParams = @{
             Url = 'https://go.easit.com'
             Apikey = 'myApikey'
             ImportViewIdentifier = 'myImportViewIdentifier'
             ColumnFilter = $columnFilters
             PageSize = 500
         }
-        Get-EasitGOObject @getEasitGOObjectParams
+        Get-EasitGOItem @getEasitGOItemParams
     .EXAMPLE
         $columnFilters = @()
         $columnFilters += New-ColumnFilter -ColumnName 'Status' -Comparator 'IN' -ColumnValue 'Open'
         $columnFilters += New-ColumnFilter -ColumnName 'Priority' -Comparator 'IN' -ColumnValue 'High'
-        $getEasitGOObjectParams = @{
+        $getEasitGOItemParams = @{
             Url = 'https://go.easit.com'
             Apikey = 'myApikey'
             ImportViewIdentifier = 'myImportViewIdentifier'
             ColumnFilter = $columnFilters
         }
-        Get-EasitGOObject @getEasitGOObjectParams
+        Get-EasitGOItem @getEasitGOItemParams
     .EXAMPLE
         $columnFilters = @()
         $columnFilters += New-ColumnFilter -ColumnName 'Status' -Comparator 'IN' -ColumnValue 'Open'
         $columnFilters += New-ColumnFilter -ColumnName 'Priority' -Comparator 'IN' -ColumnValue 'High'
         $sortColumn = New-SortColumn -Name 'Updated' -Order 'Descending'
-        $getEasitGOObjectParams = @{
+        $getEasitGOItemParams = @{
             Url = 'https://go.easit.com'
             Apikey = 'myApikey'
             ImportViewIdentifier = 'myImportViewIdentifier'
             ColumnFilter = $columnFilters
             SortColumn = $sortColumn
         }
-        Get-EasitGOObject @getEasitGOObjectParams
+        Get-EasitGOItem @getEasitGOItemParams
     .PARAMETER Url
         URL to Easit GO.
     .PARAMETER Apikey
