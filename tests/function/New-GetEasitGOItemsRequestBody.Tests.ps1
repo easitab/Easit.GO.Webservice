@@ -14,6 +14,15 @@ BeforeAll {
     } else {
         Write-Output "Unable to locate code file ($($envSettings.CodeFilePath)) to test against!" -ForegroundColor Red
     }
+    function Convert-ToEasitGOJson {
+        param (
+            [Parameter(Mandatory)]
+            [PSCustomObject]$InputObject,
+            [Parameter()]
+            [System.Collections.Hashtable]$Parameters
+        )
+        Get-Content -Path (Join-Path -Path $envSettings.TestDataDirectory -ChildPath 'getRequest_base.json') -Raw
+    }
 }
 Describe "New-GetEasitGOItemsRequestBody" -Tag 'function','private' {
     It 'should have a mandatory parameter named ImportViewIdentifier that accepts a string' {

@@ -59,9 +59,20 @@ BeforeAll {
             [Parameter()]
             [string]$IdFilter,
             [Parameter()]
-            [string]$FreeTextFilter
+            [string]$FreeTextFilter,
+            [Parameter()]
+            [System.Collections.Hashtable]$ConvertToJsonParameters
         )
         Get-Content -Path (Join-Path -Path $envSettings.TestDataDirectory -ChildPath 'getDatasourceRequest.json') -Raw | ConvertFrom-Json
+    }
+    function Convert-ToEasitGOJson {
+        param (
+            [Parameter(Mandatory)]
+            [PSCustomObject]$InputObject,
+            [Parameter()]
+            [System.Collections.Hashtable]$Parameters
+        )
+        Get-Content -Path (Join-Path -Path $envSettings.TestDataDirectory -ChildPath 'getRequest_base.json') -Raw | ConvertFrom-Json
     }
     function Invoke-EasitGOWebRequest {
         param (

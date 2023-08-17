@@ -61,6 +61,15 @@ BeforeAll {
         IDStart = 1
         Items = $null
     }
+    function Convert-ToEasitGOJson {
+        param (
+            [Parameter(Mandatory)]
+            [PSCustomObject]$InputObject,
+            [Parameter()]
+            [System.Collections.Hashtable]$Parameters
+        )
+        Get-Content -Path (Join-Path -Path $envSettings.TestDataDirectory -ChildPath 'importItemsRequest.json') -Raw
+    }
 }
 Describe "New-PostEasitGOItemRequestBody" -Tag 'function','private' {
     It 'should have a parameter named ImportHandlerIdentifier that accepts a string' {
