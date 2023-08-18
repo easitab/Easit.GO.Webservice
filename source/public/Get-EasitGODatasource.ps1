@@ -35,6 +35,8 @@ function Get-EasitGODatasource {
 
         In this example we want to get all child data sources to the data source with databaseId (or rawValue) 5:1 in the module with id 1001 and we want them returned as separate objects.
     .PARAMETER Url
+    .PARAMETER ConvertToJsonParameters
+        Set of additional parameters for ConvertTo-Json. Base parameters sent to ConvertTo-Json is 'Depth = 4', 'EscapeHandling = 'EscapeNonAscii'', 'WarningAction = 'SilentlyContinue''.
     .OUTPUTS
         [PSCustomObject](https://learn.microsoft.com/en-us/dotnet/api/system.management.automation.pscustomobject)
     #>
@@ -53,7 +55,9 @@ function Get-EasitGODatasource {
         [Alias('irmParams')]
         [hashtable]$InvokeRestMethodParameters,
         [Parameter()]
-        [Switch]$ReturnAsSeparateObjects
+        [Switch]$ReturnAsSeparateObjects,
+        [Parameter()]
+        [System.Collections.Hashtable]$ConvertToJsonParameters
     )
     begin {
         Write-Verbose "$($MyInvocation.MyCommand) initialized"
@@ -77,6 +81,7 @@ function Get-EasitGODatasource {
         try {
             $newGetEasitGODatasourceRequestBodyParams = @{
                 moduleId = $ModuleId
+                ConvertToJsonParameters = $ConvertToJsonParameters
             }
         } catch {
             throw $_

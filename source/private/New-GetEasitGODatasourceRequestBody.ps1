@@ -12,6 +12,8 @@ function New-GetEasitGODatasourceRequestBody {
         Specifies the module id to get data sources from.
     .PARAMETER ParentRawValue
         Specifies the id of a data sources (or entry in a data source tree) to get data sources from.
+    .PARAMETER ConvertToJsonParameters
+        Set of additional parameters for ConvertTo-Json.
     .OUTPUTS
         [System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
     #>
