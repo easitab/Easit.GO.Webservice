@@ -14,6 +14,10 @@ This is the repository for the PowerShell 7 module for Easit GO webAPI.
 
 All documentation regarding Easit.GO.Webservice can be found [here](https://docs.easitgo.com/techspace/psmodules/intro/) and an "intro" to Easit GO WebAPI can be found [here](https://docs.easitgo.com/techspace/easitgo/webapi/v1/intro/)
 
+## Testing
+
+This project uses [Pester](https://pester.dev/) 5 for its tests. More information on how the project uses Pester can be found [here](tests/README.md).
+
 ## Support & Questions
 
 Questions and issue can be sent to [supportATeasit](mailto:support@easit.com) or open a issue from the Issues tab and label it with one of the predefined labels.
