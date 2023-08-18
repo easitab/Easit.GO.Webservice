@@ -53,7 +53,7 @@ BeforeAll {
         throw $_
     }
 }
-Describe "New-EasitGOItemToImport" -Tag 'function','private' {
+Describe "New-EasitGOItemToImport" -Tag 'function','public' {
     It 'should have a parameter named Item that accepts an object' {
         Get-Command "$($envSettings.CommandName)" | Should -HaveParameter Item -Type 'Object'
     }

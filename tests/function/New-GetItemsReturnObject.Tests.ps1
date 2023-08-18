@@ -13,7 +13,7 @@ BeforeAll {
     }
     $reponseObject = Get-Content (Join-Path -Path $envSettings.TestDataDirectory -ChildPath 'getItemsResponse_1_items.json') -Raw | ConvertFrom-Json
 }
-Describe "New-GetItemsReturnObject" {
+Describe "New-GetItemsReturnObject" -Tag 'function','private' {
     It 'should have a parameter named Response that is mandatory and accepts a PSCustomObject.' {
         Get-Command "$($envSettings.CommandName)" | Should -HaveParameter Response -Mandatory -Type PSCustomObject
     }

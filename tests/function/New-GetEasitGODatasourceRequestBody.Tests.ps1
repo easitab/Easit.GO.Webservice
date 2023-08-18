@@ -21,7 +21,7 @@ BeforeAll {
         Get-Content -Path (Join-Path -Path $envSettings.TestDataDirectory -ChildPath 'getDatasourceRequest.json') -Raw
     }
 }
-Describe "New-GetEasitGODatasourceRequestBody" {
+Describe "New-GetEasitGODatasourceRequestBody" -Tag 'function','private' {
     It 'should have a parameter named ModuleId that is mandatory and accepts an integer.' {
         Get-Command "$($envSettings.CommandName)" | Should -HaveParameter ModuleId -Mandatory -Type int
     }

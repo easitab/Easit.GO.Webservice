@@ -89,7 +89,7 @@ BeforeAll {
         ImportViewIdentifier = 'testview'
     }
 }
-Describe "Get-EasitGOItem" {
+Describe "Get-EasitGOItem" -Tag 'function','public' {
     It 'should have a parameter named Url that is mandatory and accepts a string.' {
         Get-Command "$($envSettings.CommandName)" | Should -HaveParameter Url -Mandatory -Type 'String'
     }

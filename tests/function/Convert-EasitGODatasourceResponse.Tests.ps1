@@ -19,7 +19,7 @@ BeforeAll {
         throw $_
     }
 }
-Describe "Convert-EasitGODatasourceResponse" {
+Describe "Convert-EasitGODatasourceResponse" -Tag 'function','private' {
     It 'should have a parameter named Response that is mandatory and accepts a PSCustomObject.' {
         Get-Command "$($envSettings.CommandName)" | Should -HaveParameter Response -Mandatory -Type PSCustomObject
     }
