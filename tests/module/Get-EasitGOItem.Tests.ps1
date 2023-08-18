@@ -44,6 +44,27 @@ Describe "Get-EasitGOItem" -Tag 'module' {
     It 'should not throw if minimum input is valid' {
         {Get-EasitGOItem -Url $url -Apikey $api -ImportViewIdentifier $ImportViewIdentifier} | Should -Not -Throw
     }
+    It 'should not throw when page is specified' {
+        {Get-EasitGOItem -Url $url -Apikey $api -ImportViewIdentifier $ImportViewIdentifier -Page 1} | Should -Not -Throw
+    }
+    It 'should not throw when pageSize is specified' {
+        {Get-EasitGOItem -Url $url -Apikey $api -ImportViewIdentifier $ImportViewIdentifier -PageSize 75} | Should -Not -Throw
+    }
+    It 'should not throw when a ColumnFilter is provided' {
+        $columnFilters = @()
+        $columnFilters += New-ColumnFilter -ColumnName 'Status' -Comparator 'IN' -ColumnValue 'Open'
+        {Get-EasitGOItem -Url $url -Apikey $api -ImportViewIdentifier $ImportViewIdentifier -ColumnFilter $columnFilters} | Should -Not -Throw
+    }
+    It 'should not throw when a SortColumn is provided' {
+        $sortColumn = New-SortColumn -Name 'Updated' -Order 'Descending'
+        {Get-EasitGOItem -Url $url -Apikey $api -ImportViewIdentifier $ImportViewIdentifier -SortColumn $sortColumn} | Should -Not -Throw
+    }
+    It 'should not throw when multiple ColumnFilters is provided' {
+        $columnFilters = @()
+        $columnFilters += New-ColumnFilter -ColumnName 'Status' -Comparator 'IN' -ColumnValue 'Open'
+        $columnFilters += New-ColumnFilter -ColumnName 'Priority' -Comparator 'IN' -ColumnValue 'High'
+        {Get-EasitGOItem -Url $url -Apikey $api -ImportViewIdentifier $ImportViewIdentifier -ColumnFilter $columnFilters} | Should -Not -Throw
+    }
     It 'should return an PSCustomObject' {
         $output = Get-EasitGOItem -Url $url -Apikey $api -ImportViewIdentifier $ImportViewIdentifier
         $output | Should -BeOfType 'PSCustomObject'
