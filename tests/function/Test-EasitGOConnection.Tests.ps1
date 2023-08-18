@@ -41,7 +41,7 @@ BeforeAll {
         '{"message": "Pong!"}' | ConvertFrom-Json
     }
 }
-Describe "Test-EasitGOConnection" {
+Describe "Test-EasitGOConnection" -Tag 'function','public' {
     It 'should have a parameter named Url that is mandatory and accepts a string.' {
         Get-Command "$($envSettings.CommandName)" | Should -HaveParameter Url -Mandatory -Type 'String'
     }

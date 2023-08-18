@@ -17,6 +17,8 @@ function New-PostEasitGOItemRequestBody {
         Items to be added to itemToImport array.
     .PARAMETER IDStart
         Used as ID for first item in itemToImport array.
+    .PARAMETER ConvertToJsonParameters
+        Set of additional parameters for ConvertTo-Json.
     .OUTPUTS
         [String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
     #>

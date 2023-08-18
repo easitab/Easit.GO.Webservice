@@ -15,7 +15,7 @@ BeforeAll {
         Write-Output "Unable to locate code file ($($envSettings.CodeFilePath)) to test against!" -ForegroundColor Red
     }
 }
-Describe "Convert-ToEasitGOJson" {
+Describe "Convert-ToEasitGOJson" -Tag 'function','private' {
     It 'should have a parameter named InputObject that is mandatory and accepts an PSCustomObject.' {
         Get-Command "$($envSettings.CommandName)" | Should -HaveParameter InputObject -Mandatory -Type 'PSCustomObject'
     }

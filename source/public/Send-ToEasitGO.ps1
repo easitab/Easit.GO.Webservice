@@ -58,6 +58,8 @@ function Send-ToEasitGO {
         Used as ID for first item in itemToImport array.
     .PARAMETER InvokeRestMethodParameters
         Set of additional parameters for Invoke-RestMethod. Base parameters sent to Invoke-RestMethod is 'Uri','ContentType', 'Method', 'Body', 'Authentication' and 'Credential'.
+    .PARAMETER ConvertToJsonParameters
+        Set of additional parameters for ConvertTo-Json. Base parameters sent to ConvertTo-Json is 'Depth = 4', 'EscapeHandling = 'EscapeNonAscii'', 'WarningAction = 'SilentlyContinue''.
     #>
     [OutputType('PSCustomObject')]
     [Alias('Import-GOCustomItem')]

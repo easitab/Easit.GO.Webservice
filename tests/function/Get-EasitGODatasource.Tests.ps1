@@ -44,7 +44,9 @@ BeforeAll {
     function New-GetEasitGODatasourceRequestBody {
         param (
             [Parameter()]
-            [String]$ModuleId
+            [String]$ModuleId,
+            [Parameter()]
+            [System.Collections.Hashtable]$ConvertToJsonParameters
         )
         [System.Collections.Hashtable]@{
             moduleId = $ModuleId
@@ -80,7 +82,7 @@ BeforeAll {
         ModuleId = 1001
     }
 }
-Describe "Get-EasitGODatasource" {
+Describe "Get-EasitGODatasource" -Tag 'function','public' {
     It 'should have a parameter named Url that is mandatory and accepts a string.' {
         Get-Command "$($envSettings.CommandName)" | Should -HaveParameter Url -Mandatory -Type 'String'
     }

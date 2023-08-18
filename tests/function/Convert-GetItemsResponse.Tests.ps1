@@ -12,7 +12,7 @@ BeforeAll {
         Write-Output "Unable to locate code file ($($envSettings.CodeFilePath)) to test against!" -ForegroundColor Red
     }
 }
-Describe "Convert-GetItemsResponse" {
+Describe "Convert-GetItemsResponse" -Tag 'function','private' {
     It 'should have a parameter named Response that is mandatory and accepts a PSCustomObject.' {
         Get-Command "$($envSettings.CommandName)" | Should -HaveParameter Response -Mandatory -Type PSCustomObject
     }
