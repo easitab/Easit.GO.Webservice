@@ -23,8 +23,8 @@ jobs:
         failOnInfos: true
         settingsPath: ./.github/PSScriptAnalyzerSettings.psd1
 
-  test:
-    name: Run tests
+  function-test:
+    name: Run function tests
     needs: lint
     runs-on: ${{ matrix.os }}
     strategy:
@@ -35,4 +35,18 @@ jobs:
     - uses: actions/checkout@v2
     - name: Invoke Pester
       shell: pwsh
-      run: Invoke-Pester
+      run: Invoke-Pester -Tag 'function'
+
+  module-test:
+    name: Run module tests
+    needs: function-test
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, ubuntu-20.04, windows-latest, windows-2019, macos-latest, macos-11]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Invoke Pester
+      shell: pwsh
+      run: Invoke-Pester -Tag 'module'
