@@ -27,13 +27,30 @@ function New-PostEasitGOItemPropertyObject {
             Write-Warning "Name and value for property is null, skipping.."
             return
         }
-        try {
-            [PSCustomObject]@{
-                content = $InputObject.Value
-                name = $InputObject.Name
+        if ($InputObject.Value.GetType() -eq [System.Collections.Hashtable]) {
+            try {
+                $tempObject = @{
+                    name = $InputObject.Value.name
+                }
+            } catch {
+                throw $_
             }
-        } catch {
-            throw $_
+            if (!($null -eq $InputObject.Value.rawValue)) {
+                $tempObject.Add('rawValue',$InputObject.Value.rawValue)
+            }
+            if (!($null -eq $InputObject.Value.value)) {
+                $tempObject.Add('content',$InputObject.Value.value)
+            }
+            [PSCustomObject]$tempObject
+        } else {
+            try {
+                [PSCustomObject]@{
+                    content = $InputObject.Value
+                    name = $InputObject.Name
+                }
+            } catch {
+                throw $_
+            }
         }
     }
     end {

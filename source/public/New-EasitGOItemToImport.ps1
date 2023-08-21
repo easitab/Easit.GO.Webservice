@@ -62,10 +62,25 @@ function New-EasitGOItemToImport {
                     }
                 }
             } else {
-                try {
-                    $returnObject.property.Add((New-PostEasitGOItemPropertyObject -InputObject $property))
-                } catch {
-                    throw $_
+                if ($property.Value.GetType() -eq [System.Object[]]) {
+                    foreach ($value in $property.Value.GetEnumerator()) {
+                        try {
+                            $returnObject.property.Add((
+                                New-PostEasitGOItemPropertyObject -InputObject ([PSCustomObject]@{
+                                    Name = $property.Name
+                                    Value = $value
+                                })
+                            ))
+                        } catch {
+                            throw $_
+                        }
+                    }
+                } else {
+                    try {
+                        $returnObject.property.Add((New-PostEasitGOItemPropertyObject -InputObject $property))
+                    } catch {
+                        throw $_
+                    }
                 }
             }
         }
