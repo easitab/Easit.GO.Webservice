@@ -42,6 +42,34 @@ function Send-ToEasitGO {
             ImportHandlerIdentifier = 'myImportHandler'
         }
         Import-Csv -Path 'C:\Path\To\My\csvFile.csv' | Send-ToEasitGO @sendToEasitParams -Item $csvData
+    .EXAMPLE
+        $sendToEasitParams = @{
+            Url = 'https://go.easit.com'
+            Apikey = 'myApikey'
+            ImportHandlerIdentifier = 'myImportHandler'
+        }
+        $customItem = @{
+            prop1=@('value1','value4','value5')
+            prop2="value2"
+            prop3="value3"
+        }
+        Send-ToEasitGO @sendToEasitParams -CustomItem $customItem
+    .EXAMPLE
+        $sendToEasitParams = @{
+            Url = 'https://go.easit.com'
+            Apikey = 'myApikey'
+            ImportHandlerIdentifier = 'myImportHandler'
+        }
+        $customItem = @{
+            prop1=@{
+                name = 'propertyNameUsedAsnameInJSON'
+                value = 'propertyValue'
+                rawValue = 'propertyRawValue'
+            }
+            prop2="value2"
+            prop3="value3"
+        }
+        Send-ToEasitGO @sendToEasitParams -CustomItem $customItem
     .PARAMETER Url
         URL to Easit GO.
     .PARAMETER Apikey
