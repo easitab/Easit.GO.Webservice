@@ -11,7 +11,7 @@ BeforeAll {
     } else {
         Write-Output "Unable to locate code file ($($envSettings.CodeFilePath)) to test against!" -ForegroundColor Red
     }
-    $testObject = [PSCustomObject]@{name1='attachmentName2';name2=''}
+    $testObject = [PSCustomObject]@{name='attachmentName2';value=''}
 }
 Describe "New-PostEasitGOItemPropertyObject" -Tag 'function','private' {
     It 'should have a parameter named InputObject that is mandatory and accepts a object' {
@@ -27,10 +27,10 @@ Describe "New-PostEasitGOItemPropertyObject" -Tag 'function','private' {
         ((Get-Help "$($envSettings.CommandName)" -Full).EXAMPLES).Length | Should -BeGreaterThan 0
     }
     It 'should not throw with valid input' {
-        {New-PostEasitGOItemPropertyObject -InputObject (Get-Member -InputObject $testObject -Name 'name1')} | Should -Not -Throw
+        {New-PostEasitGOItemPropertyObject -InputObject $testObject} | Should -Not -Throw
     }
     It 'should NOT return null with valid input' {
-        $output = New-PostEasitGOItemPropertyObject -InputObject (Get-Member -InputObject $testObject -Name 'name1')
+        $output = New-PostEasitGOItemPropertyObject -InputObject $testObject
         $output | Should -Not -BeNullOrEmpty
     }
 }
