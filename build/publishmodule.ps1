@@ -19,7 +19,9 @@ param (
     [Parameter(Mandatory)]
     [string]$ModuleAuthor,
     [Parameter(Mandatory)]
-    [string]$Copyright
+    [string]$Copyright,
+    [Parameter()]
+    [String[]]$FunctionsToExport
 )
 
 begin {
@@ -30,7 +32,7 @@ begin {
 process {
     $repoRoot = Split-Path -Path $PSScriptRoot -Parent
     $sourceRoot = Join-Path $repoRoot -ChildPath 'source'
-    $tempBuildDirectory = Join-Path $repoRoot -ChildPath 'temp'
+    $tempBuildDirectory = Join-Path $repoRoot -ChildPath 'canaryBuild'
     if (Test-Path -Path $tempBuildDirectory) {
         try {
             Get-ChildItem -Path $tempBuildDirectory -Recurse -ErrorAction Stop | Remove-Item -Confirm:$false -Recurse -ErrorAction Stop
@@ -43,30 +45,63 @@ process {
         throw "Cannot find $sourceRoot"
     }
     try {
-        $allScripts = Get-ChildItem -Path "$sourceRoot" -Filter "*.ps1" -Recurse -ErrorAction Stop
+        $classes = Get-ChildItem -Path (Join-Path -Path "$sourceRoot" -ChildPath 'classes') -Filter "*.ps1" -Recurse -ErrorAction Stop
+        $privateFunctions = Get-ChildItem -Path (Join-Path -Path "$sourceRoot" -ChildPath 'private') -Filter "*.ps1" -Recurse -ErrorAction Stop
+        $publicFunctions = Get-ChildItem -Path (Join-Path -Path "$sourceRoot" -ChildPath 'public') -Filter "*.ps1" -Recurse -ErrorAction Stop
     } catch {
         throw $_
     }
-    if (!$allScripts) {
-        throw "No scripts or functions found"
+    if (!$classes -and !$privateFunctions -and $publicFunctions) {
+        throw "No functions or classes found"
     }
     $moduleRoot = New-Item -Path $tempBuildDirectory -Name $ModuleName -ItemType Directory
     $psm1 = New-Item -Path $moduleRoot -Name "$ModuleName.psm1" -ItemType File
     Write-Information "Generating new psm1"
-    foreach ($script in $allScripts) {
-        $scriptContent = $null
+    foreach ($class in $classes) {
+        $fileContent = $null
         try {
-            $scriptContent = Get-Content -Path $script.FullName -Raw
+            $fileContent = Get-Content -Path $class.FullName -Raw
         } catch {
-            Write-Warning "Failed to get content from $($script.FullName)"
+            Write-Warning "Failed to get content from $($class.FullName)"
             throw $_
         }
         try {
-            Add-Content -Path $psm1 -Value $scriptContent
+            Add-Content -Path $psm1 -Value $fileContent
         } catch {
             Write-Warning "Failed to add content to $($psm1.FullName)"
             throw $_
         }
+    }
+    foreach ($privateFunction in $privateFunctions) {
+        $fileContent = $null
+        try {
+            $fileContent = Get-Content -Path $privateFunction.FullName -Raw
+        } catch {
+            Write-Warning "Failed to get content from $($privateFunction.FullName)"
+            throw $_
+        }
+        try {
+            Add-Content -Path $psm1 -Value $fileContent
+        } catch {
+            Write-Warning "Failed to add content to $($psm1.FullName)"
+            throw $_
+        }
+    }
+    foreach ($publicFunction in $publicFunctions) {
+        $fileContent = $null
+        try {
+            $fileContent = Get-Content -Path $publicFunction.FullName -Raw
+        } catch {
+            Write-Warning "Failed to get content from $($publicFunction.FullName)"
+            throw $_
+        }
+        try {
+            Add-Content -Path $psm1 -Value $fileContent
+        } catch {
+            Write-Warning "Failed to add content to $($psm1.FullName)"
+            throw $_
+        }
+        $FunctionsToExport += $publicFunction.BaseName
     }
     $manifestFilePath = Join-Path -Path "$moduleRoot" -ChildPath "$ModuleName.psd1"
     $manifest = @{
@@ -81,6 +116,7 @@ process {
         Description       = "$ModuleDescription"
         PowerShellVersion = "$ModulePSVersion"
         Copyright         = "$Copyright"
+        FunctionsToExport = $FunctionsToExport
     }
     try {
         Write-Information "Creating new module manifest"
