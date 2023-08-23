@@ -1,27 +1,9 @@
 [CmdletBinding()]
 param (
-    [Parameter(Mandatory)]
-    [string]$CompanyName,
-    [Parameter(Mandatory)]
-    [string]$ModuleName,
-    [Parameter(Mandatory)]
-    [string]$Tag,
-    [Parameter(Mandatory)]
-    [string]$PSGalleryKey,
-    [Parameter(Mandatory)]
-    [string]$GitHubBaseURI,
-    [Parameter(Mandatory)]
-    [string]$TechspaceBaseURI,
-    [Parameter(Mandatory)]
-    [string]$ModuleDescription,
-    [Parameter(Mandatory)]
-    [string]$ModulePSVersion,
-    [Parameter(Mandatory)]
-    [string]$ModuleAuthor,
-    [Parameter(Mandatory)]
-    [string]$Copyright,
     [Parameter()]
-    [String[]]$FunctionsToExport
+    [string]$ModuleName = 'Easit.GO.Webservice',
+    [Parameter()]
+    [string]$Tag = '9.9.9'
 )
 begin {
     $InformationPreference = 'Continue'
@@ -33,7 +15,7 @@ process {
     if (!(Test-Path -Path $sourceDirectory)) {
         throw "Cannot find $sourceDirectory"
     }
-    $docsDirectory = Join-Path -Path $repoDirectory -ChildPath 'docs'
+    $docsDirectory = Join-Path -Path $repoDirectory -ChildPath 'local_docs'
     if (Test-Path -Path $docsDirectory) {
         Write-Information "$docsDirectory already exist"
     } else {
@@ -44,7 +26,7 @@ process {
             throw $_
         }
     }
-    $tempBuildDirectory = Join-Path $repoDirectory -ChildPath 'temp'
+    $tempBuildDirectory = Join-Path $repoDirectory -ChildPath 'local_temp'
     if (Test-Path -Path $tempBuildDirectory) {
         try {
             Write-Information "Cleaning $tempBuildDirectory"
@@ -138,42 +120,6 @@ process {
         $FunctionsToExport += $publicFunction.BaseName
     }
     try {
-        $manifestFilePath = Join-Path -Path "$moduleRoot" -ChildPath "$ModuleName.psd1"
-    } catch {
-        throw $_
-    }
-    $manifest = @{
-        Path              = "$manifestFilePath"
-        RootModule        = "$moduleName.psm1"
-        CompanyName       = "$CompanyName"
-        Author            = "$ModuleAuthor"
-        ModuleVersion     = "$Tag"
-        HelpInfoUri       = "$TechspaceBaseURI/psmodules/intro/"
-        LicenseUri        = "$GitHubBaseURI/$ModuleName/blob/main/LICENSE"
-        ProjectUri        = "$GitHubBaseURI/$ModuleName"
-        Description       = "$ModuleDescription"
-        PowerShellVersion = "$ModulePSVersion"
-        Copyright         = "$Copyright"
-        FunctionsToExport = $FunctionsToExport
-    }
-    try {
-        Write-Information "Creating new module manifest"
-        New-ModuleManifest @manifest -ErrorAction Stop | Out-Null
-    } catch {
-        Write-Warning "Failed to create new module manifest"
-        throw $_
-    }
-    if (Test-ModuleManifest -Path "$manifestFilePath") {
-        Write-Information "Publishing module to PSGallery"
-        try {
-            Publish-Module -Path "$moduleRoot" -NuGetApiKey "$PSGalleryKey"
-        } catch {
-            Write-Warning "Failed to publish module to gallery"
-            throw $_
-        }
-        Write-Information "Module published!"
-    }
-    try {
         Write-Information "Importing module ($psm1) to session"
         Import-Module $psm1 -Force
     } catch {
@@ -181,7 +127,7 @@ process {
     }
     try {
         Write-Information "Generating markdown help for module $ModuleName to $tagDocsDirectory"
-        $null = New-MarkdownHelp -Module $ModuleName -OutputFolder $tagDocsDirectory -Force
+        $null = New-MarkdownHelp -Module $ModuleName -OutputFolder $tagDocsDirectory -Force -NoMetadata -AlphabeticParamsOrder
     } catch {
         throw $_
     }

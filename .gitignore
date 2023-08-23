@@ -1,3 +1,4 @@
 module.ps1
-docs
 output*.xml
+local_docs
+local_temp
