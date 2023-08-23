@@ -1,13 +1,11 @@
-name: Publish module
-
+name: Publish module and generate docs
 on:
   release:
     types: [published]
   workflow_dispatch:
-
 jobs:
   test:
-    name: Test source
+    name: Run tests
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
@@ -18,19 +16,17 @@ jobs:
     - name: Invoke Pester
       shell: pwsh
       run: Invoke-Pester
-
   publish:
     runs-on: ubuntu-latest
     needs: test
     steps:
       - uses: actions/checkout@main
-      
       - uses: actions-ecosystem/action-release-label@v1
         id: release-label
       - uses: actions-ecosystem/action-get-latest-tag@v1
         id: get-latest-tag
         with:
           semver_only: true
-      - name: Result
+      - name: Publish module and generate docs
         shell: pwsh
         run: ./build/publishmodule.ps1 -CompanyName "${{ vars.COMPANYNAME }}" -ModuleName "${{ vars.MODULENAME }}" -Tag "${{ steps.get-latest-tag.outputs.tag }}" -PSGalleryKey "${{ secrets.PSGALLERYKEY }}" -GitHubBaseURI "${{ vars.GITHUBBASEURI }}" -TechspaceBaseURI "${{ vars.TECHSPACEBASEURI }}" -ModuleDescription "${{ vars.PSMODULEDESCRIPTION }}" -ModulePSVersion "${{ vars.PSMODULEPOWERSHELLVERSION }}" -ModuleAuthor "${{ vars.MODULEAUTHOR }}" -Copyright "${{ vars.COPYRIGHT }}"
