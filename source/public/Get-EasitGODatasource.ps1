@@ -1,9 +1,9 @@
 function Get-EasitGODatasource {
     <#
     .SYNOPSIS
-        Get data sources from Easit GO.
+        Get datasources from Easit GO.
     .DESCRIPTION
-        With **Get-EasitGODatasource** you can get data sources for a specific module from Easit GO. If no *ParentRawValue* is provided the function returns the modules root data sources.
+        With **Get-EasitGODatasource** you can get datasources for a specific module from Easit GO. If no *ParentRawValue* is provided the function returns the modules root datasources.
     .EXAMPLE
         $getDatasourceFromEasitGO = @{
             Url = 'https://url.to.EasitGO'
@@ -22,7 +22,7 @@ function Get-EasitGODatasource {
         }
         Get-EasitGODatasource @getDatasourceFromEasitGO
 
-        In this example we want to get all child data sources to the data source with databaseId (or rawValue) 5:1 in the module with id 1001.
+        In this example we want to get all child datasources to the data source with databaseId (or rawValue) 5:1 in the module with id 1001.
     .EXAMPLE
         $getDatasourceFromEasitGO = @{
             Url = 'https://url.to.EasitGO'
@@ -33,8 +33,19 @@ function Get-EasitGODatasource {
         }
         Get-EasitGODatasource @getDatasourceFromEasitGO
 
-        In this example we want to get all child data sources to the data source with databaseId (or rawValue) 5:1 in the module with id 1001 and we want them returned as separate objects.
+        In this example we want to get all child datasources to the data source with databaseId (or rawValue) 5:1 in the module with id 1001 and we want them returned as separate objects.
     .PARAMETER Url
+        URL to Easit GO.
+    .PARAMETER Apikey
+        Apikey used for authenticating against Easit GO.
+    .PARAMETER ModuleId
+        Specifies what module to get datasources from.
+    .PARAMETER ParentRawValue
+        Specifies what datasource to get child datasources from. If not specified, root level datasources will be returned.
+    .PARAMETER InvokeRestMethodParameters
+        Set of additional parameters for Invoke-RestMethod. Base parameters sent to Invoke-RestMethod is 'Uri','ContentType', 'Method', 'Body', 'Authentication' and 'Credential'.
+    .PARAMETER ReturnAsSeparateObjects
+        Specifies if *Get-EasitGOItem* should return each item in the view as its own PSCustomObject.
     .PARAMETER ConvertToJsonParameters
         Set of additional parameters for ConvertTo-Json. Base parameters sent to ConvertTo-Json is 'Depth = 4', 'EscapeHandling = 'EscapeNonAscii'', 'WarningAction = 'SilentlyContinue''.
     .OUTPUTS
