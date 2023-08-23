@@ -40,7 +40,7 @@ function Get-EasitGOItem {
         Get-EasitGOItem @getEasitGOItemParams
     .EXAMPLE
         $columnFilters = @()
-        $columnFilters += New-ColumnFilter -ColumnName 'Status' -Comparator 'IN' -ColumnValue 'Open'
+        $columnFilters += New-ColumnFilter -ColumnName 'Status' -RawValue '81:1' -Comparator 'IN'
         $columnFilters += New-ColumnFilter -ColumnName 'Priority' -Comparator 'IN' -ColumnValue 'High'
         $getEasitGOItemParams = @{
             Url = 'https://go.easit.com'
@@ -86,6 +86,8 @@ function Get-EasitGOItem {
         Specifies if *Get-EasitGOItem* should return each item in the view as its own PSCustomObject.
     .PARAMETER ConvertToJsonParameters
         Set of additional parameters for ConvertTo-Json. Base parameters sent to ConvertTo-Json is 'Depth = 4', 'EscapeHandling = 'EscapeNonAscii'', 'WarningAction = 'SilentlyContinue''.
+    .PARAMETER GetAllPages
+        Specifies if the function should try to get all pages from a view.
     #>
     [OutputType('PSCustomObject')]
     [Alias('Get-GOItems')]
@@ -94,6 +96,7 @@ function Get-EasitGOItem {
         [Parameter(Mandatory)]
         [string]$Url,
         [Parameter(Mandatory)]
+        [Alias('api','key')]
         [string]$Apikey,
         [Parameter(Mandatory)]
         [Alias("view")]
