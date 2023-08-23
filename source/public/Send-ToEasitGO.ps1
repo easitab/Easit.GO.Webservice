@@ -1,9 +1,9 @@
 function Send-ToEasitGO {
     <#
     .SYNOPSIS
-        Send objects to Easit GO WebAPI.
+        Send one or more objects to Easit GO WebAPI.
     .DESCRIPTION
-        Create or update any objects in Easit GO. This function can be used with any importhandler, module and object in Easit GO.
+        Create or update any object or objects in Easit GO. This function can be used with any importhandler, module and object in Easit GO.
     .EXAMPLE
         $sendToEasitParams = @{
             Url = 'https://go.easit.com'
@@ -106,6 +106,7 @@ function Send-ToEasitGO {
         [Parameter(Mandatory=$true,ParameterSetName='item',ValueFromPipeline)]
         [Object[]]$Item,
         [Parameter(Mandatory=$true,ParameterSetName='legacy')]
+        [Alias('CustomProperties')]
         [System.Collections.Hashtable] $CustomItem,
         [Parameter(ParameterSetName='item')]
         [Parameter(ParameterSetName='legacy')]
