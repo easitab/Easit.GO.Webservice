@@ -12,7 +12,7 @@ begin {
 process {
     try {
         Install-Module -Name 'platyPS' -Scope CurrentUser -Force -ErrorAction Stop
-        Import-Module 'platyP'S -Force -ErrorAction Stop
+        Import-Module 'platyPS' -Force -ErrorAction Stop
     } catch {
         throw $_
     }
