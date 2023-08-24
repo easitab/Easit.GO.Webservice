@@ -6,10 +6,6 @@ function Test-EasitGOConnection {
         **Test-EasitGOConnection** can be use to check if a Easit GO application is up and running, supports REST and "reachable".
     .EXAMPLE
         Test-EasitGOConnection -URL 'https://test.easit.com'
-
-        message
-        -------
-        Pong!
     .PARAMETER URL
         URL to Easit GO application.
     .PARAMETER InvokeRestMethodParameters
