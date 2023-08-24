@@ -28,6 +28,12 @@ begin {
     Write-Information "Script start"
 }
 process {
+    try {
+        Install-Module -Name 'platyPS' -Scope CurrentUser -Force -ErrorAction Stop
+        Import-Module 'platyP'S -Force -ErrorAction Stop
+    } catch {
+        throw $_
+    }
     $repoDirectory = Split-Path -Path $PSScriptRoot -Parent
     $sourceDirectory = Join-Path $repoDirectory -ChildPath 'source'
     if (!(Test-Path -Path $sourceDirectory)) {
