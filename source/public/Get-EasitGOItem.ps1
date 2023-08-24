@@ -40,7 +40,7 @@ function Get-EasitGOItem {
         Get-EasitGOItem @getEasitGOItemParams
     .EXAMPLE
         $columnFilters = @()
-        $columnFilters += New-ColumnFilter -ColumnName 'Status' -Comparator 'IN' -ColumnValue 'Open'
+        $columnFilters += New-ColumnFilter -ColumnName 'Status' -RawValue '81:1' -Comparator 'IN'
         $columnFilters += New-ColumnFilter -ColumnName 'Priority' -Comparator 'IN' -ColumnValue 'High'
         $getEasitGOItemParams = @{
             Url = 'https://go.easit.com'
@@ -62,6 +62,53 @@ function Get-EasitGOItem {
             SortColumn = $sortColumn
         }
         Get-EasitGOItem @getEasitGOItemParams
+    .EXAMPLE
+        $getEasitGOItemParams = @{
+            Url = 'https://go.easit.com'
+            Apikey = 'myApikey'
+            ImportViewIdentifier = 'myImportViewIdentifier'
+        }
+        $easitObjects = Get-EasitGOItem @getEasitGOItemParams
+        foreach ($easitObject in $easitObjects.items.item.GetEnumerator()) {
+            Write-Host "Got object with database id $($easitGOObject.id)"
+            Write-Host "The object has the following properties and values"
+            foreach ($propertyObject in $easitGOObject.property.GetEnumerator()) {
+                Write-Host "$($propertyObject.name) = $($propertyObject.content) (RawValue: $($propertyObject.rawValue))"
+            }
+        }
+    .EXAMPLE
+        $getEasitGOItemParams = @{
+            Url = 'https://go.easit.com'
+            Apikey = 'myApikey'
+            ImportViewIdentifier = 'myImportViewIdentifier'
+            GetAllPages = $true
+        }
+        $pages = Get-EasitGOItem @getEasitGOItemParams
+        foreach ($page in $pages) {
+            foreach ($easitObject in $page.items.item.GetEnumerator()) {
+                Write-Host "Got object with database id $($easitGOObject.id)"
+                Write-Host "The object has the following properties and values"
+                foreach ($propertyObject in $easitGOObject.property.GetEnumerator()) {
+                    Write-Host "$($propertyObject.name) = $($propertyObject.content) (RawValue: $($propertyObject.rawValue))"
+                }
+            }
+        }
+    .EXAMPLE
+        $getEasitGOItemParams = @{
+            Url = 'https://go.easit.com'
+            Apikey = 'myApikey'
+            ImportViewIdentifier = 'myImportViewIdentifier'
+            GetAllPages = $true
+            ReturnAsSeparateObjects = $true
+        }
+        $easitObjects = Get-EasitGOItem @getEasitGOItemParams
+        foreach ($easitObject in $easitObjects.GetEnumerator()) {
+            Write-Host "Got object with database id $($easitGOObject.id)"
+            Write-Host "The object has the following properties and values"
+            foreach ($propertyObject in $easitGOObject.property.GetEnumerator()) {
+                Write-Host "$($propertyObject.name) = $($propertyObject.content) (RawValue: $($propertyObject.rawValue))"
+            }
+        }
     .PARAMETER Url
         URL to Easit GO.
     .PARAMETER Apikey
@@ -86,6 +133,8 @@ function Get-EasitGOItem {
         Specifies if *Get-EasitGOItem* should return each item in the view as its own PSCustomObject.
     .PARAMETER ConvertToJsonParameters
         Set of additional parameters for ConvertTo-Json. Base parameters sent to ConvertTo-Json is 'Depth = 4', 'EscapeHandling = 'EscapeNonAscii'', 'WarningAction = 'SilentlyContinue''.
+    .PARAMETER GetAllPages
+        Specifies if the function should try to get all pages from a view.
     #>
     [OutputType('PSCustomObject')]
     [Alias('Get-GOItems')]
@@ -94,6 +143,7 @@ function Get-EasitGOItem {
         [Parameter(Mandatory)]
         [string]$Url,
         [Parameter(Mandatory)]
+        [Alias('api','key')]
         [string]$Apikey,
         [Parameter(Mandatory)]
         [Alias("view")]
@@ -101,6 +151,7 @@ function Get-EasitGOItem {
         [Parameter()]
         [SortColumn]$SortColumn,
         [Parameter()]
+        [Alias('viewPageNumber')]
         [int]$Page,
         [Parameter()]
         [int]$PageSize,

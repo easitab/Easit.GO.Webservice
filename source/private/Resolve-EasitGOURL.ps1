@@ -5,15 +5,15 @@ function Resolve-EasitGOURL {
     .DESCRIPTION
         **Resolve-EasitGOURL** checks if the provided string ends with */integration-api/[endpoint]* and if not it adds the parts needed.
     .EXAMPLE
-        Resolve-EasitGOURL -URL 'https://test.easit.com' -Leaf 'ping'
+        Resolve-EasitGOURL -URL 'https://test.easit.com' -Endpoint 'ping'
     .EXAMPLE
-        Resolve-EasitGOURL -URL 'https://test.easit.com/' -Leaf 'ping'
+        Resolve-EasitGOURL -URL 'https://test.easit.com/' -Endpoint 'ping'
     .EXAMPLE
-        Resolve-EasitGOURL -URL 'https://test.easit.com/integration-api' -Leaf 'ping'
+        Resolve-EasitGOURL -URL 'https://test.easit.com/integration-api' -Endpoint 'ping'
     .EXAMPLE
-        Resolve-EasitGOURL -URL 'https://test.easit.com/integration-api/' -Leaf 'ping'
+        Resolve-EasitGOURL -URL 'https://test.easit.com/integration-api/' -Endpoint 'ping'
     .EXAMPLE
-        Resolve-EasitGOURL -URL 'https://test.easit.com/integration-api/ping' -Leaf 'ping'
+        Resolve-EasitGOURL -URL 'https://test.easit.com/integration-api/ping' -Endpoint 'ping'
     .PARAMETER URL
         URL string that should be resolved.
     .PARAMETER Endpoint
@@ -35,8 +35,15 @@ function Resolve-EasitGOURL {
     process {
         try {
             $Endpoint = $Endpoint.ToLower()
+            $Endpoint = $Endpoint.Replace('/','')
         } catch {
             throw $_
+        }
+        if ($URL -match '/webservice/') {
+            $URL = $URL.Replace('/webservice/','')
+        }
+        if ($URL -match '/webservice') {
+            $URL = $URL.Replace('/webservice','')
         }
         if ($URL -match "/integration-api/$Endpoint") {
             return $URL

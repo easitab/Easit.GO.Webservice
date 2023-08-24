@@ -1,9 +1,9 @@
 function Send-ToEasitGO {
     <#
     .SYNOPSIS
-        Send objects to Easit GO WebAPI.
+        Send one or more objects to Easit GO WebAPI.
     .DESCRIPTION
-        Create or update any objects in Easit GO. This function can be used with any importhandler, module and object in Easit GO.
+        Create or update any object or objects in Easit GO. This function can be used with any importhandler, module and object in Easit GO.
     .EXAMPLE
         $sendToEasitParams = @{
             Url = 'https://go.easit.com'
@@ -17,8 +17,9 @@ function Send-ToEasitGO {
             Url = 'https://go.easit.com/integration-api'
             Apikey = 'myApikey'
             ImportHandlerIdentifier = 'myImportHandler'
+            SendInBatchesOf = 75
         }
-        $csvData = Import-Csv -Path 'C:\Path\To\My\csvFile.csv'
+        $csvData = Import-Csv -Path 'C:\Path\To\My\csvFile.csv' -Delimiter ';' -Encoding 'utf8'
         Send-ToEasitGO @sendToEasitParams -Item $csvData
     .EXAMPLE
         $sendToEasitParams = @{
@@ -41,7 +42,7 @@ function Send-ToEasitGO {
             Apikey = 'myApikey'
             ImportHandlerIdentifier = 'myImportHandler'
         }
-        Import-Csv -Path 'C:\Path\To\My\csvFile.csv' | Send-ToEasitGO @sendToEasitParams -Item $csvData
+        Import-Csv -Path 'C:\Path\To\My\csvFile.csv' -Delimiter ';' -Encoding 'utf8' | Send-ToEasitGO @sendToEasitParams
     .EXAMPLE
         $sendToEasitParams = @{
             Url = 'https://go.easit.com'
@@ -106,6 +107,7 @@ function Send-ToEasitGO {
         [Parameter(Mandatory=$true,ParameterSetName='item',ValueFromPipeline)]
         [Object[]]$Item,
         [Parameter(Mandatory=$true,ParameterSetName='legacy')]
+        [Alias('CustomProperties')]
         [System.Collections.Hashtable] $CustomItem,
         [Parameter(ParameterSetName='item')]
         [Parameter(ParameterSetName='legacy')]
