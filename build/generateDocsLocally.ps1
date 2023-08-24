@@ -117,7 +117,6 @@ process {
             Write-Warning "Failed to add content to $($psm1.FullName)"
             throw $_
         }
-        $FunctionsToExport += $publicFunction.BaseName
     }
     try {
         Write-Information "Importing module ($psm1) to session"
