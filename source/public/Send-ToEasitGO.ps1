@@ -17,8 +17,9 @@ function Send-ToEasitGO {
             Url = 'https://go.easit.com/integration-api'
             Apikey = 'myApikey'
             ImportHandlerIdentifier = 'myImportHandler'
+            SendInBatchesOf = 75
         }
-        $csvData = Import-Csv -Path 'C:\Path\To\My\csvFile.csv'
+        $csvData = Import-Csv -Path 'C:\Path\To\My\csvFile.csv' -Delimiter ';' -Encoding 'utf8'
         Send-ToEasitGO @sendToEasitParams -Item $csvData
     .EXAMPLE
         $sendToEasitParams = @{
@@ -41,7 +42,7 @@ function Send-ToEasitGO {
             Apikey = 'myApikey'
             ImportHandlerIdentifier = 'myImportHandler'
         }
-        Import-Csv -Path 'C:\Path\To\My\csvFile.csv' | Send-ToEasitGO @sendToEasitParams -Item $csvData
+        Import-Csv -Path 'C:\Path\To\My\csvFile.csv' -Delimiter ';' -Encoding 'utf8' | Send-ToEasitGO @sendToEasitParams
     .EXAMPLE
         $sendToEasitParams = @{
             Url = 'https://go.easit.com'
