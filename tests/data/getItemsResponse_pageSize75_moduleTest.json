@@ -1,0 +1,412 @@
+{
+   "columns": {
+       "column": [
+           {
+               "content": "Id",
+               "datatype": "INTEGER",
+               "collection": false,
+               "connectiontype": null
+           },
+           {
+               "content": "Huvudobjekt",
+               "datatype": "CONNECTION",
+               "collection": false,
+               "connectiontype": "ITEM"
+           },
+           {
+               "content": "Organisation",
+               "datatype": "CONNECTION",
+               "collection": false,
+               "connectiontype": "ITEM"
+           },
+           {
+               "content": "Anmälare",
+               "datatype": "CONNECTION",
+               "collection": false,
+               "connectiontype": "ITEM"
+           },
+           {
+               "content": "Avtal",
+               "datatype": "CONNECTION",
+               "collection": false,
+               "connectiontype": "ITEM"
+           },
+           {
+               "content": "Referens organisation",
+               "datatype": "CONNECTION",
+               "collection": false,
+               "connectiontype": "ITEM"
+           },
+           {
+               "content": "Referens kontakt",
+               "datatype": "CONNECTION",
+               "collection": false,
+               "connectiontype": "ITEM"
+           },
+           {
+               "content": "Ägare",
+               "datatype": "CONNECTION",
+               "collection": false,
+               "connectiontype": "USER"
+           },
+           {
+               "content": "Handläggargrupp",
+               "datatype": "CONNECTION",
+               "collection": false,
+               "connectiontype": "GROUP"
+           },
+           {
+               "content": "Handläggare",
+               "datatype": "CONNECTION",
+               "collection": false,
+               "connectiontype": "USER"
+           },
+           {
+               "content": "Tjänst",
+               "datatype": "CONNECTION",
+               "collection": false,
+               "connectiontype": "ITEM"
+           },
+           {
+               "content": "Inventarier",
+               "datatype": "CONNECTION",
+               "collection": true,
+               "connectiontype": "ITEM"
+           },
+           {
+               "content": "Rubrik",
+               "datatype": "STRING",
+               "collection": false,
+               "connectiontype": null
+           },
+           {
+               "content": "Beskrivning",
+               "datatype": "TEXT",
+               "collection": false,
+               "connectiontype": null
+           },
+           {
+               "content": "Klassificering",
+               "datatype": "CONNECTION",
+               "collection": false,
+               "connectiontype": "ITEM"
+           },
+           {
+               "content": "Kunskapsartikel",
+               "datatype": "CONNECTION",
+               "collection": false,
+               "connectiontype": "ITEM"
+           },
+           {
+               "content": "Kategori_1",
+               "datatype": "CONNECTION",
+               "collection": false,
+               "connectiontype": "PROPERTY"
+           },
+           {
+               "content": "Kategori_2",
+               "datatype": "CONNECTION",
+               "collection": false,
+               "connectiontype": "PROPERTY"
+           },
+           {
+               "content": "Kategori_3",
+               "datatype": "CONNECTION",
+               "collection": false,
+               "connectiontype": "PROPERTY"
+           },
+           {
+               "content": "Stängningskategori_1",
+               "datatype": "CONNECTION",
+               "collection": false,
+               "connectiontype": "PROPERTY"
+           },
+           {
+               "content": "Stängningskategori_2",
+               "datatype": "CONNECTION",
+               "collection": false,
+               "connectiontype": "PROPERTY"
+           },
+           {
+               "content": "Stängningskategori_3",
+               "datatype": "CONNECTION",
+               "collection": false,
+               "connectiontype": "PROPERTY"
+           },
+           {
+               "content": "Påverkan",
+               "datatype": "CONNECTION",
+               "collection": false,
+               "connectiontype": "PROPERTY"
+           },
+           {
+               "content": "Typ",
+               "datatype": "CONNECTION",
+               "collection": false,
+               "connectiontype": "PROPERTY"
+           },
+           {
+               "content": "Brådska",
+               "datatype": "CONNECTION",
+               "collection": false,
+               "connectiontype": "PROPERTY"
+           },
+           {
+               "content": "Status",
+               "datatype": "CONNECTION",
+               "collection": false,
+               "connectiontype": "PROPERTY"
+           },
+           {
+               "content": "Prioritet",
+               "datatype": "CONNECTION",
+               "collection": false,
+               "connectiontype": "PROPERTY"
+           },
+           {
+               "content": "Stängningskod",
+               "datatype": "CONNECTION",
+               "collection": false,
+               "connectiontype": "PROPERTY"
+           },
+           {
+               "content": "Starttid",
+               "datatype": "DATETIME",
+               "collection": false,
+               "connectiontype": null
+           },
+           {
+               "content": "Stopptid",
+               "datatype": "DATETIME",
+               "collection": false,
+               "connectiontype": null
+           },
+           {
+               "content": "Åtgärder",
+               "datatype": "TEXT",
+               "collection": false,
+               "connectiontype": null
+           },
+           {
+               "content": "Lösning",
+               "datatype": "STRING",
+               "collection": false,
+               "connectiontype": null
+           },
+           {
+               "content": "Löst i tid",
+               "datatype": "CONNECTION",
+               "collection": false,
+               "connectiontype": "PROPERTY"
+           },
+           {
+               "content": "Uppfattar tjänsten",
+               "datatype": "CONNECTION",
+               "collection": false,
+               "connectiontype": "PROPERTY"
+           },
+           {
+               "content": "Lösning",
+               "datatype": "CONNECTION",
+               "collection": false,
+               "connectiontype": "PROPERTY"
+           },
+           {
+               "content": "Övriga kommentarer",
+               "datatype": "STRING",
+               "collection": false,
+               "connectiontype": null
+           }
+       ]
+   },
+   "items": {
+       "item": [
+           {
+               "property": [
+                   {
+                       "content": "55",
+                       "name": "Id",
+                       "rawValue": "55"
+                   },
+                   {
+                       "content": "",
+                       "name": "Huvudobjekt",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "Gröna skolan",
+                       "name": "Organisation",
+                       "rawValue": "10:2"
+                   },
+                   {
+                       "content": "Anna Andrén",
+                       "name": "Anmälare",
+                       "rawValue": "836:2"
+                   },
+                   {
+                       "content": "Exempel SLA",
+                       "name": "Avtal",
+                       "rawValue": "27:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Referens organisation",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Referens kontakt",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Ägare",
+                       "rawValue": "null:3"
+                   },
+                   {
+                       "content": "2 linjen",
+                       "name": "Handläggargrupp",
+                       "rawValue": "24:4"
+                   },
+                   {
+                       "content": "Harald Handläggare",
+                       "name": "Handläggare",
+                       "rawValue": "22:3"
+                   },
+                   {
+                       "content": "",
+                       "name": "Tjänst",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "Bärbar dator kraschar",
+                       "name": "Rubrik",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "Fel på min bärbara dator\nVarje gång jag startar Outlook så kraschar datorn.",
+                       "name": "Beskrivning",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "",
+                       "name": "Klassificering",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kunskapsartikel",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "Hårdvara",
+                       "name": "Kategori_1",
+                       "rawValue": "178:1"
+                   },
+                   {
+                       "content": "PC",
+                       "name": "Kategori_2",
+                       "rawValue": "180:1"
+                   },
+                   {
+                       "content": "Bärbar",
+                       "name": "Kategori_3",
+                       "rawValue": "553:1"
+                   },
+                   {
+                       "content": "Hårdvara",
+                       "name": "Stängningskategori_1",
+                       "rawValue": "178:1"
+                   },
+                   {
+                       "content": "PC",
+                       "name": "Stängningskategori_2",
+                       "rawValue": "180:1"
+                   },
+                   {
+                       "content": "Bärbar",
+                       "name": "Stängningskategori_3",
+                       "rawValue": "553:1"
+                   },
+                   {
+                       "content": "Låg",
+                       "name": "Påverkan",
+                       "rawValue": "13:1"
+                   },
+                   {
+                       "content": "Säkerhet",
+                       "name": "Typ",
+                       "rawValue": "742:1"
+                   },
+                   {
+                       "content": "Normal",
+                       "name": "Brådska",
+                       "rawValue": "17:1"
+                   },
+                   {
+                       "content": "Löst",
+                       "name": "Status",
+                       "rawValue": "148:1"
+                   },
+                   {
+                       "content": "4",
+                       "name": "Prioritet",
+                       "rawValue": "76:1"
+                   },
+                   {
+                       "content": "Löst",
+                       "name": "Stängningskod",
+                       "rawValue": "135:1"
+                   },
+                   {
+                       "content": "2008-03-20 14:00",
+                       "name": "Starttid",
+                       "rawValue": "2008-03-20T13:00:00.000Z"
+                   },
+                   {
+                       "content": "2008-03-28 16:00",
+                       "name": "Stopptid",
+                       "rawValue": "2008-03-28T15:00:00.000Z"
+                   },
+                   {
+                       "content": "[ 9/12/2009 3:20:30 PM (CET), Standard Standarddata (std) ]\nskriver en liten åtgärd",
+                       "name": "Åtgärder",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "Kompletterat med mer minne.",
+                       "name": "Lösning",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "",
+                       "name": "Löst i tid",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Uppfattar tjänsten",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Lösning",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Övriga kommentarer",
+                       "rawValue": null
+                   }
+               ],
+               "attachment": [],
+               "id": "13:2"
+           }
+       ]
+   },
+   "requestedPage": 0,
+   "page": 1,
+   "pageSize": 75,
+   "totalNumberOfPages": 5,
+   "totalNumberOfItems": 119
+}

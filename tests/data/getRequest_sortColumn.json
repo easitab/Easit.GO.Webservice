@@ -1,0 +1,9 @@
+﻿{
+  "itemViewIdentifier": "testView",
+  "page": 3,
+  "pageSize": 145,
+  "sortColumn": {
+    "content": "Updated",
+    "order": "Descending"
+  }
+}

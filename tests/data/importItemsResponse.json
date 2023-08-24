@@ -1,0 +1,17 @@
+﻿{
+  "importItemResult": [
+    {
+      "result": "OK",
+      "returnValues": {
+        "returnValue": [
+          {
+            "content": "returnValueFromImportHandler",
+            "name": "nameOfStepInImportHandler"
+          }
+        ]
+      },
+      "skippedOrExceptionMessage": null,
+      "uid": "385df4e91a0142e2aea7f44264b952e2"
+    }
+  ]
+}

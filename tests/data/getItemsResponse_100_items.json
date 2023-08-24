@@ -1,0 +1,4761 @@
+{
+   "columns": {
+       "column": [
+           {
+               "content": "Id",
+               "datatype": "INTEGER",
+               "collection": false,
+               "connectiontype": null
+           },
+           {
+               "content": "Huvudobjekt",
+               "datatype": "CONNECTION",
+               "collection": false,
+               "connectiontype": "ITEM"
+           },
+           {
+               "content": "Organisation",
+               "datatype": "CONNECTION",
+               "collection": false,
+               "connectiontype": "ITEM"
+           },
+           {
+               "content": "Anmälare",
+               "datatype": "CONNECTION",
+               "collection": false,
+               "connectiontype": "ITEM"
+           },
+           {
+               "content": "Avtal",
+               "datatype": "CONNECTION",
+               "collection": false,
+               "connectiontype": "ITEM"
+           },
+           {
+               "content": "Referens organisation",
+               "datatype": "CONNECTION",
+               "collection": false,
+               "connectiontype": "ITEM"
+           },
+           {
+               "content": "Referens kontakt",
+               "datatype": "CONNECTION",
+               "collection": false,
+               "connectiontype": "ITEM"
+           },
+           {
+               "content": "Ägare",
+               "datatype": "CONNECTION",
+               "collection": false,
+               "connectiontype": "USER"
+           },
+           {
+               "content": "Handläggargrupp",
+               "datatype": "CONNECTION",
+               "collection": false,
+               "connectiontype": "GROUP"
+           },
+           {
+               "content": "Handläggare",
+               "datatype": "CONNECTION",
+               "collection": false,
+               "connectiontype": "USER"
+           },
+           {
+               "content": "Tjänst",
+               "datatype": "CONNECTION",
+               "collection": false,
+               "connectiontype": "ITEM"
+           },
+           {
+               "content": "Inventarier",
+               "datatype": "CONNECTION",
+               "collection": true,
+               "connectiontype": "ITEM"
+           },
+           {
+               "content": "Rubrik",
+               "datatype": "STRING",
+               "collection": false,
+               "connectiontype": null
+           },
+           {
+               "content": "Beskrivning",
+               "datatype": "TEXT",
+               "collection": false,
+               "connectiontype": null
+           },
+           {
+               "content": "Klassificering",
+               "datatype": "CONNECTION",
+               "collection": false,
+               "connectiontype": "ITEM"
+           },
+           {
+               "content": "Kunskapsartikel",
+               "datatype": "CONNECTION",
+               "collection": false,
+               "connectiontype": "ITEM"
+           },
+           {
+               "content": "Kategori_1",
+               "datatype": "CONNECTION",
+               "collection": false,
+               "connectiontype": "PROPERTY"
+           },
+           {
+               "content": "Kategori_2",
+               "datatype": "CONNECTION",
+               "collection": false,
+               "connectiontype": "PROPERTY"
+           },
+           {
+               "content": "Kategori_3",
+               "datatype": "CONNECTION",
+               "collection": false,
+               "connectiontype": "PROPERTY"
+           },
+           {
+               "content": "Stängningskategori_1",
+               "datatype": "CONNECTION",
+               "collection": false,
+               "connectiontype": "PROPERTY"
+           },
+           {
+               "content": "Stängningskategori_2",
+               "datatype": "CONNECTION",
+               "collection": false,
+               "connectiontype": "PROPERTY"
+           },
+           {
+               "content": "Stängningskategori_3",
+               "datatype": "CONNECTION",
+               "collection": false,
+               "connectiontype": "PROPERTY"
+           },
+           {
+               "content": "Påverkan",
+               "datatype": "CONNECTION",
+               "collection": false,
+               "connectiontype": "PROPERTY"
+           },
+           {
+               "content": "Typ",
+               "datatype": "CONNECTION",
+               "collection": false,
+               "connectiontype": "PROPERTY"
+           },
+           {
+               "content": "Brådska",
+               "datatype": "CONNECTION",
+               "collection": false,
+               "connectiontype": "PROPERTY"
+           },
+           {
+               "content": "Status",
+               "datatype": "CONNECTION",
+               "collection": false,
+               "connectiontype": "PROPERTY"
+           },
+           {
+               "content": "Prioritet",
+               "datatype": "CONNECTION",
+               "collection": false,
+               "connectiontype": "PROPERTY"
+           },
+           {
+               "content": "Stängningskod",
+               "datatype": "CONNECTION",
+               "collection": false,
+               "connectiontype": "PROPERTY"
+           },
+           {
+               "content": "Starttid",
+               "datatype": "DATETIME",
+               "collection": false,
+               "connectiontype": null
+           },
+           {
+               "content": "Stopptid",
+               "datatype": "DATETIME",
+               "collection": false,
+               "connectiontype": null
+           },
+           {
+               "content": "Åtgärder",
+               "datatype": "TEXT",
+               "collection": false,
+               "connectiontype": null
+           },
+           {
+               "content": "Lösning",
+               "datatype": "STRING",
+               "collection": false,
+               "connectiontype": null
+           },
+           {
+               "content": "Löst i tid",
+               "datatype": "CONNECTION",
+               "collection": false,
+               "connectiontype": "PROPERTY"
+           },
+           {
+               "content": "Uppfattar tjänsten",
+               "datatype": "CONNECTION",
+               "collection": false,
+               "connectiontype": "PROPERTY"
+           },
+           {
+               "content": "Lösning",
+               "datatype": "CONNECTION",
+               "collection": false,
+               "connectiontype": "PROPERTY"
+           },
+           {
+               "content": "Övriga kommentarer",
+               "datatype": "STRING",
+               "collection": false,
+               "connectiontype": null
+           }
+       ]
+   },
+   "items": {
+       "item": [
+           {
+               "property": [
+                   {
+                       "content": "55",
+                       "name": "Id",
+                       "rawValue": "55"
+                   },
+                   {
+                       "content": "",
+                       "name": "Huvudobjekt",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "Gröna skolan",
+                       "name": "Organisation",
+                       "rawValue": "10:2"
+                   },
+                   {
+                       "content": "Anna Andrén",
+                       "name": "Anmälare",
+                       "rawValue": "836:2"
+                   },
+                   {
+                       "content": "Exempel SLA",
+                       "name": "Avtal",
+                       "rawValue": "27:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Referens organisation",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Referens kontakt",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Ägare",
+                       "rawValue": "null:3"
+                   },
+                   {
+                       "content": "2 linjen",
+                       "name": "Handläggargrupp",
+                       "rawValue": "24:4"
+                   },
+                   {
+                       "content": "Harald Handläggare",
+                       "name": "Handläggare",
+                       "rawValue": "22:3"
+                   },
+                   {
+                       "content": "",
+                       "name": "Tjänst",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "Bärbar dator kraschar",
+                       "name": "Rubrik",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "Fel på min bärbara dator\nVarje gång jag startar Outlook så kraschar datorn.",
+                       "name": "Beskrivning",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "",
+                       "name": "Klassificering",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kunskapsartikel",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "Hårdvara",
+                       "name": "Kategori_1",
+                       "rawValue": "178:1"
+                   },
+                   {
+                       "content": "PC",
+                       "name": "Kategori_2",
+                       "rawValue": "180:1"
+                   },
+                   {
+                       "content": "Bärbar",
+                       "name": "Kategori_3",
+                       "rawValue": "553:1"
+                   },
+                   {
+                       "content": "Hårdvara",
+                       "name": "Stängningskategori_1",
+                       "rawValue": "178:1"
+                   },
+                   {
+                       "content": "PC",
+                       "name": "Stängningskategori_2",
+                       "rawValue": "180:1"
+                   },
+                   {
+                       "content": "Bärbar",
+                       "name": "Stängningskategori_3",
+                       "rawValue": "553:1"
+                   },
+                   {
+                       "content": "Låg",
+                       "name": "Påverkan",
+                       "rawValue": "13:1"
+                   },
+                   {
+                       "content": "Säkerhet",
+                       "name": "Typ",
+                       "rawValue": "742:1"
+                   },
+                   {
+                       "content": "Normal",
+                       "name": "Brådska",
+                       "rawValue": "17:1"
+                   },
+                   {
+                       "content": "Löst",
+                       "name": "Status",
+                       "rawValue": "148:1"
+                   },
+                   {
+                       "content": "4",
+                       "name": "Prioritet",
+                       "rawValue": "76:1"
+                   },
+                   {
+                       "content": "Löst",
+                       "name": "Stängningskod",
+                       "rawValue": "135:1"
+                   },
+                   {
+                       "content": "2008-03-20 14:00",
+                       "name": "Starttid",
+                       "rawValue": "2008-03-20T13:00:00.000Z"
+                   },
+                   {
+                       "content": "2008-03-28 16:00",
+                       "name": "Stopptid",
+                       "rawValue": "2008-03-28T15:00:00.000Z"
+                   },
+                   {
+                       "content": "[ 9/12/2009 3:20:30 PM (CET), Standard Standarddata (std) ]\nskriver en liten åtgärd",
+                       "name": "Åtgärder",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "Kompletterat med mer minne.",
+                       "name": "Lösning",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "",
+                       "name": "Löst i tid",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Uppfattar tjänsten",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Lösning",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Övriga kommentarer",
+                       "rawValue": null
+                   }
+               ],
+               "attachment": [],
+               "id": "13:2"
+           },
+           {
+               "property": [
+                   {
+                       "content": "222",
+                       "name": "Id",
+                       "rawValue": "222"
+                   },
+                   {
+                       "content": "",
+                       "name": "Huvudobjekt",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "Gröna skolan",
+                       "name": "Organisation",
+                       "rawValue": "10:2"
+                   },
+                   {
+                       "content": "Anna Andrén",
+                       "name": "Anmälare",
+                       "rawValue": "836:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Avtal",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Referens organisation",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Referens kontakt",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Ägare",
+                       "rawValue": "null:3"
+                   },
+                   {
+                       "content": "2 linjen",
+                       "name": "Handläggargrupp",
+                       "rawValue": "24:4"
+                   },
+                   {
+                       "content": "Harald Handläggare",
+                       "name": "Handläggare",
+                       "rawValue": "22:3"
+                   },
+                   {
+                       "content": "",
+                       "name": "Tjänst",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "Glömt lösenord till Skola på webben",
+                       "name": "Rubrik",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "Kan inte logga in i Skola på webben, jag vet inte om jag kommer ihåg fel lösenord.",
+                       "name": "Beskrivning",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "",
+                       "name": "Klassificering",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kunskapsartikel",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "Mjukvara",
+                       "name": "Kategori_1",
+                       "rawValue": "179:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kategori_2",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kategori_3",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "Mjukvara",
+                       "name": "Stängningskategori_1",
+                       "rawValue": "179:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskategori_2",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskategori_3",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "Medel",
+                       "name": "Påverkan",
+                       "rawValue": "14:1"
+                   },
+                   {
+                       "content": "Allvarlig",
+                       "name": "Typ",
+                       "rawValue": "744:1"
+                   },
+                   {
+                       "content": "Låg",
+                       "name": "Brådska",
+                       "rawValue": "16:1"
+                   },
+                   {
+                       "content": "Löst",
+                       "name": "Status",
+                       "rawValue": "148:1"
+                   },
+                   {
+                       "content": "4",
+                       "name": "Prioritet",
+                       "rawValue": "76:1"
+                   },
+                   {
+                       "content": "Löst",
+                       "name": "Stängningskod",
+                       "rawValue": "135:1"
+                   },
+                   {
+                       "content": "2009-04-20 08:27",
+                       "name": "Starttid",
+                       "rawValue": "2009-04-20T06:27:00.000Z"
+                   },
+                   {
+                       "content": "2009-04-28 10:27",
+                       "name": "Stopptid",
+                       "rawValue": "2009-04-28T08:27:00.000Z"
+                   },
+                   {
+                       "content": "[ 21/10/2009 4:25:52 PM (CEST), Standard Standarddata (std) ]\nOm man i en regel använder både ON_FORM_CHANGE och ON_FORM_LOAD, så är innebörden av fältet Målfält viktigt att förstå, för det kan påverka prestandan i applikationen. \n\nOm Målfält innehåller flera fält, så körs regeln lika många gånger som antal fält, ex.vis om Målfält innehåller Inventarie, Avtal och Anmälare, så körs regeln 3 gånger när objektet öppnas. \n\nOm målfältet istället lämnas tomt, så körs regeln lika många gånger som det finns triggers i formuläret (under Formuläret, egenskaper och ”Trigga händelse”), vilket kan vara ett flertal.\n\nViktigt att veta är alltså att prestandan kan påverkas med felaktigt uppsatta regler. På kommande sidor förklaras hur en sådan regel kan delas upp genom två olika regler för att undvika problem. Exemplet är en regel som beräknar påverkan utifrån tre olika moduler.\n\nNedan en felaktigt uppsatt regel med både ON_FORM_CHANGE och ON_FORM_LOAD och med tre målfält. \n",
+                       "name": "Åtgärder",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "Hjälpt Anna genom att skapa ett nytt lösenord.",
+                       "name": "Lösning",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "Missnöjd",
+                       "name": "Löst i tid",
+                       "rawValue": "131:1"
+                   },
+                   {
+                       "content": "Nöjd",
+                       "name": "Uppfattar tjänsten",
+                       "rawValue": "130:1"
+                   },
+                   {
+                       "content": "Mycket nöjd",
+                       "name": "Lösning",
+                       "rawValue": "129:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Övriga kommentarer",
+                       "rawValue": null
+                   }
+               ],
+               "attachment": [],
+               "id": "39:2"
+           },
+           {
+               "property": [
+                   {
+                       "content": "294",
+                       "name": "Id",
+                       "rawValue": "294"
+                   },
+                   {
+                       "content": "",
+                       "name": "Huvudobjekt",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "Gröna skolan",
+                       "name": "Organisation",
+                       "rawValue": "10:2"
+                   },
+                   {
+                       "content": "Karl-Erik Josefsson",
+                       "name": "Anmälare",
+                       "rawValue": "11:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Avtal",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Referens organisation",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Referens kontakt",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Ägare",
+                       "rawValue": "null:3"
+                   },
+                   {
+                       "content": "2 linjen",
+                       "name": "Handläggargrupp",
+                       "rawValue": "24:4"
+                   },
+                   {
+                       "content": "Erik English",
+                       "name": "Handläggare",
+                       "rawValue": "43:3"
+                   },
+                   {
+                       "content": "",
+                       "name": "Tjänst",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "Datorn hänger sig och går segt",
+                       "name": "Rubrik",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "Problem med att datorn hänger sig och går så segt. Kan ni komma ut och hjälpa mig med det?",
+                       "name": "Beskrivning",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "",
+                       "name": "Klassificering",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kunskapsartikel",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "Hårdvara",
+                       "name": "Kategori_1",
+                       "rawValue": "178:1"
+                   },
+                   {
+                       "content": "PC",
+                       "name": "Kategori_2",
+                       "rawValue": "180:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kategori_3",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "Hårdvara",
+                       "name": "Stängningskategori_1",
+                       "rawValue": "178:1"
+                   },
+                   {
+                       "content": "PC",
+                       "name": "Stängningskategori_2",
+                       "rawValue": "180:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskategori_3",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "Låg",
+                       "name": "Påverkan",
+                       "rawValue": "13:1"
+                   },
+                   {
+                       "content": "Kapacitet",
+                       "name": "Typ",
+                       "rawValue": "743:1"
+                   },
+                   {
+                       "content": "Låg",
+                       "name": "Brådska",
+                       "rawValue": "16:1"
+                   },
+                   {
+                       "content": "Avslutad",
+                       "name": "Status",
+                       "rawValue": "120:1"
+                   },
+                   {
+                       "content": "5",
+                       "name": "Prioritet",
+                       "rawValue": "127:1"
+                   },
+                   {
+                       "content": "Löst",
+                       "name": "Stängningskod",
+                       "rawValue": "135:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Starttid",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "",
+                       "name": "Stopptid",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "[ 17/4/2009 8:38:32 AM (CEST), Standard Standarddata (std) ]\nÅtgärder skrivs in i detta loggfält",
+                       "name": "Åtgärder",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "Rensade cookies och temp.filer, samt startade om. Vi ska se om det hjälper annars får vi gräva djupare.",
+                       "name": "Lösning",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "",
+                       "name": "Löst i tid",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Uppfattar tjänsten",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Lösning",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Övriga kommentarer",
+                       "rawValue": null
+                   }
+               ],
+               "attachment": [],
+               "id": "48:2"
+           },
+           {
+               "property": [
+                   {
+                       "content": "341",
+                       "name": "Id",
+                       "rawValue": "341"
+                   },
+                   {
+                       "content": "",
+                       "name": "Huvudobjekt",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "Gröna skolan",
+                       "name": "Organisation",
+                       "rawValue": "10:2"
+                   },
+                   {
+                       "content": "Karl-Erik Josefsson",
+                       "name": "Anmälare",
+                       "rawValue": "11:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Avtal",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Referens organisation",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Referens kontakt",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Ägare",
+                       "rawValue": "null:3"
+                   },
+                   {
+                       "content": "",
+                       "name": "Handläggargrupp",
+                       "rawValue": "null:4"
+                   },
+                   {
+                       "content": "",
+                       "name": "Handläggare",
+                       "rawValue": "null:3"
+                   },
+                   {
+                       "content": "",
+                       "name": "Tjänst",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "Fel på färgskrivaren på plan 1",
+                       "name": "Rubrik",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "Det är något fel med färgskrivaren på plan 1, vid expeditionen, det står att den är offline men när vi kollar på den så ser den ut att vara på.",
+                       "name": "Beskrivning",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "",
+                       "name": "Klassificering",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kunskapsartikel",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "Hårdvara",
+                       "name": "Kategori_1",
+                       "rawValue": "178:1"
+                   },
+                   {
+                       "content": "Skrivare",
+                       "name": "Kategori_2",
+                       "rawValue": "181:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kategori_3",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "Hårdvara",
+                       "name": "Stängningskategori_1",
+                       "rawValue": "178:1"
+                   },
+                   {
+                       "content": "Skrivare",
+                       "name": "Stängningskategori_2",
+                       "rawValue": "181:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskategori_3",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "Låg",
+                       "name": "Påverkan",
+                       "rawValue": "13:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Typ",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "Normal",
+                       "name": "Brådska",
+                       "rawValue": "17:1"
+                   },
+                   {
+                       "content": "Löst",
+                       "name": "Status",
+                       "rawValue": "148:1"
+                   },
+                   {
+                       "content": "4",
+                       "name": "Prioritet",
+                       "rawValue": "76:1"
+                   },
+                   {
+                       "content": "Löst",
+                       "name": "Stängningskod",
+                       "rawValue": "135:1"
+                   },
+                   {
+                       "content": "2010-04-05 11:09",
+                       "name": "Starttid",
+                       "rawValue": "2010-04-05T09:09:00.000Z"
+                   },
+                   {
+                       "content": "2010-04-13 13:09",
+                       "name": "Stopptid",
+                       "rawValue": "2010-04-13T11:09:00.000Z"
+                   },
+                   {
+                       "content": "",
+                       "name": "Åtgärder",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "Test",
+                       "name": "Lösning",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "Nöjd",
+                       "name": "Löst i tid",
+                       "rawValue": "130:1"
+                   },
+                   {
+                       "content": "Ingen åsikt",
+                       "name": "Uppfattar tjänsten",
+                       "rawValue": "132:1"
+                   },
+                   {
+                       "content": "Mycket nöjd",
+                       "name": "Lösning",
+                       "rawValue": "129:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Övriga kommentarer",
+                       "rawValue": null
+                   }
+               ],
+               "attachment": [],
+               "id": "66:2"
+           },
+           {
+               "property": [
+                   {
+                       "content": "377",
+                       "name": "Id",
+                       "rawValue": "377"
+                   },
+                   {
+                       "content": "",
+                       "name": "Huvudobjekt",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "Kalles RÖR och VVS",
+                       "name": "Organisation",
+                       "rawValue": "72:2"
+                   },
+                   {
+                       "content": "Kalle Rörsson",
+                       "name": "Anmälare",
+                       "rawValue": "73:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Avtal",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Referens organisation",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Referens kontakt",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Ägare",
+                       "rawValue": "null:3"
+                   },
+                   {
+                       "content": "1 linjen",
+                       "name": "Handläggargrupp",
+                       "rawValue": "23:4"
+                   },
+                   {
+                       "content": "",
+                       "name": "Handläggare",
+                       "rawValue": "null:3"
+                   },
+                   {
+                       "content": "",
+                       "name": "Tjänst",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "Kan inte logga in på den bärbara datorn",
+                       "name": "Rubrik",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "När jag försöker att logga in på den bärbara datorn så får jag ett meddelande att jag har fel användarnamn eller lösenord. ",
+                       "name": "Beskrivning",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "",
+                       "name": "Klassificering",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kunskapsartikel",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "Mjukvara",
+                       "name": "Kategori_1",
+                       "rawValue": "179:1"
+                   },
+                   {
+                       "content": "Operativsystem",
+                       "name": "Kategori_2",
+                       "rawValue": "183:1"
+                   },
+                   {
+                       "content": "Windows XP",
+                       "name": "Kategori_3",
+                       "rawValue": "187:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskategori_1",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskategori_2",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskategori_3",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "Medel",
+                       "name": "Påverkan",
+                       "rawValue": "14:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Typ",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "Normal",
+                       "name": "Brådska",
+                       "rawValue": "17:1"
+                   },
+                   {
+                       "content": "Väntar kund",
+                       "name": "Status",
+                       "rawValue": "118:1"
+                   },
+                   {
+                       "content": "3",
+                       "name": "Prioritet",
+                       "rawValue": "75:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskod",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "2010-05-26 18:00",
+                       "name": "Starttid",
+                       "rawValue": "2010-05-26T16:00:00.000Z"
+                   },
+                   {
+                       "content": "2010-05-28 16:00",
+                       "name": "Stopptid",
+                       "rawValue": "2010-05-28T14:00:00.000Z"
+                   },
+                   {
+                       "content": "",
+                       "name": "Åtgärder",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "",
+                       "name": "Lösning",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "",
+                       "name": "Löst i tid",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Uppfattar tjänsten",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Lösning",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Övriga kommentarer",
+                       "rawValue": null
+                   }
+               ],
+               "attachment": [],
+               "id": "75:2"
+           },
+           {
+               "property": [
+                   {
+                       "content": "379",
+                       "name": "Id",
+                       "rawValue": "379"
+                   },
+                   {
+                       "content": "",
+                       "name": "Huvudobjekt",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "Kalles RÖR och VVS",
+                       "name": "Organisation",
+                       "rawValue": "72:2"
+                   },
+                   {
+                       "content": "Klara Stensson",
+                       "name": "Anmälare",
+                       "rawValue": "74:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Avtal",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Referens organisation",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Referens kontakt",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Ägare",
+                       "rawValue": "null:3"
+                   },
+                   {
+                       "content": "1 linjen",
+                       "name": "Handläggargrupp",
+                       "rawValue": "23:4"
+                   },
+                   {
+                       "content": "",
+                       "name": "Handläggare",
+                       "rawValue": "null:3"
+                   },
+                   {
+                       "content": "",
+                       "name": "Tjänst",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "Exempel PC",
+                       "name": "Inventarier",
+                       "rawValue": "14:2"
+                   },
+                   {
+                       "content": "lubię lody",
+                       "name": "Rubrik",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "När jag skulle logga in och läsa mailen så fick jag ett felmeddelande att jag har fel användarnamn eller lösenord.",
+                       "name": "Beskrivning",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "",
+                       "name": "Klassificering",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kunskapsartikel",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "Mjukvara",
+                       "name": "Kategori_1",
+                       "rawValue": "179:1"
+                   },
+                   {
+                       "content": "Operativsystem",
+                       "name": "Kategori_2",
+                       "rawValue": "183:1"
+                   },
+                   {
+                       "content": "Windows XP",
+                       "name": "Kategori_3",
+                       "rawValue": "187:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskategori_1",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskategori_2",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskategori_3",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "Medel",
+                       "name": "Påverkan",
+                       "rawValue": "14:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Typ",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "Normal",
+                       "name": "Brådska",
+                       "rawValue": "17:1"
+                   },
+                   {
+                       "content": "Väntar kund",
+                       "name": "Status",
+                       "rawValue": "118:1"
+                   },
+                   {
+                       "content": "3",
+                       "name": "Prioritet",
+                       "rawValue": "75:1"
+                   },
+                   {
+                       "content": "Löst",
+                       "name": "Stängningskod",
+                       "rawValue": "135:1"
+                   },
+                   {
+                       "content": "2010-05-27 08:26",
+                       "name": "Starttid",
+                       "rawValue": "2010-05-27T06:26:00.000Z"
+                   },
+                   {
+                       "content": "2010-05-28 15:26",
+                       "name": "Stopptid",
+                       "rawValue": "2010-05-28T13:26:00.000Z"
+                   },
+                   {
+                       "content": "",
+                       "name": "Åtgärder",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "Bytt lösenord på inloggningskontot på den bärbara datorn meddelat kund det nya lösenordet på SMS",
+                       "name": "Lösning",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "Mycket nöjd",
+                       "name": "Löst i tid",
+                       "rawValue": "129:1"
+                   },
+                   {
+                       "content": "Mycket nöjd",
+                       "name": "Uppfattar tjänsten",
+                       "rawValue": "129:1"
+                   },
+                   {
+                       "content": "Mycket nöjd",
+                       "name": "Lösning",
+                       "rawValue": "129:1"
+                   },
+                   {
+                       "content": "Tack så mycke för snabb hjälp.",
+                       "name": "Övriga kommentarer",
+                       "rawValue": null
+                   }
+               ],
+               "attachment": [],
+               "id": "76:2"
+           },
+           {
+               "property": [
+                   {
+                       "content": "444",
+                       "name": "Id",
+                       "rawValue": "444"
+                   },
+                   {
+                       "content": "",
+                       "name": "Huvudobjekt",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "Kalles RÖR och VVS",
+                       "name": "Organisation",
+                       "rawValue": "72:2"
+                   },
+                   {
+                       "content": "Kalle Rörsson",
+                       "name": "Anmälare",
+                       "rawValue": "73:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Avtal",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Referens organisation",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Referens kontakt",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Ägare",
+                       "rawValue": "null:3"
+                   },
+                   {
+                       "content": "1 linjen",
+                       "name": "Handläggargrupp",
+                       "rawValue": "23:4"
+                   },
+                   {
+                       "content": "",
+                       "name": "Handläggare",
+                       "rawValue": "null:3"
+                   },
+                   {
+                       "content": "",
+                       "name": "Tjänst",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "testar starttid",
+                       "name": "Rubrik",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "",
+                       "name": "Beskrivning",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "",
+                       "name": "Klassificering",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kunskapsartikel",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "Hårdvara",
+                       "name": "Kategori_1",
+                       "rawValue": "178:1"
+                   },
+                   {
+                       "content": "PC",
+                       "name": "Kategori_2",
+                       "rawValue": "180:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kategori_3",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskategori_1",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskategori_2",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskategori_3",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Påverkan",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Typ",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Brådska",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "Löst",
+                       "name": "Status",
+                       "rawValue": "148:1"
+                   },
+                   {
+                       "content": "3",
+                       "name": "Prioritet",
+                       "rawValue": "75:1"
+                   },
+                   {
+                       "content": "Ej löst",
+                       "name": "Stängningskod",
+                       "rawValue": "134:1"
+                   },
+                   {
+                       "content": "2010-10-31 00:00",
+                       "name": "Starttid",
+                       "rawValue": "2010-10-30T22:00:00.000Z"
+                   },
+                   {
+                       "content": "2010-11-02 16:00",
+                       "name": "Stopptid",
+                       "rawValue": "2010-11-02T15:00:00.000Z"
+                   },
+                   {
+                       "content": "",
+                       "name": "Åtgärder",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "löjk",
+                       "name": "Lösning",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "",
+                       "name": "Löst i tid",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Uppfattar tjänsten",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Lösning",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Övriga kommentarer",
+                       "rawValue": null
+                   }
+               ],
+               "attachment": [],
+               "id": "94:2"
+           },
+           {
+               "property": [
+                   {
+                       "content": "473",
+                       "name": "Id",
+                       "rawValue": "473"
+                   },
+                   {
+                       "content": "",
+                       "name": "Huvudobjekt",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "Kalles RÖR och VVS",
+                       "name": "Organisation",
+                       "rawValue": "72:2"
+                   },
+                   {
+                       "content": "Klara Stensson",
+                       "name": "Anmälare",
+                       "rawValue": "74:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Avtal",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Referens organisation",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Referens kontakt",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Ägare",
+                       "rawValue": "null:3"
+                   },
+                   {
+                       "content": "1 linjen",
+                       "name": "Handläggargrupp",
+                       "rawValue": "23:4"
+                   },
+                   {
+                       "content": "",
+                       "name": "Handläggare",
+                       "rawValue": "null:3"
+                   },
+                   {
+                       "content": "",
+                       "name": "Tjänst",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "Hur kopierar man formatet från en cell",
+                       "name": "Rubrik",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "alök jaölf",
+                       "name": "Beskrivning",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "",
+                       "name": "Klassificering",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kunskapsartikel",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "Mjukvara",
+                       "name": "Kategori_1",
+                       "rawValue": "179:1"
+                   },
+                   {
+                       "content": "Office",
+                       "name": "Kategori_2",
+                       "rawValue": "184:1"
+                   },
+                   {
+                       "content": "Excel",
+                       "name": "Kategori_3",
+                       "rawValue": "186:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskategori_1",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskategori_2",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskategori_3",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "Medel",
+                       "name": "Påverkan",
+                       "rawValue": "14:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Typ",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "Normal",
+                       "name": "Brådska",
+                       "rawValue": "17:1"
+                   },
+                   {
+                       "content": "Löst",
+                       "name": "Status",
+                       "rawValue": "148:1"
+                   },
+                   {
+                       "content": "3",
+                       "name": "Prioritet",
+                       "rawValue": "75:1"
+                   },
+                   {
+                       "content": "Ej löst",
+                       "name": "Stängningskod",
+                       "rawValue": "134:1"
+                   },
+                   {
+                       "content": "2010-10-26 13:19",
+                       "name": "Starttid",
+                       "rawValue": "2010-10-26T11:19:00.000Z"
+                   },
+                   {
+                       "content": "2010-10-28 11:19",
+                       "name": "Stopptid",
+                       "rawValue": "2010-10-28T09:19:00.000Z"
+                   },
+                   {
+                       "content": "",
+                       "name": "Åtgärder",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "lkj",
+                       "name": "Lösning",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "",
+                       "name": "Löst i tid",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Uppfattar tjänsten",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Lösning",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Övriga kommentarer",
+                       "rawValue": null
+                   }
+               ],
+               "attachment": [],
+               "id": "109:2"
+           },
+           {
+               "property": [
+                   {
+                       "content": "477",
+                       "name": "Id",
+                       "rawValue": "477"
+                   },
+                   {
+                       "content": "",
+                       "name": "Huvudobjekt",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "Produktleverantören AB",
+                       "name": "Organisation",
+                       "rawValue": "31:2"
+                   },
+                   {
+                       "content": "Anders Andersson",
+                       "name": "Anmälare",
+                       "rawValue": "51:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Avtal",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Referens organisation",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Referens kontakt",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Ägare",
+                       "rawValue": "null:3"
+                   },
+                   {
+                       "content": "1 linjen",
+                       "name": "Handläggargrupp",
+                       "rawValue": "23:4"
+                   },
+                   {
+                       "content": "",
+                       "name": "Handläggare",
+                       "rawValue": "null:3"
+                   },
+                   {
+                       "content": "",
+                       "name": "Tjänst",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "Veth ärende undef",
+                       "name": "Rubrik",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "",
+                       "name": "Beskrivning",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "",
+                       "name": "Klassificering",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kunskapsartikel",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kategori_1",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kategori_2",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kategori_3",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskategori_1",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskategori_2",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskategori_3",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "Hög",
+                       "name": "Påverkan",
+                       "rawValue": "15:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Typ",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "Hög",
+                       "name": "Brådska",
+                       "rawValue": "18:1"
+                   },
+                   {
+                       "content": "Löst",
+                       "name": "Status",
+                       "rawValue": "148:1"
+                   },
+                   {
+                       "content": "1",
+                       "name": "Prioritet",
+                       "rawValue": "73:1"
+                   },
+                   {
+                       "content": "Temporär lösning",
+                       "name": "Stängningskod",
+                       "rawValue": "136:1"
+                   },
+                   {
+                       "content": "2010-10-27 16:43",
+                       "name": "Starttid",
+                       "rawValue": "2010-10-27T14:43:00.000Z"
+                   },
+                   {
+                       "content": "2010-10-28 11:28",
+                       "name": "Stopptid",
+                       "rawValue": "2010-10-28T09:28:00.000Z"
+                   },
+                   {
+                       "content": "",
+                       "name": "Åtgärder",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "lkjölj",
+                       "name": "Lösning",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "",
+                       "name": "Löst i tid",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Uppfattar tjänsten",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Lösning",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Övriga kommentarer",
+                       "rawValue": null
+                   }
+               ],
+               "attachment": [],
+               "id": "113:2"
+           },
+           {
+               "property": [
+                   {
+                       "content": "478",
+                       "name": "Id",
+                       "rawValue": "478"
+                   },
+                   {
+                       "content": "",
+                       "name": "Huvudobjekt",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "Kalles RÖR och VVS",
+                       "name": "Organisation",
+                       "rawValue": "72:2"
+                   },
+                   {
+                       "content": "Klara Stensson",
+                       "name": "Anmälare",
+                       "rawValue": "74:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Avtal",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Referens organisation",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Referens kontakt",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Ägare",
+                       "rawValue": "null:3"
+                   },
+                   {
+                       "content": "1 linjen",
+                       "name": "Handläggargrupp",
+                       "rawValue": "23:4"
+                   },
+                   {
+                       "content": "",
+                       "name": "Handläggare",
+                       "rawValue": "null:3"
+                   },
+                   {
+                       "content": "",
+                       "name": "Tjänst",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "Veth incident reg",
+                       "name": "Rubrik",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "",
+                       "name": "Beskrivning",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "",
+                       "name": "Klassificering",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kunskapsartikel",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kategori_1",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kategori_2",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kategori_3",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskategori_1",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskategori_2",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskategori_3",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "Hög",
+                       "name": "Påverkan",
+                       "rawValue": "15:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Typ",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "Låg",
+                       "name": "Brådska",
+                       "rawValue": "16:1"
+                   },
+                   {
+                       "content": "Löst",
+                       "name": "Status",
+                       "rawValue": "148:1"
+                   },
+                   {
+                       "content": "3",
+                       "name": "Prioritet",
+                       "rawValue": "75:1"
+                   },
+                   {
+                       "content": "Handhavande",
+                       "name": "Stängningskod",
+                       "rawValue": "137:1"
+                   },
+                   {
+                       "content": "2010-10-28 15:29",
+                       "name": "Starttid",
+                       "rawValue": "2010-10-28T13:29:00.000Z"
+                   },
+                   {
+                       "content": "2010-11-20 13:29",
+                       "name": "Stopptid",
+                       "rawValue": "2010-11-20T12:29:00.000Z"
+                   },
+                   {
+                       "content": "",
+                       "name": "Åtgärder",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "lkj",
+                       "name": "Lösning",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "",
+                       "name": "Löst i tid",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Uppfattar tjänsten",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Lösning",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Övriga kommentarer",
+                       "rawValue": null
+                   }
+               ],
+               "attachment": [],
+               "id": "114:2"
+           },
+           {
+               "property": [
+                   {
+                       "content": "480",
+                       "name": "Id",
+                       "rawValue": "480"
+                   },
+                   {
+                       "content": "",
+                       "name": "Huvudobjekt",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "Kalles RÖR och VVS",
+                       "name": "Organisation",
+                       "rawValue": "72:2"
+                   },
+                   {
+                       "content": "Klara Stensson",
+                       "name": "Anmälare",
+                       "rawValue": "74:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Avtal",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Referens organisation",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Referens kontakt",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Ägare",
+                       "rawValue": "null:3"
+                   },
+                   {
+                       "content": "1 linjen",
+                       "name": "Handläggargrupp",
+                       "rawValue": "23:4"
+                   },
+                   {
+                       "content": "",
+                       "name": "Handläggare",
+                       "rawValue": "null:3"
+                   },
+                   {
+                       "content": "",
+                       "name": "Tjänst",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "Veth ärende pågående",
+                       "name": "Rubrik",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "",
+                       "name": "Beskrivning",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "",
+                       "name": "Klassificering",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kunskapsartikel",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kategori_1",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kategori_2",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kategori_3",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskategori_1",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskategori_2",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskategori_3",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "Hög",
+                       "name": "Påverkan",
+                       "rawValue": "15:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Typ",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "Normal",
+                       "name": "Brådska",
+                       "rawValue": "17:1"
+                   },
+                   {
+                       "content": "Löst",
+                       "name": "Status",
+                       "rawValue": "148:1"
+                   },
+                   {
+                       "content": "2",
+                       "name": "Prioritet",
+                       "rawValue": "74:1"
+                   },
+                   {
+                       "content": "Löst",
+                       "name": "Stängningskod",
+                       "rawValue": "135:1"
+                   },
+                   {
+                       "content": "2010-10-28 08:30",
+                       "name": "Starttid",
+                       "rawValue": "2010-10-28T06:30:00.000Z"
+                   },
+                   {
+                       "content": "2010-11-23 15:30",
+                       "name": "Stopptid",
+                       "rawValue": "2010-11-23T14:30:00.000Z"
+                   },
+                   {
+                       "content": "",
+                       "name": "Åtgärder",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "klj",
+                       "name": "Lösning",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "",
+                       "name": "Löst i tid",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Uppfattar tjänsten",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Lösning",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Övriga kommentarer",
+                       "rawValue": null
+                   }
+               ],
+               "attachment": [],
+               "id": "115:2"
+           },
+           {
+               "property": [
+                   {
+                       "content": "481",
+                       "name": "Id",
+                       "rawValue": "481"
+                   },
+                   {
+                       "content": "",
+                       "name": "Huvudobjekt",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "Kalles RÖR och VVS",
+                       "name": "Organisation",
+                       "rawValue": "72:2"
+                   },
+                   {
+                       "content": "Klara Stensson",
+                       "name": "Anmälare",
+                       "rawValue": "74:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Avtal",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Referens organisation",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Referens kontakt",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Ägare",
+                       "rawValue": "null:3"
+                   },
+                   {
+                       "content": "1 linjen",
+                       "name": "Handläggargrupp",
+                       "rawValue": "23:4"
+                   },
+                   {
+                       "content": "",
+                       "name": "Handläggare",
+                       "rawValue": "null:3"
+                   },
+                   {
+                       "content": "",
+                       "name": "Tjänst",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "Veth incident waiting",
+                       "name": "Rubrik",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "",
+                       "name": "Beskrivning",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "",
+                       "name": "Klassificering",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kunskapsartikel",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kategori_1",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kategori_2",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kategori_3",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskategori_1",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskategori_2",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskategori_3",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "Hög",
+                       "name": "Påverkan",
+                       "rawValue": "15:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Typ",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "Normal",
+                       "name": "Brådska",
+                       "rawValue": "17:1"
+                   },
+                   {
+                       "content": "Väntar kund",
+                       "name": "Status",
+                       "rawValue": "118:1"
+                   },
+                   {
+                       "content": "2",
+                       "name": "Prioritet",
+                       "rawValue": "74:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskod",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "2010-10-28 08:30",
+                       "name": "Starttid",
+                       "rawValue": "2010-10-28T06:30:00.000Z"
+                   },
+                   {
+                       "content": "2010-11-24 11:43",
+                       "name": "Stopptid",
+                       "rawValue": "2010-11-24T10:43:00.000Z"
+                   },
+                   {
+                       "content": "",
+                       "name": "Åtgärder",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "",
+                       "name": "Lösning",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "",
+                       "name": "Löst i tid",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Uppfattar tjänsten",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Lösning",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Övriga kommentarer",
+                       "rawValue": null
+                   }
+               ],
+               "attachment": [],
+               "id": "116:2"
+           },
+           {
+               "property": [
+                   {
+                       "content": "482",
+                       "name": "Id",
+                       "rawValue": "482"
+                   },
+                   {
+                       "content": "",
+                       "name": "Huvudobjekt",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "Kalles RÖR och VVS",
+                       "name": "Organisation",
+                       "rawValue": "72:2"
+                   },
+                   {
+                       "content": "Klara Stensson",
+                       "name": "Anmälare",
+                       "rawValue": "74:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Avtal",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Referens organisation",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Referens kontakt",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Ägare",
+                       "rawValue": "null:3"
+                   },
+                   {
+                       "content": "1 linjen",
+                       "name": "Handläggargrupp",
+                       "rawValue": "23:4"
+                   },
+                   {
+                       "content": "",
+                       "name": "Handläggare",
+                       "rawValue": "null:3"
+                   },
+                   {
+                       "content": "",
+                       "name": "Tjänst",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "Veth incident waiting supplier",
+                       "name": "Rubrik",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "",
+                       "name": "Beskrivning",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "",
+                       "name": "Klassificering",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kunskapsartikel",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kategori_1",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kategori_2",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kategori_3",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskategori_1",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskategori_2",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskategori_3",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "Låg",
+                       "name": "Påverkan",
+                       "rawValue": "13:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Typ",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "Normal",
+                       "name": "Brådska",
+                       "rawValue": "17:1"
+                   },
+                   {
+                       "content": "Löst",
+                       "name": "Status",
+                       "rawValue": "148:1"
+                   },
+                   {
+                       "content": "4",
+                       "name": "Prioritet",
+                       "rawValue": "76:1"
+                   },
+                   {
+                       "content": "Ej löst",
+                       "name": "Stängningskod",
+                       "rawValue": "134:1"
+                   },
+                   {
+                       "content": "2010-11-01 13:31",
+                       "name": "Starttid",
+                       "rawValue": "2010-11-01T12:31:00.000Z"
+                   },
+                   {
+                       "content": "2010-11-25 11:40",
+                       "name": "Stopptid",
+                       "rawValue": "2010-11-25T10:40:00.000Z"
+                   },
+                   {
+                       "content": "",
+                       "name": "Åtgärder",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "lökjklö",
+                       "name": "Lösning",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "",
+                       "name": "Löst i tid",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Uppfattar tjänsten",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Lösning",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Övriga kommentarer",
+                       "rawValue": null
+                   }
+               ],
+               "attachment": [],
+               "id": "117:2"
+           },
+           {
+               "property": [
+                   {
+                       "content": "483",
+                       "name": "Id",
+                       "rawValue": "483"
+                   },
+                   {
+                       "content": "",
+                       "name": "Huvudobjekt",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "Kalles RÖR och VVS",
+                       "name": "Organisation",
+                       "rawValue": "72:2"
+                   },
+                   {
+                       "content": "Kalle Rörsson",
+                       "name": "Anmälare",
+                       "rawValue": "73:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Avtal",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Referens organisation",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Referens kontakt",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Ägare",
+                       "rawValue": "null:3"
+                   },
+                   {
+                       "content": "1 linjen",
+                       "name": "Handläggargrupp",
+                       "rawValue": "23:4"
+                   },
+                   {
+                       "content": "",
+                       "name": "Handläggare",
+                       "rawValue": "null:3"
+                   },
+                   {
+                       "content": "",
+                       "name": "Tjänst",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "Veth incident solved",
+                       "name": "Rubrik",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "",
+                       "name": "Beskrivning",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "",
+                       "name": "Klassificering",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kunskapsartikel",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kategori_1",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kategori_2",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kategori_3",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskategori_1",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskategori_2",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskategori_3",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Påverkan",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Typ",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Brådska",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "Löst",
+                       "name": "Status",
+                       "rawValue": "148:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Prioritet",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "Ej löst",
+                       "name": "Stängningskod",
+                       "rawValue": "134:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Starttid",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "",
+                       "name": "Stopptid",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "",
+                       "name": "Åtgärder",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "kjn",
+                       "name": "Lösning",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "",
+                       "name": "Löst i tid",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Uppfattar tjänsten",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Lösning",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Övriga kommentarer",
+                       "rawValue": null
+                   }
+               ],
+               "attachment": [],
+               "id": "118:2"
+           },
+           {
+               "property": [
+                   {
+                       "content": "484",
+                       "name": "Id",
+                       "rawValue": "484"
+                   },
+                   {
+                       "content": "",
+                       "name": "Huvudobjekt",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "Kalles RÖR och VVS",
+                       "name": "Organisation",
+                       "rawValue": "72:2"
+                   },
+                   {
+                       "content": "Kalle Rörsson",
+                       "name": "Anmälare",
+                       "rawValue": "73:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Avtal",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Referens organisation",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Referens kontakt",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Ägare",
+                       "rawValue": "null:3"
+                   },
+                   {
+                       "content": "1 linjen",
+                       "name": "Handläggargrupp",
+                       "rawValue": "23:4"
+                   },
+                   {
+                       "content": "",
+                       "name": "Handläggare",
+                       "rawValue": "null:3"
+                   },
+                   {
+                       "content": "",
+                       "name": "Tjänst",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "Veth incident avslutad",
+                       "name": "Rubrik",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "",
+                       "name": "Beskrivning",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "",
+                       "name": "Klassificering",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kunskapsartikel",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kategori_1",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kategori_2",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kategori_3",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskategori_1",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskategori_2",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskategori_3",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Påverkan",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Typ",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Brådska",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "Avslutad",
+                       "name": "Status",
+                       "rawValue": "120:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Prioritet",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "Känt fel",
+                       "name": "Stängningskod",
+                       "rawValue": "133:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Starttid",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "",
+                       "name": "Stopptid",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "",
+                       "name": "Åtgärder",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "jk",
+                       "name": "Lösning",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "Mycket nöjd",
+                       "name": "Löst i tid",
+                       "rawValue": "129:1"
+                   },
+                   {
+                       "content": "Missnöjd",
+                       "name": "Uppfattar tjänsten",
+                       "rawValue": "131:1"
+                   },
+                   {
+                       "content": "Nöjd",
+                       "name": "Lösning",
+                       "rawValue": "130:1"
+                   },
+                   {
+                       "content": "lkjölkj",
+                       "name": "Övriga kommentarer",
+                       "rawValue": null
+                   }
+               ],
+               "attachment": [],
+               "id": "119:2"
+           },
+           {
+               "property": [
+                   {
+                       "content": "485",
+                       "name": "Id",
+                       "rawValue": "485"
+                   },
+                   {
+                       "content": "",
+                       "name": "Huvudobjekt",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "Kalles RÖR och VVS",
+                       "name": "Organisation",
+                       "rawValue": "72:2"
+                   },
+                   {
+                       "content": "Kalle Rörsson",
+                       "name": "Anmälare",
+                       "rawValue": "73:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Avtal",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Referens organisation",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Referens kontakt",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Ägare",
+                       "rawValue": "null:3"
+                   },
+                   {
+                       "content": "1 linjen",
+                       "name": "Handläggargrupp",
+                       "rawValue": "23:4"
+                   },
+                   {
+                       "content": "",
+                       "name": "Handläggare",
+                       "rawValue": "null:3"
+                   },
+                   {
+                       "content": "",
+                       "name": "Tjänst",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "Testar maximal åtgärdstid",
+                       "name": "Rubrik",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "",
+                       "name": "Beskrivning",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "",
+                       "name": "Klassificering",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kunskapsartikel",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "Hårdvara",
+                       "name": "Kategori_1",
+                       "rawValue": "178:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kategori_2",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kategori_3",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskategori_1",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskategori_2",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskategori_3",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "Medel",
+                       "name": "Påverkan",
+                       "rawValue": "14:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Typ",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "Låg",
+                       "name": "Brådska",
+                       "rawValue": "16:1"
+                   },
+                   {
+                       "content": "Löst",
+                       "name": "Status",
+                       "rawValue": "148:1"
+                   },
+                   {
+                       "content": "4",
+                       "name": "Prioritet",
+                       "rawValue": "76:1"
+                   },
+                   {
+                       "content": "Stängt på kunds begäran",
+                       "name": "Stängningskod",
+                       "rawValue": "138:1"
+                   },
+                   {
+                       "content": "2010-11-05 13:14",
+                       "name": "Starttid",
+                       "rawValue": "2010-11-05T12:14:00.000Z"
+                   },
+                   {
+                       "content": "2010-11-15 15:14",
+                       "name": "Stopptid",
+                       "rawValue": "2010-11-15T14:14:00.000Z"
+                   },
+                   {
+                       "content": "",
+                       "name": "Åtgärder",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "öok",
+                       "name": "Lösning",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "",
+                       "name": "Löst i tid",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Uppfattar tjänsten",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Lösning",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Övriga kommentarer",
+                       "rawValue": null
+                   }
+               ],
+               "attachment": [],
+               "id": "120:2"
+           },
+           {
+               "property": [
+                   {
+                       "content": "486",
+                       "name": "Id",
+                       "rawValue": "486"
+                   },
+                   {
+                       "content": "",
+                       "name": "Huvudobjekt",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "Kalles RÖR och VVS",
+                       "name": "Organisation",
+                       "rawValue": "72:2"
+                   },
+                   {
+                       "content": "Klara Stensson",
+                       "name": "Anmälare",
+                       "rawValue": "74:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Avtal",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Referens organisation",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Referens kontakt",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Ägare",
+                       "rawValue": "null:3"
+                   },
+                   {
+                       "content": "1 linjen",
+                       "name": "Handläggargrupp",
+                       "rawValue": "23:4"
+                   },
+                   {
+                       "content": "",
+                       "name": "Handläggare",
+                       "rawValue": "null:3"
+                   },
+                   {
+                       "content": "",
+                       "name": "Tjänst",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "Testar med egen stopptid",
+                       "name": "Rubrik",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "20101102 16:30",
+                       "name": "Beskrivning",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "",
+                       "name": "Klassificering",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kunskapsartikel",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kategori_1",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kategori_2",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kategori_3",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskategori_1",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskategori_2",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskategori_3",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "Låg",
+                       "name": "Påverkan",
+                       "rawValue": "13:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Typ",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "Låg",
+                       "name": "Brådska",
+                       "rawValue": "16:1"
+                   },
+                   {
+                       "content": "Löst",
+                       "name": "Status",
+                       "rawValue": "148:1"
+                   },
+                   {
+                       "content": "5",
+                       "name": "Prioritet",
+                       "rawValue": "127:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskod",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "2010-11-05 13:15",
+                       "name": "Starttid",
+                       "rawValue": "2010-11-05T12:15:00.000Z"
+                   },
+                   {
+                       "content": "2010-11-02 16:30",
+                       "name": "Stopptid",
+                       "rawValue": "2010-11-02T15:30:00.000Z"
+                   },
+                   {
+                       "content": "",
+                       "name": "Åtgärder",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "",
+                       "name": "Lösning",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "",
+                       "name": "Löst i tid",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Uppfattar tjänsten",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Lösning",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Övriga kommentarer",
+                       "rawValue": null
+                   }
+               ],
+               "attachment": [],
+               "id": "121:2"
+           },
+           {
+               "property": [
+                   {
+                       "content": "487",
+                       "name": "Id",
+                       "rawValue": "487"
+                   },
+                   {
+                       "content": "",
+                       "name": "Huvudobjekt",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "Kalles RÖR och VVS",
+                       "name": "Organisation",
+                       "rawValue": "72:2"
+                   },
+                   {
+                       "content": "Kalle Rörsson",
+                       "name": "Anmälare",
+                       "rawValue": "73:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Avtal",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Referens organisation",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Referens kontakt",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Ägare",
+                       "rawValue": "null:3"
+                   },
+                   {
+                       "content": "1 linjen",
+                       "name": "Handläggargrupp",
+                       "rawValue": "23:4"
+                   },
+                   {
+                       "content": "",
+                       "name": "Handläggare",
+                       "rawValue": "null:3"
+                   },
+                   {
+                       "content": "",
+                       "name": "Tjänst",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "Testar med egen stopptid och ändrar sedan ",
+                       "name": "Rubrik",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "20101102 16:30 först\ngav 13 min max åtgärdstid\n\nÄndrar sedan prio till 1 och får stoptid 20101103 11:17\nverkställer och fick 253 (4 tim och 13 min)\nborde ha blivit 240 min alltså 4 tim.\nKanske lägger den på tiden??\nprovar att ändra igen\ntill prio 2 och stoptid 2010-11-03 15:17\nvilket borde bli 480 min (8 tim)\nprovar att verkställa\nBlev 733",
+                       "name": "Beskrivning",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "",
+                       "name": "Klassificering",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kunskapsartikel",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kategori_1",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kategori_2",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kategori_3",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskategori_1",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskategori_2",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskategori_3",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "Hög",
+                       "name": "Påverkan",
+                       "rawValue": "15:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Typ",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "Normal",
+                       "name": "Brådska",
+                       "rawValue": "17:1"
+                   },
+                   {
+                       "content": "Avslutad",
+                       "name": "Status",
+                       "rawValue": "120:1"
+                   },
+                   {
+                       "content": "2",
+                       "name": "Prioritet",
+                       "rawValue": "74:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskod",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "2010-11-03 08:17",
+                       "name": "Starttid",
+                       "rawValue": "2010-11-03T07:17:00.000Z"
+                   },
+                   {
+                       "content": "2010-11-03 15:17",
+                       "name": "Stopptid",
+                       "rawValue": "2010-11-03T14:17:00.000Z"
+                   },
+                   {
+                       "content": "",
+                       "name": "Åtgärder",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "",
+                       "name": "Lösning",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "",
+                       "name": "Löst i tid",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Uppfattar tjänsten",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Lösning",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Övriga kommentarer",
+                       "rawValue": null
+                   }
+               ],
+               "attachment": [],
+               "id": "122:2"
+           },
+           {
+               "property": [
+                   {
+                       "content": "488",
+                       "name": "Id",
+                       "rawValue": "488"
+                   },
+                   {
+                       "content": "",
+                       "name": "Huvudobjekt",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Organisation",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Anmälare",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Avtal",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Referens organisation",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Referens kontakt",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Ägare",
+                       "rawValue": "null:3"
+                   },
+                   {
+                       "content": "",
+                       "name": "Handläggargrupp",
+                       "rawValue": "null:4"
+                   },
+                   {
+                       "content": "",
+                       "name": "Handläggare",
+                       "rawValue": "null:3"
+                   },
+                   {
+                       "content": "",
+                       "name": "Tjänst",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "Testar efter regel reset",
+                       "name": "Rubrik",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "20101102 17:00",
+                       "name": "Beskrivning",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "",
+                       "name": "Klassificering",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kunskapsartikel",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kategori_1",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kategori_2",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kategori_3",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskategori_1",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskategori_2",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskategori_3",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "Låg",
+                       "name": "Påverkan",
+                       "rawValue": "13:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Typ",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "Låg",
+                       "name": "Brådska",
+                       "rawValue": "16:1"
+                   },
+                   {
+                       "content": "Avslutad",
+                       "name": "Status",
+                       "rawValue": "120:1"
+                   },
+                   {
+                       "content": "5",
+                       "name": "Prioritet",
+                       "rawValue": "127:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskod",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Starttid",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "2010-11-02 17:00",
+                       "name": "Stopptid",
+                       "rawValue": "2010-11-02T16:00:00.000Z"
+                   },
+                   {
+                       "content": "",
+                       "name": "Åtgärder",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "",
+                       "name": "Lösning",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "",
+                       "name": "Löst i tid",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Uppfattar tjänsten",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Lösning",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Övriga kommentarer",
+                       "rawValue": null
+                   }
+               ],
+               "attachment": [],
+               "id": "123:2"
+           },
+           {
+               "property": [
+                   {
+                       "content": "489",
+                       "name": "Id",
+                       "rawValue": "489"
+                   },
+                   {
+                       "content": "",
+                       "name": "Huvudobjekt",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Organisation",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Anmälare",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Avtal",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Referens organisation",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Referens kontakt",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Ägare",
+                       "rawValue": "null:3"
+                   },
+                   {
+                       "content": "",
+                       "name": "Handläggargrupp",
+                       "rawValue": "null:4"
+                   },
+                   {
+                       "content": "",
+                       "name": "Handläggare",
+                       "rawValue": "null:3"
+                   },
+                   {
+                       "content": "",
+                       "name": "Tjänst",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "Testar efter fix med regel som både sätter åtgärdstid och nollställer",
+                       "name": "Rubrik",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "20101102 17:00 gav 3 min\nändrar till prio 1 och 20101103 11:57\nvilket gav 240 min\nändrar till prio 2 och 20101103 15:57\nvilket gav 480 min korrekt",
+                       "name": "Beskrivning",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "",
+                       "name": "Klassificering",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kunskapsartikel",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kategori_1",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kategori_2",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kategori_3",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskategori_1",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskategori_2",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskategori_3",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "Hög",
+                       "name": "Påverkan",
+                       "rawValue": "15:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Typ",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "Normal",
+                       "name": "Brådska",
+                       "rawValue": "17:1"
+                   },
+                   {
+                       "content": "Löst",
+                       "name": "Status",
+                       "rawValue": "148:1"
+                   },
+                   {
+                       "content": "2",
+                       "name": "Prioritet",
+                       "rawValue": "74:1"
+                   },
+                   {
+                       "content": "Ej löst",
+                       "name": "Stängningskod",
+                       "rawValue": "134:1"
+                   },
+                   {
+                       "content": "2010-11-03 08:57",
+                       "name": "Starttid",
+                       "rawValue": "2010-11-03T07:57:00.000Z"
+                   },
+                   {
+                       "content": "2010-11-03 15:57",
+                       "name": "Stopptid",
+                       "rawValue": "2010-11-03T14:57:00.000Z"
+                   },
+                   {
+                       "content": "",
+                       "name": "Åtgärder",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "lökj",
+                       "name": "Lösning",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "",
+                       "name": "Löst i tid",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Uppfattar tjänsten",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Lösning",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Övriga kommentarer",
+                       "rawValue": null
+                   }
+               ],
+               "attachment": [],
+               "id": "124:2"
+           },
+           {
+               "property": [
+                   {
+                       "content": "493",
+                       "name": "Id",
+                       "rawValue": "493"
+                   },
+                   {
+                       "content": "",
+                       "name": "Huvudobjekt",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Organisation",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Anmälare",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Avtal",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Referens organisation",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Referens kontakt",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Ägare",
+                       "rawValue": "null:3"
+                   },
+                   {
+                       "content": "",
+                       "name": "Handläggargrupp",
+                       "rawValue": "null:4"
+                   },
+                   {
+                       "content": "",
+                       "name": "Handläggare",
+                       "rawValue": "null:3"
+                   },
+                   {
+                       "content": "",
+                       "name": "Tjänst",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "Testar sla tider",
+                       "name": "Rubrik",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "Starttid 20101105 11:01 och stopptid 20101109 09:01\n\nOpen\n\nDiff starttid: 479\nmax åtg tid: 1439\n\n",
+                       "name": "Beskrivning",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "",
+                       "name": "Klassificering",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kunskapsartikel",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kategori_1",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kategori_2",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kategori_3",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskategori_1",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskategori_2",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskategori_3",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "Medel",
+                       "name": "Påverkan",
+                       "rawValue": "14:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Typ",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "Normal",
+                       "name": "Brådska",
+                       "rawValue": "17:1"
+                   },
+                   {
+                       "content": "Avslutad",
+                       "name": "Status",
+                       "rawValue": "120:1"
+                   },
+                   {
+                       "content": "3",
+                       "name": "Prioritet",
+                       "rawValue": "75:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskod",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "2010-11-05 11:01",
+                       "name": "Starttid",
+                       "rawValue": "2010-11-05T10:01:00.000Z"
+                   },
+                   {
+                       "content": "2010-11-09 09:01",
+                       "name": "Stopptid",
+                       "rawValue": "2010-11-09T08:01:00.000Z"
+                   },
+                   {
+                       "content": "",
+                       "name": "Åtgärder",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "",
+                       "name": "Lösning",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "",
+                       "name": "Löst i tid",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Uppfattar tjänsten",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Lösning",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Övriga kommentarer",
+                       "rawValue": null
+                   }
+               ],
+               "attachment": [],
+               "id": "125:2"
+           },
+           {
+               "property": [
+                   {
+                       "content": "494",
+                       "name": "Id",
+                       "rawValue": "494"
+                   },
+                   {
+                       "content": "",
+                       "name": "Huvudobjekt",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Organisation",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Anmälare",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Avtal",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Referens organisation",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Referens kontakt",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Ägare",
+                       "rawValue": "null:3"
+                   },
+                   {
+                       "content": "",
+                       "name": "Handläggargrupp",
+                       "rawValue": "null:4"
+                   },
+                   {
+                       "content": "",
+                       "name": "Handläggare",
+                       "rawValue": "null:3"
+                   },
+                   {
+                       "content": "",
+                       "name": "Tjänst",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "sla test igen",
+                       "name": "Rubrik",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "impact medium, urgency normal (startminuter 1440)\nstart 20101105 11:03 och stopp 20101109 09:03\nstatus odef\nmax åtg.tid: 1439\n\n",
+                       "name": "Beskrivning",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "",
+                       "name": "Klassificering",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kunskapsartikel",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kategori_1",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kategori_2",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kategori_3",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskategori_1",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskategori_2",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskategori_3",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "Medel",
+                       "name": "Påverkan",
+                       "rawValue": "14:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Typ",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "Normal",
+                       "name": "Brådska",
+                       "rawValue": "17:1"
+                   },
+                   {
+                       "content": "Avslutad",
+                       "name": "Status",
+                       "rawValue": "120:1"
+                   },
+                   {
+                       "content": "3",
+                       "name": "Prioritet",
+                       "rawValue": "75:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskod",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "2010-11-05 11:03",
+                       "name": "Starttid",
+                       "rawValue": "2010-11-05T10:03:00.000Z"
+                   },
+                   {
+                       "content": "2010-11-09 09:03",
+                       "name": "Stopptid",
+                       "rawValue": "2010-11-09T08:03:00.000Z"
+                   },
+                   {
+                       "content": "",
+                       "name": "Åtgärder",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "",
+                       "name": "Lösning",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "",
+                       "name": "Löst i tid",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Uppfattar tjänsten",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Lösning",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Övriga kommentarer",
+                       "rawValue": null
+                   }
+               ],
+               "attachment": [],
+               "id": "126:2"
+           },
+           {
+               "property": [
+                   {
+                       "content": "495",
+                       "name": "Id",
+                       "rawValue": "495"
+                   },
+                   {
+                       "content": "",
+                       "name": "Huvudobjekt",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Organisation",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Anmälare",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Avtal",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Referens organisation",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Referens kontakt",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Ägare",
+                       "rawValue": "null:3"
+                   },
+                   {
+                       "content": "",
+                       "name": "Handläggargrupp",
+                       "rawValue": "null:4"
+                   },
+                   {
+                       "content": "",
+                       "name": "Handläggare",
+                       "rawValue": "null:3"
+                   },
+                   {
+                       "content": "",
+                       "name": "Tjänst",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "sla 3 kl 12:13",
+                       "name": "Rubrik",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "impact medium, urgency normal (startminuter 1440)\nstart 20101105 11:12 och stopp 20101109 09:12\nstatus odef\nmax åtg.tid: 1439\n-----\npåbörjar ärendet 12:15 och får en diff start tid: 477 \n-----\nstoppar klockan 12:18 och får\nsla start minuter kvar: 474\ndiff start tid: 477\nmax åtg.tid: 1439\nsla stopp minuter kvar: 1434\n-----\nstartar klockan igen 12:21 och får\nstart 20101105 11:12 och stopp 20101109 09:15",
+                       "name": "Beskrivning",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "",
+                       "name": "Klassificering",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kunskapsartikel",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kategori_1",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kategori_2",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kategori_3",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskategori_1",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskategori_2",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskategori_3",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "Medel",
+                       "name": "Påverkan",
+                       "rawValue": "14:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Typ",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "Normal",
+                       "name": "Brådska",
+                       "rawValue": "17:1"
+                   },
+                   {
+                       "content": "Avslutad",
+                       "name": "Status",
+                       "rawValue": "120:1"
+                   },
+                   {
+                       "content": "3",
+                       "name": "Prioritet",
+                       "rawValue": "75:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskod",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "2010-11-05 11:12",
+                       "name": "Starttid",
+                       "rawValue": "2010-11-05T10:12:00.000Z"
+                   },
+                   {
+                       "content": "2010-11-09 09:17",
+                       "name": "Stopptid",
+                       "rawValue": "2010-11-09T08:17:00.000Z"
+                   },
+                   {
+                       "content": "",
+                       "name": "Åtgärder",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "",
+                       "name": "Lösning",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "",
+                       "name": "Löst i tid",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Uppfattar tjänsten",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Lösning",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Övriga kommentarer",
+                       "rawValue": null
+                   }
+               ],
+               "attachment": [],
+               "id": "127:2"
+           },
+           {
+               "property": [
+                   {
+                       "content": "496",
+                       "name": "Id",
+                       "rawValue": "496"
+                   },
+                   {
+                       "content": "",
+                       "name": "Huvudobjekt",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Organisation",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Anmälare",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Avtal",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Referens organisation",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Referens kontakt",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Ägare",
+                       "rawValue": "null:3"
+                   },
+                   {
+                       "content": "",
+                       "name": "Handläggargrupp",
+                       "rawValue": "null:4"
+                   },
+                   {
+                       "content": "",
+                       "name": "Handläggare",
+                       "rawValue": "null:3"
+                   },
+                   {
+                       "content": "",
+                       "name": "Tjänst",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "sla 4 kl 13:03",
+                       "name": "Rubrik",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "impact medium, urgency normal (startminuter 1440)\nstart 20101105 12:04 och stopp 20101109 10:04\nstatus odef\nmax åtg.tid: 1440\n-----\nstoppar klockan 13:07 och får\nsla start minuter kvar: 477\ndiff start tid: 477    FEL!!!\nmax åtg.tid: 1440\nsla stopp minuter kvar: 1437\n-----\nstartar klockan igen 13:11och får\nstart 20101105 12:04 och stopp 20101109 10:08\ndiff start tid 477 FEL!!!\nmax åtgärdstid 1444   ????",
+                       "name": "Beskrivning",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "",
+                       "name": "Klassificering",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kunskapsartikel",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kategori_1",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kategori_2",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kategori_3",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskategori_1",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskategori_2",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskategori_3",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "Medel",
+                       "name": "Påverkan",
+                       "rawValue": "14:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Typ",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "Normal",
+                       "name": "Brådska",
+                       "rawValue": "17:1"
+                   },
+                   {
+                       "content": "Löst",
+                       "name": "Status",
+                       "rawValue": "148:1"
+                   },
+                   {
+                       "content": "3",
+                       "name": "Prioritet",
+                       "rawValue": "75:1"
+                   },
+                   {
+                       "content": "Temporär lösning",
+                       "name": "Stängningskod",
+                       "rawValue": "136:1"
+                   },
+                   {
+                       "content": "2010-11-05 12:04",
+                       "name": "Starttid",
+                       "rawValue": "2010-11-05T11:04:00.000Z"
+                   },
+                   {
+                       "content": "2010-11-09 10:08",
+                       "name": "Stopptid",
+                       "rawValue": "2010-11-09T09:08:00.000Z"
+                   },
+                   {
+                       "content": "",
+                       "name": "Åtgärder",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "oij",
+                       "name": "Lösning",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "",
+                       "name": "Löst i tid",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Uppfattar tjänsten",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Lösning",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Övriga kommentarer",
+                       "rawValue": null
+                   }
+               ],
+               "attachment": [],
+               "id": "128:2"
+           },
+           {
+               "property": [
+                   {
+                       "content": "520",
+                       "name": "Id",
+                       "rawValue": "520"
+                   },
+                   {
+                       "content": "",
+                       "name": "Huvudobjekt",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "Produktleverantören AB",
+                       "name": "Organisation",
+                       "rawValue": "31:2"
+                   },
+                   {
+                       "content": "Anders Andersson",
+                       "name": "Anmälare",
+                       "rawValue": "51:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Avtal",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Referens organisation",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Referens kontakt",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Ägare",
+                       "rawValue": "null:3"
+                   },
+                   {
+                       "content": "1 linjen",
+                       "name": "Handläggargrupp",
+                       "rawValue": "23:4"
+                   },
+                   {
+                       "content": "",
+                       "name": "Handläggare",
+                       "rawValue": "null:3"
+                   },
+                   {
+                       "content": "",
+                       "name": "Tjänst",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "Testar sla tider igen",
+                       "name": "Rubrik",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "hög prio 1\nSkapat 20101109 11:48\nStartid 20101109 12:02\nStopptid 20101109 15:47\nfick avtalat SLA till 239\n---\npåbörjar 11:54 och får diff starttid 8 OK \n---\nväntar kund 14:11 sla stoppmin kvar 96 OK\n\n",
+                       "name": "Beskrivning",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "",
+                       "name": "Klassificering",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kunskapsartikel",
+                       "rawValue": "null:2"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kategori_1",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kategori_2",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Kategori_3",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskategori_1",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskategori_2",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskategori_3",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "Hög",
+                       "name": "Påverkan",
+                       "rawValue": "15:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Typ",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "Hög",
+                       "name": "Brådska",
+                       "rawValue": "18:1"
+                   },
+                   {
+                       "content": "Avslutad",
+                       "name": "Status",
+                       "rawValue": "120:1"
+                   },
+                   {
+                       "content": "1",
+                       "name": "Prioritet",
+                       "rawValue": "73:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Stängningskod",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "2010-11-09 12:02",
+                       "name": "Starttid",
+                       "rawValue": "2010-11-09T11:02:00.000Z"
+                   },
+                   {
+                       "content": "2010-11-10 14:32",
+                       "name": "Stopptid",
+                       "rawValue": "2010-11-10T13:32:00.000Z"
+                   },
+                   {
+                       "content": "",
+                       "name": "Åtgärder",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "",
+                       "name": "Lösning",
+                       "rawValue": null
+                   },
+                   {
+                       "content": "",
+                       "name": "Löst i tid",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Uppfattar tjänsten",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Lösning",
+                       "rawValue": "null:1"
+                   },
+                   {
+                       "content": "",
+                       "name": "Övriga kommentarer",
+                       "rawValue": null
+                   }
+               ],
+               "attachment": [],
+               "id": "130:2"
+           }
+       ]
+   },
+   "requestedPage": 0,
+   "page": 1,
+   "pageSize": 25,
+   "totalNumberOfPages": 5,
+   "totalNumberOfItems": 119
+}

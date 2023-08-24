@@ -35,4 +35,3 @@ version-resolver:
   default: patch
 template: |
   $CHANGES
-  $CONTRIBUTERS

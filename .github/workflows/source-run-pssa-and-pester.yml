@@ -1,9 +1,10 @@
-name: Test source with PSSA and Pester
+name: PSScriptAnalyzer and Pester
 
 on:
   pull_request:
     paths:
     - 'source/**'
+    - 'tests/**'
   workflow_dispatch:
 
 jobs:
@@ -11,26 +12,41 @@ jobs:
     name: Check code quality
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@main
     - name: lint
       uses: devblackops/github-action-psscriptanalyzer@master
       with:
+        rootPath: /source
         repoToken: ${{ secrets.GITHUB_TOKEN }}
         failOnErrors: true
-        failOnWarnings: false
-        failOnInfos: false
+        failOnWarnings: true
+        failOnInfos: true
         settingsPath: ./.github/PSScriptAnalyzerSettings.psd1
 
-  test:
-    name: Pester tests
+  function-test:
+    name: Run function tests
     needs: lint
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, windows-latest]
+        os: [ubuntu-latest, ubuntu-20.04, windows-latest, windows-2019, macos-latest, macos-11]
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@main
     - name: Invoke Pester
       shell: pwsh
-      run: Invoke-Pester
+      run: Invoke-Pester -Tag 'function'
+
+  module-test:
+    name: Run module tests
+    needs: function-test
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, ubuntu-20.04, windows-latest, windows-2019, macos-latest, macos-11]
+    steps:
+    - uses: actions/checkout@main
+    - name: Invoke Pester
+      shell: pwsh
+      run: Invoke-Pester -Tag 'module'

@@ -1,0 +1,4 @@
+module.ps1
+output*.xml
+local_docs
+local_temp
