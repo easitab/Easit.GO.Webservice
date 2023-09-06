@@ -30,7 +30,14 @@ function Convert-GetItemsResponse {
             Write-Warning "View did not return any Easit GO objects"
             return
         }
+        # If we try to call New-GetItemsReturnObject within ForEach-Object -Parallel
+        # without saving it to a variable first and defining New-GetItemsReturnObject
+        # within ForEach-Object -Parallel with $using:, the function cannot be found.
+        # https://github.com/easitab/Easit.GO.Webservice/issues/59
+        # https://stackoverflow.com/questions/61273189/how-to-pass-a-custom-function-inside-a-foreach-object-parallel
+        $functionDefinition = ${function:New-GetItemsReturnObject}.ToString()
         $Response.items.item.GetEnumerator() | ForEach-Object -Parallel {
+            ${function:New-GetItemsReturnObject} = $using:functionDefinition
             try {
                 New-GetItemsReturnObject -Response $using:Response -Item $_
             } catch {
