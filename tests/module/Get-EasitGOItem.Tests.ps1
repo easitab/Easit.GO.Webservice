@@ -98,22 +98,6 @@ Describe "Get-EasitGOItem" -Tag 'module' {
         $page3Output.pageSize | Should -BeExactly 75
     }
     It 'should return 25 objects when ReturnAsSeparateObjects is true' {
-        function Convert-GetItemsResponse {
-            [CmdletBinding()]
-            param (
-                [Parameter(Mandatory)]
-                [PSCustomObject]$Response,
-                [Parameter()]
-                [int]$ThrottleLimit = 5
-            )
-            foreach ($item in $Response.items.item.GetEnumerator()) {
-                try {
-                    New-GetItemsReturnObject -Response $Response -Item $item
-                } catch {
-                    throw $_
-                }
-            }
-        }
         $output = Get-EasitGOItem -Url $url -Apikey $api -ImportViewIdentifier $ImportViewIdentifier -ReturnAsSeparateObjects
         $output.Count | Should -BeExactly 25
     }
