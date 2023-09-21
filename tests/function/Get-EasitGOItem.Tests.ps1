@@ -102,6 +102,18 @@ Describe "Get-EasitGOItem" -Tag 'function','public' {
     It 'should have a parameter named InvokeRestMethodParameters that accepts a hashtable' {
         Get-Command "$($envSettings.CommandName)" | Should -HaveParameter InvokeRestMethodParameters -Type 'System.Collections.Hashtable'
     }
+    It 'should have a parameter named GetAllPages that is a switch' {
+        Get-Command "$($envSettings.CommandName)" | Should -HaveParameter GetAllPages -Type [Switch]
+    }
+    It 'should have a parameter named ReturnAsSeparateObjects that is a switch' {
+        Get-Command "$($envSettings.CommandName)" | Should -HaveParameter ReturnAsSeparateObjects -Type [Switch]
+    }
+    It 'should have a parameter named FlatReturnObject that is a switch' {
+        Get-Command "$($envSettings.CommandName)" | Should -HaveParameter FlatReturnObject -Type [Switch]
+    }
+    It 'should have a parameter named ThrottleLimit that accepts an integer' {
+        Get-Command "$($envSettings.CommandName)" | Should -HaveParameter ThrottleLimit -Type [int]
+    }
     It 'help section should have a SYNOPSIS' {
         ((Get-Help "$($envSettings.CommandName)" -Full).SYNOPSIS).Length | Should -BeGreaterThan 0
     }

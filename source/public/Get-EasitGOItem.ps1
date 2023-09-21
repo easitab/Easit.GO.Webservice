@@ -3,7 +3,7 @@ function Get-EasitGOItem {
     .SYNOPSIS
         Get data from Easit GO.
     .DESCRIPTION
-        Sends an get request to the Easit GO WebAPI and returns the result of the request.
+        Sends a GET request to the Easit GO WebAPI and returns the result of the request.
     .EXAMPLE
         $getEasitGOItemParams = @{
             Url = 'https://go.easit.com'
@@ -138,36 +138,51 @@ function Get-EasitGOItem {
     #>
     [OutputType('PSCustomObject')]
     [Alias('Get-GOItems')]
-    [CmdletBinding()]
+    [CmdletBinding(DefaultParameterSetName = 'OneObject')]
     param (
-        [Parameter(Mandatory)]
+        [Parameter(Mandatory,ParameterSetName='OneObject')]
+        [Parameter(Mandatory,ParameterSetName='SeparateObjects')]
         [string]$Url,
-        [Parameter(Mandatory)]
+        [Parameter(Mandatory,ParameterSetName='OneObject')]
+        [Parameter(Mandatory,ParameterSetName='SeparateObjects')]
         [Alias('api','key')]
         [string]$Apikey,
-        [Parameter(Mandatory)]
+        [Parameter(Mandatory,ParameterSetName='OneObject')]
+        [Parameter(Mandatory,ParameterSetName='SeparateObjects')]
         [Alias("view")]
         [string]$ImportViewIdentifier,
-        [Parameter()]
+        [Parameter(ParameterSetName='OneObject')]
+        [Parameter(ParameterSetName='SeparateObjects')]
         [SortColumn]$SortColumn,
-        [Parameter()]
+        [Parameter(ParameterSetName='OneObject')]
+        [Parameter(ParameterSetName='SeparateObjects')]
         [Alias('viewPageNumber')]
         [int]$Page,
-        [Parameter()]
+        [Parameter(ParameterSetName='OneObject')]
+        [Parameter(ParameterSetName='SeparateObjects')]
         [int]$PageSize,
-        [Parameter()]
+        [Parameter(ParameterSetName='OneObject')]
+        [Parameter(ParameterSetName='SeparateObjects')]
         [ColumnFilter[]]$ColumnFilter,
-        [Parameter()]
+        [Parameter(ParameterSetName='OneObject')]
+        [Parameter(ParameterSetName='SeparateObjects')]
         [string]$IdFilter,
-        [Parameter()]
+        [Parameter(ParameterSetName='OneObject')]
+        [Parameter(ParameterSetName='SeparateObjects')]
         [string]$FreeTextFilter,
-        [Parameter()]
+        [Parameter(ParameterSetName='OneObject')]
+        [Parameter(ParameterSetName='SeparateObjects')]
         [Alias('irmParams')]
         [System.Collections.Hashtable]$InvokeRestMethodParameters,
-        [Parameter()]
+        [Parameter(ParameterSetName='OneObject')]
+        [Parameter(ParameterSetName='SeparateObjects')]
         [Switch]$GetAllPages,
-        [Parameter()]
+        [Parameter(ParameterSetName='SeparateObjects')]
         [Switch]$ReturnAsSeparateObjects,
+        [Parameter(ParameterSetName='SeparateObjects')]
+        [int]$ThrottleLimit = 5,
+        [Parameter(ParameterSetName='SeparateObjects')]
+        [Switch]$FlatReturnObject,
         [Parameter()]
         [System.Collections.Hashtable]$ConvertToJsonParameters
     )
@@ -237,8 +252,13 @@ function Get-EasitGOItem {
             }
         }
         if ($ReturnAsSeparateObjects) {
+            $cgirParams = @{
+                Response = $response
+                FlatReturnObject = $FlatReturnObject
+                ThrottleLimit = $ThrottleLimit
+            }
             try {
-                Convert-GetItemsResponse -Response $response
+                Convert-GetItemsResponse @cgirParams
             } catch {
                 throw $_
             }
@@ -275,8 +295,13 @@ function Get-EasitGOItem {
                     }
                 }
                 if ($ReturnAsSeparateObjects) {
+                    $cgirParams = @{
+                        Response = $response
+                        FlatReturnObject = $FlatReturnObject
+                        ThrottleLimit = $ThrottleLimit
+                    }
                     try {
-                        Convert-GetItemsResponse -Response $response
+                        Convert-GetItemsResponse @cgirParams
                     } catch {
                         throw $_
                     }
