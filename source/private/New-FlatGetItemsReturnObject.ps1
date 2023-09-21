@@ -14,7 +14,7 @@ function New-FlatGetItemsReturnObject {
         * DatabaseId
         * PropertyObjects
         * propertyName_rawValue (one for each property)
-        
+
         If a property occurres more than one time, the property value will be an array of all values with that name.
     .EXAMPLE
         $Response.items.item.GetEnumerator() | ForEach-Object -Parallel {

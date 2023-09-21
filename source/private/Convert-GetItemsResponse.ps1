@@ -60,7 +60,6 @@ function Convert-GetItemsResponse {
                     throw $_
                 }
             }
-            
         } -ThrottleLimit $ThrottleLimit
     }
     end {
