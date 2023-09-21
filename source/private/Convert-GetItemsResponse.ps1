@@ -32,6 +32,11 @@ function Convert-GetItemsResponse {
             Write-Warning "View did not return any Easit GO objects"
             return
         }
+        if ($FlatReturnObject) {
+            Write-Debug "Returning flat object"
+        } else {
+            Write-Debug "Rreturning regular object"
+        }
         # If we try to call a module function within ForEach-Object -Parallel
         # without saving it to a variable first and defining module function
         # within ForEach-Object -Parallel with $using:, the function cannot be found.
