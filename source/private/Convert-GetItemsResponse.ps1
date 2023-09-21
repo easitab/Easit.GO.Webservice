@@ -20,7 +20,9 @@ function Convert-GetItemsResponse {
         [Parameter(Mandatory)]
         [PSCustomObject]$Response,
         [Parameter()]
-        [int]$ThrottleLimit = 5
+        [Switch]$FlatReturnObject,
+        [Parameter()]
+        [int]$ThrottleLimit
     )
     begin {
         Write-Verbose "$($MyInvocation.MyCommand) initialized"
@@ -30,19 +32,35 @@ function Convert-GetItemsResponse {
             Write-Warning "View did not return any Easit GO objects"
             return
         }
-        # If we try to call New-GetItemsReturnObject within ForEach-Object -Parallel
-        # without saving it to a variable first and defining New-GetItemsReturnObject
+        # If we try to call a module function within ForEach-Object -Parallel
+        # without saving it to a variable first and defining module function
         # within ForEach-Object -Parallel with $using:, the function cannot be found.
         # https://github.com/easitab/Easit.GO.Webservice/issues/59
         # https://stackoverflow.com/questions/61273189/how-to-pass-a-custom-function-inside-a-foreach-object-parallel
-        $functionDefinition = ${function:New-GetItemsReturnObject}.ToString()
+        $functionDefinition1 = ${function:New-FlatGetItemsReturnObject}.ToString()
+        $functionDefinition2 = ${function:New-GetItemsReturnObject}.ToString()
         $Response.items.item.GetEnumerator() | ForEach-Object -Parallel {
-            ${function:New-GetItemsReturnObject} = $using:functionDefinition
-            try {
-                New-GetItemsReturnObject -Response $using:Response -Item $_
-            } catch {
-                throw $_
+            $flatReturnObject = $using:FlatReturnObject
+            $ngiroParams = @{
+                Response = $using:Response
+                Item = $_
             }
+            if ($flatReturnObject) {
+                ${function:New-FlatGetItemsReturnObject} = $using:functionDefinition1
+                try {
+                    New-FlatGetItemsReturnObject @ngiroParams
+                } catch {
+                    throw $_
+                }
+            } else {
+                ${function:New-GetItemsReturnObject} = $using:functionDefinition2
+                try {
+                    New-GetItemsReturnObject @ngiroParams
+                } catch {
+                    throw $_
+                }
+            }
+            
         } -ThrottleLimit $ThrottleLimit
     }
     end {
