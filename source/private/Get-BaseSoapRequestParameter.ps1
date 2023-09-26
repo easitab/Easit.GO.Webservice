@@ -1,9 +1,9 @@
 function Get-BaseSoapRequestParameter {
     <#
     .SYNOPSIS
-        Creates and returns a hashtable of the needed parameters for invoking *IRM*.
+        Creates and returns a ordered dictionary (ordered hashtable) of the needed parameters for invoking *IWR*.
     .DESCRIPTION
-        **Get-BaseRestMethodParameter** creates a hashtable with the parameters needed for running *Invoke-WebRequest*.
+        **Get-BaseRestMethodParameter** creates a ordered dictionary (ordered hashtable) with the parameters needed for running *Invoke-WebRequest*.
         Depending on what switches you provide, different keys will be added to the hashtable.
     .EXAMPLE
         Get-BaseSoapRequestParameter -ContentType
@@ -28,11 +28,11 @@ function Get-BaseSoapRequestParameter {
         ContentType                    text/xml;charset=utf-8
         ErrorAction                    Stop
     .PARAMETER Uri
-        Specifies that a key for a Uri should be added to hashtable.
+        Specifies that a key for a Uri should be added.
     .PARAMETER ContentType
-        Specifies that a key for a ContentType should be added to hashtable.
+        Specifies that a key for a ContentType should be added.
     .PARAMETER ErrorHandling
-        Specifies that a key for a ErrorHandling should be added to hashtable.
+        Specifies that a key for a ErrorHandling should be added.
     .OUTPUTS
         [System.Collections.Specialized.OrderedDictionary](https://learn.microsoft.com/en-us/dotnet/api/system.collections.specialized.ordereddictionary)
     #>
