@@ -25,7 +25,10 @@ Describe "XXXX" -Tag 'function','private' {
     It 'help section should have EXAMPLES' {
         ((Get-Help "$($envSettings.CommandName)" -Full).EXAMPLES).Length | Should -BeGreaterThan 0
     }
-    It '"Get-BaseRestMethodParameters" should return xxxx' {
-        (Get-BaseRestMethodParameters -Ping) | Should -BeOfType XXX
+    It 'should return xxxx' {
+        #My-Command | Should -BeOfType XXX
+    }
+    It 'should throw' {
+        #{My-Command} | Should -Throw
     }
 }
