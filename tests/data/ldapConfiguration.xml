@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ldapConfiguration>
+  <itemsPerPosting>10</itemsPerPosting>
+  <sleepBetweenPostings>5</sleepBetweenPostings>
+  <identifier>ldap</identifier>
+  <disabled>false</disabled>
+  <systemName>
+  </systemName>
+  <configurationTags>
+    <com.easit.core.configurationtag.ConfigurationTag>
+      <name>importclientconfiguration</name>
+      <lowerCaseName>importclientconfiguration</lowerCaseName>
+      <created class="sql-timestamp">2023-09-21 11:07:05.618</created>
+    </com.easit.core.configurationtag.ConfigurationTag>
+    <com.easit.core.configurationtag.ConfigurationTag>
+      <name>ldapImportClientConfiguration</name>
+      <lowerCaseName>ldapimportclientconfiguration</lowerCaseName>
+      <created class="sql-timestamp">2023-09-21 11:06:58.196</created>
+    </com.easit.core.configurationtag.ConfigurationTag>
+  </configurationTags>
+  <transformationXSL>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!--
+
+	Written by Mattias Eklöf
+
+	Copyright (c) 2013 by Easit AB
+
+--&gt;
+&lt;xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.0"&gt;
+  &lt;xsl:output encoding="UTF-8" method="xml" standalone="no"/&gt;
+  &lt;!-- Template that matches the root for all entries in orignal file --&gt;
+  &lt;xsl:template match="/EasitInvoiceExport"&gt;
+    &lt;InvoiceImport xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+      &lt;InvoiceHeaders&gt;
+        &lt;!-- Apply template for each entry in original file --&gt;
+        &lt;xsl:apply-templates select="Items/Item"/&gt;
+      &lt;/InvoiceHeaders&gt;
+    &lt;/InvoiceImport&gt;
+  &lt;/xsl:template&gt;
+  &lt;xsl:template match="Item"&gt;
+    &lt;InvoiceImportHeader&gt;
+      &lt;CustomerId&gt;
+        &lt;xsl:if test="Properties/property[@name='Betalande organisation/Customer number']!='Undefined'"&gt;
+          &lt;xsl:value-of select="Properties/property[@name='Betalande organisation/Customer number']"/&gt;
+        &lt;/xsl:if&gt;
+      &lt;/CustomerId&gt;
+      &lt;CustomerReference&gt;
+        &lt;xsl:if test="Properties/property[@name='Bet. org. kontakt']!='Undefined'"&gt;
+          &lt;xsl:value-of select="substring(Properties/property[@name='Bet. org. kontakt'],1,50)"/&gt;
+        &lt;/xsl:if&gt;
+      &lt;/CustomerReference&gt;
+      &lt;CustomerOrderNumber&gt;
+        &lt;xsl:if test="Properties/property[@name='Invoice message']!='Undefined'"&gt;
+          &lt;xsl:value-of select="substring(Properties/property[@name='Invoice message'],1,50)"/&gt;
+        &lt;/xsl:if&gt;
+      &lt;/CustomerOrderNumber&gt;
+      &lt;OurReference&gt;
+        &lt;xsl:if test="Properties/property[@name='Our Reference']!='Undefined'"&gt;
+          &lt;xsl:value-of select="substring(Properties/property[@name='Our Reference'],1,50)"/&gt;
+        &lt;/xsl:if&gt;
+      &lt;/OurReference&gt;
+      &lt;OurProjectId&gt;
+        &lt;xsl:value-of select="Properties/property[@name='Id']"/&gt;
+      &lt;/OurProjectId&gt;
+      &lt;InvoiceLines&gt;
+        &lt;xsl:apply-templates select="Transactions/TransactionType"/&gt;
+      &lt;/InvoiceLines&gt;
+    &lt;/InvoiceImportHeader&gt;
+  &lt;/xsl:template&gt;
+  &lt;xsl:template match="TransactionType"&gt;
+    &lt;xsl:apply-templates select="Transaction"&gt;
+      &lt;xsl:with-param name="type" select="@name"/&gt;
+    &lt;/xsl:apply-templates&gt;
+  &lt;/xsl:template&gt;
+  &lt;xsl:template match="Transaction"&gt;
+    &lt;xsl:param name="type"/&gt;
+    &lt;InvoiceImportLine&gt;
+      &lt;ProductId&gt;
+        &lt;xsl:value-of select="property[@name='Product Id']"/&gt;
+      &lt;/ProductId&gt;
+      &lt;ProductDescription&gt;
+        &lt;xsl:value-of select="substring(property[@name='Name'],1,250)"/&gt;
+      &lt;/ProductDescription&gt;
+      &lt;QuantityToInvoice&gt;
+        &lt;xsl:variable name="quantity" select="format-number(number(property[@name='Quantity']), '0.00')"/&gt;
+        &lt;xsl:choose&gt;
+          &lt;xsl:when test="$type='Return'"&gt;
+            &lt;xsl:value-of select="number($quantity)*number(-1)"/&gt;
+          &lt;/xsl:when&gt;
+          &lt;xsl:otherwise&gt;
+            &lt;xsl:value-of select="$quantity"/&gt;
+          &lt;/xsl:otherwise&gt;
+        &lt;/xsl:choose&gt;
+      &lt;/QuantityToInvoice&gt;
+      &lt;UnitPriceExclSalesTax&gt;
+        &lt;xsl:value-of select="format-number(number(property[@name='Price']), '0.00')"/&gt;
+      &lt;/UnitPriceExclSalesTax&gt;
+      &lt;LineDiscount1Amount xsi:nil="true"/&gt;
+      &lt;LineDiscount1Percent xsi:nil="true"/&gt;
+      &lt;LineDiscount2Amount xsi:nil="true"/&gt;
+      &lt;LineDiscount2Percent xsi:nil="true"/&gt;
+      &lt;Object1Code&gt;
+        &lt;xsl:value-of select="property[@name='Department']"/&gt;
+      &lt;/Object1Code&gt;
+      &lt;ExternalLineComment&gt;
+		&lt;xsl:if test="((property[@name='From']!='Undefined') and (property[@name='From']!='') and (not(empty(property[@name='From']))))"&gt;
+			&lt;xsl:if test="$type='Rent'"&gt;
+			  &lt;xsl:if test="property[@name='From']!='Undefined'"&gt;
+				&lt;xsl:if test="property[@name='To']='Undefined'"&gt;
+				  &lt;xsl:value-of select="concat('Period fr.o.m ', property[@name='From'])"/&gt;
+				&lt;/xsl:if&gt;
+				&lt;xsl:if test="property[@name='To']!='Undefined'"&gt;
+				  &lt;xsl:value-of select="concat('Period ', property[@name='From'], ' - ', property[@name='To'])"/&gt;
+				&lt;/xsl:if&gt;
+			  &lt;/xsl:if&gt;
+			&lt;/xsl:if&gt;
+			&lt;xsl:if test="$type='Return'"&gt;
+			  &lt;xsl:if test="property[@name='From']!='Undefined'"&gt;
+				&lt;xsl:if test="property[@name='To']='Undefined'"&gt;
+				  &lt;xsl:value-of select="concat('Period fr.o.m ', property[@name='From'])"/&gt;
+				&lt;/xsl:if&gt;
+				&lt;xsl:if test="property[@name='To']!='Undefined'"&gt;
+				  &lt;xsl:value-of select="concat('Period ', property[@name='From'], ' - ', property[@name='To'])"/&gt;
+				&lt;/xsl:if&gt;
+			  &lt;/xsl:if&gt;
+			&lt;/xsl:if&gt;
+		&lt;/xsl:if&gt;
+      &lt;/ExternalLineComment&gt;
+    &lt;/InvoiceImportLine&gt;
+  &lt;/xsl:template&gt;
+&lt;/xsl:stylesheet&gt;</transformationXSL>
+  <username>userName</username>
+  <password>Password</password>
+  <host>my-host.com</host>
+  <secure>false</secure>
+  <port>389</port>
+  <queries>
+    <ldapQuery>
+      <base>OU=Luleå,OU=Easit AB,DC=easit,DC=lan</base>
+      <filter>(&amp;(objectCategory=person)(objectClass=user)(givenName=*)(sn=*)(mail=*)(sAMAccountName=*)(!(userAccountControl:1.2.840.113556.1.4.803:=2)))</filter>
+      <attributes>sAMAccountName,mail,sn,givenName,distinguishedName,objectGUID</attributes>
+    </ldapQuery>
+  </queries>
+  <pagingDisabled>false</pagingDisabled>
+  <binaryAttributes>
+    <string>attribut,attribut2</string>
+  </binaryAttributes>
+  <multiValueAttributes>
+    <string>attribut5,attribut6</string>
+  </multiValueAttributes>
+  <doNotEncodeAttributes>
+    <string>attribut3,attribut4</string>
+  </doNotEncodeAttributes>
+</ldapConfiguration>

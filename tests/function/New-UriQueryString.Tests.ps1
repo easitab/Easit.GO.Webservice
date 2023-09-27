@@ -11,10 +11,14 @@ BeforeAll {
     } else {
         Write-Output "Unable to locate code file ($($envSettings.CodeFilePath)) to test against!" -ForegroundColor Red
     }
+    $queryParams = [ordered]@{
+        apikey = 'myApiKey'
+        identifier = 'identifier'
+    }
 }
-Describe "XXXX" -Tag 'function','private' {
-    It 'should have a parameter named XXXX that accepts a XXX' {
-        Get-Command "$($envSettings.CommandName)" | Should -HaveParameter XXXX -Type 'XXX'
+Describe "New-UriQueryString" -Tag 'function','private' {
+    It 'should have a parameter named QueryParams that accepts a hashtable' {
+        Get-Command "$($envSettings.CommandName)" | Should -HaveParameter QueryParams -Mandatory -Type [System.Collections.Specialized.OrderedDictionary]
     }
     It 'help section should have a SYNOPSIS' {
         ((Get-Help "$($envSettings.CommandName)" -Full).SYNOPSIS).Length | Should -BeGreaterThan 0
@@ -25,10 +29,11 @@ Describe "XXXX" -Tag 'function','private' {
     It 'help section should have EXAMPLES' {
         ((Get-Help "$($envSettings.CommandName)" -Full).EXAMPLES).Length | Should -BeGreaterThan 0
     }
-    It 'should return xxxx' {
-        #My-Command | Should -BeOfType XXX
+    It 'should not throw with valid input' {
+        {New-UriQueryString -QueryParams $queryParams} | Should -Not -Throw
     }
-    It 'should throw' {
-        #{My-Command} | Should -Throw
+    It 'should return expected string' {
+        $returnedString = New-UriQueryString -QueryParams $queryParams
+        $returnedString | Should -BeExactly 'apikey=myApiKey&identifier=identifier'
     }
 }
