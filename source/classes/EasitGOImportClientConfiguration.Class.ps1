@@ -60,7 +60,7 @@ Class EasitGOImportClientConfiguration {
         foreach ($property in $this.psobject.properties.GetEnumerator()) {
             $returnObject.Add("$($property.Name)",$this."$($property.Name)")
         }
-        return [PSCustomObject]$returnObject 
+        return [PSCustomObject]$returnObject
     }
     [System.Collections.Generic.List[String]] ConvertCommaSeperatedStringToList ([String]$String) {
         $strings = [System.Collections.Generic.List[String]]::new()
@@ -90,10 +90,14 @@ Class EasitGOImportClientConfiguration {
         }
         return $ldapQueries
     }
-    [System.Management.Automation.PSCredential] NewCredentialObject ([String]$Username,[String]$Password) {
-        [securestring]$secString = ConvertTo-SecureString $Password -AsPlainText -Force
-        $credObject = New-Object System.Management.Automation.PSCredential ($Username, $secString)
+    [System.Management.Automation.PSCredential] NewCredentialObject ([String]$Username,[SecureString]$Password) {
+        # [securestring]$secString = ConvertTo-SecureString $Password -AsPlainText -Force
+        $credObject = New-Object System.Management.Automation.PSCredential ($Username, $Password)
         return $credObject
+    }
+    [securestring] ConvertToSecureString ([String]$InputString) {
+        $secureString = ConvertTo-SecureString $InputString -AsPlainText -Force
+        return $secureString
     }
     [System.Collections.Generic.List[String]] GetConfigurationTags ($Tags) {
         $configTags = [System.Collections.Generic.List[String]]::new()
@@ -129,7 +133,7 @@ Class EasitGOImportClientLdapConfiguration : EasitGOImportClientConfiguration {
     [String[]]$DoNotEncodeAttributes
     [void] SetPropertyValuesFromXml ([xml]$XmlConfiguration) {
         $this.SetCommonProperties($XmlConfiguration.ldapConfiguration)
-        $this.Credentials = $this.NewCredentialObject($XmlConfiguration.ldapConfiguration.username,$XmlConfiguration.ldapConfiguration.password)
+        $this.Credentials = $this.NewCredentialObject($XmlConfiguration.ldapConfiguration.username,$this.ConvertToSecureString($XmlConfiguration.ldapConfiguration.password))
         $this.Host = $XmlConfiguration.ldapConfiguration.Host
         $this.Secure = $XmlConfiguration.ldapConfiguration.Secure
         $this.Port = $XmlConfiguration.ldapConfiguration.Port
