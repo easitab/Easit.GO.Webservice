@@ -91,7 +91,6 @@ Class EasitGOImportClientConfiguration {
         return $ldapQueries
     }
     [System.Management.Automation.PSCredential] NewCredentialObject ([String]$Username,[SecureString]$Password) {
-        # [securestring]$secString = ConvertTo-SecureString $Password -AsPlainText -Force
         $credObject = New-Object System.Management.Automation.PSCredential ($Username, $Password)
         return $credObject
     }
