@@ -52,7 +52,7 @@ function Get-EasitGOImportClientConfiguration {
             throw $_
         }
         try {
-            $resolvedURL = Resolve-EasitGOURL -URL $URL -Endpoint 'null'
+            $resolvedURL = Resolve-EasitGOUrl -URL $URL -Endpoint 'null'
             $iccURL = $resolvedURL.Replace('integration-api/null','importclientconfiguration/')
         } catch {
             throw $_

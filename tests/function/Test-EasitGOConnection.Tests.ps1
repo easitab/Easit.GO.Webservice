@@ -22,7 +22,7 @@ BeforeAll {
             ContentType = 'application/json'
         }
     }
-    function Resolve-EasitGOURL {
+    function Resolve-EasitGOUrl {
         param (
             [Parameter()]
             [String]$URL,

@@ -27,7 +27,7 @@ BeforeAll {
             Credential = $null
         }
     }
-    function Resolve-EasitGOURL {
+    function Resolve-EasitGOUrl {
         param (
             [Parameter()]
             [String]$URL,
