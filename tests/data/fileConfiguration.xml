@@ -2,7 +2,7 @@
 <fileConfiguration>
   <itemsPerPosting>1</itemsPerPosting>
   <sleepBetweenPostings>1</sleepBetweenPostings>
-  <identifier>Regtest importera importklient</identifier>
+  <identifier>fileConfiguration</identifier>
   <disabled>true</disabled>
   <systemName>import_clients_file_regtest_importera_importklient</systemName>
   <configurationTags>
