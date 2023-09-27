@@ -13,7 +13,7 @@ BeforeAll {
     }
 }
 Describe "XXXX" -Tag 'function','private' {
-    It 'should have a parameter named XXXX that is a XXX' {
+    It 'should have a parameter named XXXX that accepts a XXX' {
         Get-Command "$($envSettings.CommandName)" | Should -HaveParameter XXXX -Type 'XXX'
     }
     It 'help section should have a SYNOPSIS' {

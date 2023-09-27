@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<jdbcConfiguration>
+  <itemsPerPosting>100</itemsPerPosting>
+  <sleepBetweenPostings>0</sleepBetweenPostings>
+  <identifier>csv_contacts</identifier>
+  <disabled>false</disabled>
+  <systemName>importclientConfiguration_csv-contacts</systemName>
+  <configurationTags />
+  <transformationXSL>
+  </transformationXSL>
+  <connectionString>jdbc:relique:csv:../Filer?fileExtension=.csv&amp;separator=;&amp;charset=UTF-8</connectionString>
+  <query>SELECT * FROM contacts_100000</query>
+  <driverClassName>org.relique.jdbc.csv.CsvDriver</driverClassName>
+</jdbcConfiguration>
