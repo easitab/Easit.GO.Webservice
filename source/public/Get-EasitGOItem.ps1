@@ -196,7 +196,7 @@ function Get-EasitGOItem {
             throw $_
         }
         try {
-            $baseRMParams.Uri = Resolve-EasitGOURL -URL $URL -Endpoint 'items'
+            $baseRMParams.Uri = Resolve-EasitGOUrl -URL $URL -Endpoint 'items'
         } catch {
             throw $_
         }

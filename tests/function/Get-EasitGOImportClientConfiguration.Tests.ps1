@@ -15,7 +15,7 @@ BeforeAll {
         Write-Output "Unable to locate code file ($($envSettings.CodeFilePath)) to test against!" -ForegroundColor Red
     }
 
-    function Resolve-EasitGOURL {
+    function Resolve-EasitGOUrl {
         param (
             [Parameter()]
             [String]$URL,

@@ -31,7 +31,7 @@ function Test-EasitGOConnection {
             throw $_
         }
         try {
-            $baseRMParams.Uri = Resolve-EasitGOURL -URL $URL -Endpoint 'ping'
+            $baseRMParams.Uri = Resolve-EasitGOUrl -URL $URL -Endpoint 'ping'
         } catch {
             throw $_
         }

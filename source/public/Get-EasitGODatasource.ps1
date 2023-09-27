@@ -80,7 +80,7 @@ function Get-EasitGODatasource {
             throw $_
         }
         try {
-            $baseRMParams.Uri = Resolve-EasitGOURL -URL $URL -Endpoint 'datasources'
+            $baseRMParams.Uri = Resolve-EasitGOUrl -URL $URL -Endpoint 'datasources'
         } catch {
             throw $_
         }
