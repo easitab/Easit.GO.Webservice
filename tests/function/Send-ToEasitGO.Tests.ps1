@@ -168,6 +168,9 @@ Describe "Send-ToEasitGO" -Tag 'function','public' {
     It 'help section should have EXAMPLES' {
         ((Get-Help "$($envSettings.CommandName)" -Full).EXAMPLES).Length | Should -BeGreaterThan 0
     }
+    It 'should have a HelpUri' {
+        ((Get-Command "$($envSettings.CommandName)").HelpUri).Length | Should -BeGreaterThan 0
+    }
     It 'should not throw when sending an CustomItem' {
         {Send-ToEasitGO @sendToEasitParams -CustomItem (@{prop1="value1";prop2="value2";prop3="value3"})} | Should -Not -Throw
     }

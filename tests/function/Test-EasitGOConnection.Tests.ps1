@@ -57,6 +57,9 @@ Describe "Test-EasitGOConnection" -Tag 'function','public' {
     It 'help section should have EXAMPLES' {
         ((Get-Help "$($envSettings.CommandName)" -Full).EXAMPLES).Length | Should -BeGreaterThan 0
     }
+    It 'should have a HelpUri' {
+        ((Get-Command "$($envSettings.CommandName)").HelpUri).Length | Should -BeGreaterThan 0
+    }
     It 'should not throw when providing valid url' {
         {Test-EasitGOConnection -URL 'https://test.easit.com'} | Should -Not -Throw
     }
