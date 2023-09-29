@@ -13,7 +13,7 @@ function Test-EasitGOConnection {
     .OUTPUTS
         [PSCustomObject](https://learn.microsoft.com/en-us/dotnet/api/system.management.automation.pscustomobject)
     #>
-    [CmdletBinding()]
+    [CmdletBinding(HelpUri = 'https://docs.easitgo.com/techspace/psmodules/gowebservice/functions/testeasitgoconnection/')]
     param (
         [Parameter(Mandatory, Position=0)]
         [String]$URL,

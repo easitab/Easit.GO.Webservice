@@ -8,9 +8,9 @@ function New-ImportClientConfigurationInstance {
     .EXAMPLE
         $configurationInstance = New-ImportClientConfigurationInstance -ConfigurationType $configurationType
     .OUTPUTS
-        [EasitGOImportClientLdapConfiguration](https://docs.easitgo.com/techspace/psmodules/)
-        [EasitGOImportClientJdbcConfiguration](https://docs.easitgo.com/techspace/psmodules/)
-        [EasitGOImportClientXmlConfiguration](https://docs.easitgo.com/techspace/psmodules/)
+        [EasitGOImportClientLdapConfiguration](https://docs.easitgo.com/techspace/psmodules/gowebservice/abouttopics/easitgoimportclientldapconfiguration/)
+        [EasitGOImportClientJdbcConfiguration](https://docs.easitgo.com/techspace/psmodules/gowebservice/abouttopics/easitgoimportclientjdbcconfiguration/)
+        [EasitGOImportClientXmlConfiguration](https://docs.easitgo.com/techspace/psmodules/gowebservice/abouttopics/easitgoimportclientxmlconfiguration/)
     #>
     [OutputType()]
     [CmdletBinding()]

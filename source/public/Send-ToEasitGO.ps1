@@ -92,7 +92,7 @@ function Send-ToEasitGO {
     #>
     [OutputType('PSCustomObject')]
     [Alias('Import-GOCustomItem')]
-    [CmdletBinding()]
+    [CmdletBinding(HelpUri = 'https://docs.easitgo.com/techspace/psmodules/gowebservice/functions/sendtoeasitgo/')]
     param (
         [Parameter(Mandatory,Position=0,ParameterSetName='item')]
         [Parameter(Mandatory,Position=0,ParameterSetName='legacy')]
