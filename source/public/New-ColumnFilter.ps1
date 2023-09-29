@@ -35,9 +35,9 @@ function New-ColumnFilter {
     .PARAMETER ColumnValue
         String value for the column / field.
     .OUTPUTS
-        [ColumnFilter](https://docs.easitgo.com/techspace/psmodules/)
+        [ColumnFilter](https://docs.easitgo.com/techspace/psmodules/gowebservice/abouttopics/columnfilter/)
     #>
-    [CmdletBinding()]
+    [CmdletBinding(HelpUri = 'https://docs.easitgo.com/techspace/psmodules/gowebservice/functions/newcolumnfilter/')]
     param (
         [Parameter(Mandatory)]
         [String]$ColumnName,

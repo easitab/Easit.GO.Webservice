@@ -138,7 +138,7 @@ function Get-EasitGOItem {
     #>
     [OutputType('PSCustomObject')]
     [Alias('Get-GOItems')]
-    [CmdletBinding(DefaultParameterSetName = 'OneObject')]
+    [CmdletBinding(DefaultParameterSetName = 'OneObject', HelpUri = 'https://docs.easitgo.com/techspace/psmodules/gowebservice/functions/geteasitgoitem/')]
     param (
         [Parameter(Mandatory,ParameterSetName='OneObject')]
         [Parameter(Mandatory,ParameterSetName='SeparateObjects')]

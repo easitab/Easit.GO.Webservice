@@ -123,6 +123,9 @@ Describe "Get-EasitGOItem" -Tag 'function','public' {
     It 'help section should have EXAMPLES' {
         ((Get-Help "$($envSettings.CommandName)" -Full).EXAMPLES).Length | Should -BeGreaterThan 0
     }
+    It 'should have a HelpUri' {
+        ((Get-Command "$($envSettings.CommandName)").HelpUri).Length | Should -BeGreaterThan 0
+    }
     It 'should not throw' {
         {Get-EasitGOItem @getFromEasitParams} | Should -Not -Throw
     }

@@ -16,9 +16,9 @@ function New-SortColumn {
     .PARAMETER Order
         Order to sort by.
     .OUTPUTS
-        [SortColumn](https://docs.easitgo.com/techspace/psmodules/)
+        [SortColumn](https://docs.easitgo.com/techspace/psmodules/gowebservice/abouttopics/sortcolumn/)
     #>
-    [CmdletBinding()]
+    [CmdletBinding(HelpUri = 'https://docs.easitgo.com/techspace/psmodules/gowebservice/functions/newsortcolumn/')]
     param (
         [Parameter(Mandatory)]
         [String]$Name,
