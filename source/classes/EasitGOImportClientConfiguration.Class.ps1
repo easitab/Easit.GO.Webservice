@@ -1,31 +1,3 @@
-<#
-.SYNOPSIS
-    Initializes a new instance of the ImportClient configuration base class.
-.DESCRIPTION
-    Initializes a new instance of the ImportClient configuration base class. This base class provides base properties and methods for the *EasitGOImportClientLdapConfiguration*, *EasitGOImportClientJdbcConfiguration* and *EasitGOImportClientXmlConfiguration* classes.
-
-    This class should not be used directly, instead use the previously mentioned classes.
-.EXAMPLE
-    [EasitGOImportClientConfiguration]::new()
-
-    ItemsPerPosting      :
-    SleepBetweenPostings :
-    Identifier           :
-    Disabled             :
-    SystemName           :
-    TransformationXSL    :
-    ConfigurationTags    :
-.EXAMPLE
-    if ($ConfigurationType -eq 'ldapConfiguration') {
-        [EasitGOImportClientLdapConfiguration]::New()
-    } elseif ($ConfigurationType -eq 'jdbcConfiguration') {
-        [EasitGOImportClientJdbcConfiguration]::New()
-    } elseif ($ConfigurationType -eq 'fileConfiguration') {
-        [EasitGOImportClientXmlConfiguration]::New()
-    } else {
-        throw "Unknown configuration type"
-    }
-#>
 Class EasitGOImportClientConfiguration {
     [String]$ItemsPerPosting
     [String]$SleepBetweenPostings
@@ -34,21 +6,21 @@ Class EasitGOImportClientConfiguration {
     [String]$SystemName
     [String]$TransformationXSL
     [String[]]$ConfigurationTags
-    [void] SetProperty ($Name,$Value) {
+    [void] SetProperty ([String]$Name,$Value) {
         if ($this.GetPropertyByName($Name)) {
             $this."$Name" = $Value
         } else {
             throw "Unknow property ($Name)"
         }
     }
-    [String] GetPropertyByName ($Name) {
+    [String] GetPropertyByName ([String]$Name) {
         try {
             return Get-Member -InputObject $this -Name $Name
         } catch {
             throw $_
         }
     }
-    [String] GetPropertyValueByName ($Name) {
+    [String] GetPropertyValueByName ([String]$Name) {
         if (Get-Member -InputObject $this -Name $Name) {
             return $this."$Name"
         } else {
@@ -72,31 +44,6 @@ Class EasitGOImportClientConfiguration {
             $strings.AddRange($split)
         }
         return $strings
-    }
-    [System.Collections.Generic.List[PSCustomObject]] GetLdapQueries ($Queries) {
-        $ldapQueries = [System.Collections.Generic.List[PSCustomObject]]::new()
-        foreach ($query in $Queries.GetEnumerator()) {
-            $queryObject = [PSCustomObject]@{
-                base = $query.base
-                filter = $query.filter
-                attributes = $query.attributes
-            }
-            try {
-                $ldapQueries.Add($queryObject)
-            } catch {
-                Write-Warning $_
-                continue
-            }
-        }
-        return $ldapQueries
-    }
-    [System.Management.Automation.PSCredential] NewCredentialObject ([String]$Username,[SecureString]$Password) {
-        $credObject = New-Object System.Management.Automation.PSCredential ($Username, $Password)
-        return $credObject
-    }
-    [securestring] ConvertToSecureString ([String]$InputString) {
-        $secureString = ConvertTo-SecureString $InputString -AsPlainText -Force
-        return $secureString
     }
     [System.Collections.Generic.List[String]] GetConfigurationTags ($Tags) {
         $configTags = [System.Collections.Generic.List[String]]::new()
@@ -141,6 +88,31 @@ Class EasitGOImportClientLdapConfiguration : EasitGOImportClientConfiguration {
         $this.BinaryAttributes = $this.ConvertCommaSeperatedStringToList($XmlConfiguration.ldapConfiguration.binaryAttributes.InnerText)
         $this.MultiValueAttributes = $this.ConvertCommaSeperatedStringToList($XmlConfiguration.ldapConfiguration.multiValueAttributes.InnerText)
         $this.DoNotEncodeAttributes = $this.ConvertCommaSeperatedStringToList($XmlConfiguration.ldapConfiguration.doNotEncodeAttributes.InnerText)
+    }
+    [System.Collections.Generic.List[PSCustomObject]] GetLdapQueries ($Queries) {
+        $ldapQueries = [System.Collections.Generic.List[PSCustomObject]]::new()
+        foreach ($query in $Queries.GetEnumerator()) {
+            $queryObject = [PSCustomObject]@{
+                base = $query.base
+                filter = $query.filter
+                attributes = $query.attributes
+            }
+            try {
+                $ldapQueries.Add($queryObject)
+            } catch {
+                Write-Warning $_
+                continue
+            }
+        }
+        return $ldapQueries
+    }
+    [System.Management.Automation.PSCredential] NewCredentialObject ([String]$Username,[SecureString]$Password) {
+        $credObject = New-Object System.Management.Automation.PSCredential ($Username, $Password)
+        return $credObject
+    }
+    [securestring] ConvertToSecureString ([String]$InputString) {
+        $secureString = ConvertTo-SecureString $InputString -AsPlainText -Force
+        return $secureString
     }
 }
 Class EasitGOImportClientJdbcConfiguration : EasitGOImportClientConfiguration {
