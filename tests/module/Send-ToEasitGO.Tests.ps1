@@ -93,4 +93,8 @@ Describe "Send-ToEasitGO" -Tag 'module' {
         $output = Send-ToEasitGO @sendItemParams -Item $1000Items -SendInBatchesOf 75
         $output[0].itemToImport.Count | Should -BeExactly 75
     }
+    It 'should not return anything when -WhatIf is used' {
+        $output = Send-ToEasitGO @sendItemParams -Item $1000Items -SendInBatchesOf 75 -WhatIf
+        $output | Should -BeNullOrEmpty
+    }
 }

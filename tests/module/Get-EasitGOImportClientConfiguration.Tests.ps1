@@ -114,4 +114,8 @@ Describe "Get-EasitGOImportClientConfiguration" -Tag 'function','public' {
         $config.identifier | Should -BeExactly 'fileConfiguration'
         $config.sleepBetweenPostings | Should -BeExactly 1
     }
+    It 'should not return anything when -WhatIf is used' {
+        $output = Get-EasitGOImportClientConfiguration @getFromEasitParamsFile -WhatIf
+        $output | Should -BeNullOrEmpty
+    }
 }
