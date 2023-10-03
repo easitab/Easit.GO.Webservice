@@ -28,7 +28,7 @@ function Get-EasitGOImportClientConfiguration {
     #>
     [OutputType('PSCustomObject')]
     [Alias('Get-EasitGOIcc')]
-    [CmdletBinding(HelpUri='https://docs.easitgo.com/techspace/psmodules/gowebservice/functions/geteasitgoimportclientconfiguration/')]
+    [CmdletBinding(HelpUri='https://docs.easitgo.com/techspace/psmodules/gowebservice/functions/geteasitgoimportclientconfiguration/', SupportsShouldProcess)]
     param (
         [Parameter(Mandatory)]
         [string]$Url,
@@ -71,27 +71,31 @@ function Get-EasitGOImportClientConfiguration {
         } catch {
             throw $_
         }
-        if ($null -eq $InvokeWebRequestParameters) {
+        if ($PSCmdlet.ShouldProcess($URL)) {
+            if ($null -eq $InvokeWebRequestParameters) {
+                try {
+                    $response = Invoke-EasitGOXmlWebRequest -BaseParameters $baseIwrParams
+                } catch {
+                    throw $_
+                }
+            } else {
+                try {
+                    $response = Invoke-EasitGOXmlWebRequest -BaseParameters $baseIwrParams -CustomParameters $InvokeRestMethodParameters
+                } catch {
+                    throw $_
+                }
+            }
+            if ($response.error) {
+                Write-Warning "Oups, unable to get ImportClient configuration"
+                throw $response.error.message
+            }
             try {
-                $response = Invoke-EasitGOXmlWebRequest -BaseParameters $baseIwrParams
+                New-EasitGOImportClientConfiguration -Configuration $response
             } catch {
                 throw $_
             }
         } else {
-            try {
-                $response = Invoke-EasitGOXmlWebRequest -BaseParameters $baseIwrParams -CustomParameters $InvokeRestMethodParameters
-            } catch {
-                throw $_
-            }
-        }
-        if ($response.error) {
-            Write-Warning "Oups, unable to get ImportClient configuration"
-            throw $response.error.message
-        }
-        try {
-            New-EasitGOImportClientConfiguration -Configuration $response
-        } catch {
-            throw $_
+            # No data should be sent to URL when -WhatIf is used.
         }
     }
     end {

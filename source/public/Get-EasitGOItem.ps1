@@ -138,7 +138,7 @@ function Get-EasitGOItem {
     #>
     [OutputType('PSCustomObject')]
     [Alias('Get-GOItems')]
-    [CmdletBinding(DefaultParameterSetName = 'OneObject', HelpUri = 'https://docs.easitgo.com/techspace/psmodules/gowebservice/functions/geteasitgoitem/')]
+    [CmdletBinding(DefaultParameterSetName = 'OneObject', HelpUri = 'https://docs.easitgo.com/techspace/psmodules/gowebservice/functions/geteasitgoitem/', SupportsShouldProcess)]
     param (
         [Parameter(Mandatory,ParameterSetName='OneObject')]
         [Parameter(Mandatory,ParameterSetName='SeparateObjects')]
@@ -238,78 +238,82 @@ function Get-EasitGOItem {
         } catch {
             throw $_
         }
-        if ($null -eq $InvokeRestMethodParameters) {
-            try {
-                $response = Invoke-EasitGOWebRequest -BaseParameters $baseRMParams
-            } catch {
-                throw $_
-            }
-        } else {
-            try {
-                $response = Invoke-EasitGOWebRequest -BaseParameters $baseRMParams -CustomParameters $InvokeRestMethodParameters
-            } catch {
-                throw $_
-            }
-        }
-        if ($ReturnAsSeparateObjects) {
-            $cgirParams = @{
-                Response = $response
-                FlatReturnObject = $FlatReturnObject
-                ThrottleLimit = $ThrottleLimit
-            }
-            try {
-                Convert-GetItemsResponse @cgirParams
-            } catch {
-                throw $_
-            }
-        } else {
-            Write-Output $response
-        }
-        $currentPage = $response.requestedPage
-        $lastPage = $response.totalNumberOfPages
-        if ($GetAllPages) {
-            $currentPage++
-            do {
-                $response = $null
+        if ($PSCmdlet.ShouldProcess($baseRMParams.Uri)) {
+            if ($null -eq $InvokeRestMethodParameters) {
                 try {
-                    $newGetEasitGOItemsRequestBodyParams.Page = $currentPage
+                    $response = Invoke-EasitGOWebRequest -BaseParameters $baseRMParams
                 } catch {
                     throw $_
                 }
+            } else {
                 try {
-                    $baseRMParams.Body = New-GetEasitGOItemsRequestBody @newGetEasitGOItemsRequestBodyParams
+                    $response = Invoke-EasitGOWebRequest -BaseParameters $baseRMParams -CustomParameters $InvokeRestMethodParameters
                 } catch {
                     throw $_
                 }
-                if ($null -eq $InvokeRestMethodParameters) {
-                    try {
-                        $response = Invoke-EasitGOWebRequest -BaseParameters $baseRMParams
-                    } catch {
-                        throw $_
-                    }
-                } else {
-                    try {
-                        $response = Invoke-EasitGOWebRequest -BaseParameters $baseRMParams -CustomParameters $InvokeRestMethodParameters
-                    } catch {
-                        throw $_
-                    }
+            }
+            if ($ReturnAsSeparateObjects) {
+                $cgirParams = @{
+                    Response = $response
+                    FlatReturnObject = $FlatReturnObject
+                    ThrottleLimit = $ThrottleLimit
                 }
-                if ($ReturnAsSeparateObjects) {
-                    $cgirParams = @{
-                        Response = $response
-                        FlatReturnObject = $FlatReturnObject
-                        ThrottleLimit = $ThrottleLimit
-                    }
-                    try {
-                        Convert-GetItemsResponse @cgirParams
-                    } catch {
-                        throw $_
-                    }
-                } else {
-                    Write-Output $response
+                try {
+                    Convert-GetItemsResponse @cgirParams
+                } catch {
+                    throw $_
                 }
+            } else {
+                Write-Output $response
+            }
+            $currentPage = $response.requestedPage
+            $lastPage = $response.totalNumberOfPages
+            if ($GetAllPages) {
                 $currentPage++
-            } while ($currentPage -le $lastPage)
+                do {
+                    $response = $null
+                    try {
+                        $newGetEasitGOItemsRequestBodyParams.Page = $currentPage
+                    } catch {
+                        throw $_
+                    }
+                    try {
+                        $baseRMParams.Body = New-GetEasitGOItemsRequestBody @newGetEasitGOItemsRequestBodyParams
+                    } catch {
+                        throw $_
+                    }
+                    if ($null -eq $InvokeRestMethodParameters) {
+                        try {
+                            $response = Invoke-EasitGOWebRequest -BaseParameters $baseRMParams
+                        } catch {
+                            throw $_
+                        }
+                    } else {
+                        try {
+                            $response = Invoke-EasitGOWebRequest -BaseParameters $baseRMParams -CustomParameters $InvokeRestMethodParameters
+                        } catch {
+                            throw $_
+                        }
+                    }
+                    if ($ReturnAsSeparateObjects) {
+                        $cgirParams = @{
+                            Response = $response
+                            FlatReturnObject = $FlatReturnObject
+                            ThrottleLimit = $ThrottleLimit
+                        }
+                        try {
+                            Convert-GetItemsResponse @cgirParams
+                        } catch {
+                            throw $_
+                        }
+                    } else {
+                        Write-Output $response
+                    }
+                    $currentPage++
+                } while ($currentPage -le $lastPage)
+            }
+        } else {
+            # No data should be sent to URL when -WhatIf is used.
         }
     }
     end {

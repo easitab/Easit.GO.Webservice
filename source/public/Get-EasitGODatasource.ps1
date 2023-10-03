@@ -52,7 +52,7 @@ function Get-EasitGODatasource {
         [PSCustomObject](https://learn.microsoft.com/en-us/dotnet/api/system.management.automation.pscustomobject)
     #>
     [OutputType('PSCustomObject')]
-    [CmdletBinding(HelpUri = 'https://docs.easitgo.com/techspace/psmodules/gowebservice/functions/geteasitgodatasource/')]
+    [CmdletBinding(HelpUri = 'https://docs.easitgo.com/techspace/psmodules/gowebservice/functions/geteasitgodatasource/', SupportsShouldProcess)]
     param (
         [Parameter(Mandatory)]
         [string]$Url,
@@ -111,27 +111,31 @@ function Get-EasitGODatasource {
         } catch {
             throw $_
         }
-        if ($null -eq $InvokeRestMethodParameters) {
-            try {
-                $response = Invoke-EasitGOWebRequest -BaseParameters $baseRMParams
-            } catch {
-                throw $_
+        if ($PSCmdlet.ShouldProcess($baseRMParams.Uri)) {
+            if ($null -eq $InvokeRestMethodParameters) {
+                try {
+                    $response = Invoke-EasitGOWebRequest -BaseParameters $baseRMParams
+                } catch {
+                    throw $_
+                }
+            } else {
+                try {
+                    $response = Invoke-EasitGOWebRequest -BaseParameters $baseRMParams -CustomParameters $InvokeRestMethodParameters
+                } catch {
+                    throw $_
+                }
+            }
+            if ($ReturnAsSeparateObjects) {
+                try {
+                    Convert-EasitGODatasourceResponse -Response $response
+                } catch {
+                    throw $_
+                }
+            } else {
+                return $response
             }
         } else {
-            try {
-                $response = Invoke-EasitGOWebRequest -BaseParameters $baseRMParams -CustomParameters $InvokeRestMethodParameters
-            } catch {
-                throw $_
-            }
-        }
-        if ($ReturnAsSeparateObjects) {
-            try {
-                Convert-EasitGODatasourceResponse -Response $response
-            } catch {
-                throw $_
-            }
-        } else {
-            return $response
+            # No data should be sent to URL when -WhatIf is used.
         }
     }
     end {
