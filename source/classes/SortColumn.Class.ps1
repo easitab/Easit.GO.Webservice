@@ -1,14 +1,14 @@
 Class SortColumn {
-    [String]$Name
+    [String]$PropertyName
     [ValidateSet('Ascending','Descending')]
     [String]$Order
-    SortColumn ($Name,$Order) {
-        $this.Name = $Name
+    SortColumn ($PropertyName,$Order) {
+        $this.PropertyName = $PropertyName
         $this.Order = $Order
     }
     [PSCustomObject] ToPSCustomObject () {
         return [PSCustomObject]@{
-            content = $this.Name
+            content = $this.PropertyName
             order = $this.Order
         }
     }

@@ -11,15 +11,15 @@ Initializes a new instance of the ColumnFilter class with the provided input.
 ## EXAMPLES
 
 ```powershell
-    [ColumnFilter]::New($ColumnName,$RawValue,$Comparator,$ColumnValue)
+    [ColumnFilter]::New($PropertyName,$RawValue,$Comparator,$PropertyValue)
 ```
 
 ```powershell
-    [ColumnFilter]::New($ColumnName,$null,$Comparator,$ColumnValue)
+    [ColumnFilter]::New($PropertyName,$null,$Comparator,$PropertyValue)
 ```
 
 ```powershell
-    [ColumnFilter]::New($ColumnName,$RawValue,$Comparator,$null)
+    [ColumnFilter]::New($PropertyName,$RawValue,$Comparator,$null)
 ```
 
 ```powershell
@@ -30,7 +30,7 @@ Initializes a new instance of the ColumnFilter class with the provided input.
 
 ## Properties
 
-### ColumnName (String)
+### PropertyName (String)
 
 Name of field in Easit GO to apply filter to.
 
@@ -53,9 +53,9 @@ Sets the comparator to use in filter. Valid comparators are:
 * LIKE
 * NOT_LIKE
 
-### ColumnValue (String)
+### PropertyValue (String)
 
-String value for the field in Easit GO to filter for.
+Value of the item property in Easit GO to filter for.
 
 ## METHODS
 
@@ -63,18 +63,18 @@ String value for the field in Easit GO to filter for.
 
 Returns a PSCustomObject representation of the instance with its properties and values.
 
-When creating the PSCustomObject representation of the instance, *ColumnValue* and *RawValue* will be excluded if its value is null.
+When creating the PSCustomObject representation of the instance, *PropertyValue* and *RawValue* will be excluded if its value is null.
 
 ```powershell
     $returnObject = @{
-        columnName = $this.ColumnName
+        columnName = $this.PropertyName
         comparator = $this.Comparator
     }
     if ($this.RawValue) {
         $returnObject.Add('rawValue',$this.RawValue)
     }
     if ($this.ColumnValue) {
-        $returnObject.Add('content',"$($this.ColumnValue)")
+        $returnObject.Add('content',"$($this.PropertyValue)")
     }
     return [pscustomobject]$returnObject
 ```
