@@ -120,7 +120,9 @@ function Send-ToEasitGO {
         [Alias('irmParams')]
         [System.Collections.Hashtable]$InvokeRestMethodParameters,
         [Parameter()]
-        [System.Collections.Hashtable]$ConvertToJsonParameters
+        [System.Collections.Hashtable]$ConvertToJsonParameters,
+        [Parameter()]
+        [Switch]$WriteBody
     )
     begin {
         Write-Verbose "$($MyInvocation.MyCommand) initialized"
@@ -187,6 +189,13 @@ function Send-ToEasitGO {
                     $baseRMParams.Body = New-PostEasitGOItemRequestBody @newPostEasitGOItemsRequestBodyParams
                 } catch {
                     throw $_
+                }
+                if ($WriteBody) {
+                    try {
+                        Write-StringToFile -InputString $baseRMParams.Body -FilenamePrefix 'SendToEasitGO'
+                    } catch {
+                        Write-Warning $_
+                    }
                 }
                 Write-Information "Sending $SendInBatchesOf items wih start at item $IDStart in array"
                 if ($null -eq $InvokeRestMethodParameters) {

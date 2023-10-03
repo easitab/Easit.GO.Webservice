@@ -68,7 +68,9 @@ function Get-EasitGODatasource {
         [Parameter()]
         [Switch]$ReturnAsSeparateObjects,
         [Parameter()]
-        [System.Collections.Hashtable]$ConvertToJsonParameters
+        [System.Collections.Hashtable]$ConvertToJsonParameters,
+        [Parameter()]
+        [Switch]$WriteBody
     )
     begin {
         Write-Verbose "$($MyInvocation.MyCommand) initialized"
@@ -110,6 +112,13 @@ function Get-EasitGODatasource {
             $baseRMParams.Body = New-GetEasitGODatasourceRequestBody @newGetEasitGODatasourceRequestBodyParams
         } catch {
             throw $_
+        }
+        if ($WriteBody) {
+            try {
+                Write-StringToFile -InputString $baseRMParams.Body -FilenamePrefix 'GetEasitGODatasource'
+            } catch {
+                Write-Warning $_
+            }
         }
         if ($PSCmdlet.ShouldProcess($baseRMParams.Uri)) {
             if ($null -eq $InvokeRestMethodParameters) {

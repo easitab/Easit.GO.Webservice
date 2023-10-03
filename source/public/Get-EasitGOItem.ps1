@@ -184,7 +184,9 @@ function Get-EasitGOItem {
         [Parameter(ParameterSetName='SeparateObjects')]
         [Switch]$FlatReturnObject,
         [Parameter()]
-        [System.Collections.Hashtable]$ConvertToJsonParameters
+        [System.Collections.Hashtable]$ConvertToJsonParameters,
+        [Parameter()]
+        [Switch]$WriteBody
     )
     begin {
         Write-Verbose "$($MyInvocation.MyCommand) initialized"
@@ -237,6 +239,13 @@ function Get-EasitGOItem {
             $baseRMParams.Body = New-GetEasitGOItemsRequestBody @newGetEasitGOItemsRequestBodyParams
         } catch {
             throw $_
+        }
+        if ($WriteBody) {
+            try {
+                Write-StringToFile -InputString $baseRMParams.Body -FilenamePrefix 'GetEasitGOItem'
+            } catch {
+                Write-Warning $_
+            }
         }
         if ($PSCmdlet.ShouldProcess($baseRMParams.Uri)) {
             if ($null -eq $InvokeRestMethodParameters) {

@@ -97,4 +97,7 @@ Describe "Send-ToEasitGO" -Tag 'module' {
         $output = Send-ToEasitGO @sendItemParams -Item $1000Items -SendInBatchesOf 75 -WhatIf
         $output | Should -BeNullOrEmpty
     }
+    It 'should write body to file when -WriteBody is used' {
+        $output = Send-ToEasitGO @sendItemParams -Item $1000Items -SendInBatchesOf 75 -WriteBody
+    }
 }
