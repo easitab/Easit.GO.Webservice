@@ -105,4 +105,7 @@ Describe "Get-EasitGOItem" -Tag 'module' {
         $output = Get-EasitGOItem -Url $url -Apikey $api -ImportViewIdentifier $ImportViewIdentifier -ReturnAsSeparateObjects -WhatIf
         $output | Should -BeNullOrEmpty
     }
+    It 'should write body to file when -WriteBody is used' {
+        $output = Get-EasitGOItem -Url $url -Apikey $api -ImportViewIdentifier $ImportViewIdentifier -ReturnAsSeparateObjects -WriteBody
+    }
 }
