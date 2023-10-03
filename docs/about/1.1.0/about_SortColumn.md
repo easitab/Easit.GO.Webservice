@@ -11,14 +11,14 @@ Initializes a new instance of the SortColumn class with the provided input.
 ## EXAMPLES
 
 ```powershell
-    [SortColumn]::New($Name,$Order)
+    [SortColumn]::New($PropertyName,$Order)
 ```
 
 ## Properties
 
-### Name (String)
+### PropertyName (String)
 
-Name of field in Easit GO to sort on.
+Item property in Easit GO to sort on.
 
 ### Order (String)
 
@@ -37,7 +37,7 @@ Returns a PSCustomObject representation of the instance with its properties and 
 
 ```powershell
     return [PSCustomObject]@{
-        content = $this.Name
+        content = $this.PropertyName
         order = $this.Order
     }
 ```
