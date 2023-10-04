@@ -8,6 +8,7 @@ include-labels:
   - 'bugfix'
   - 'bug'
   - 'documentation'
+  - 'project enhancement'
 categories:
   - title: 'Features'
     label: 'feature'
@@ -21,6 +22,9 @@ categories:
       - 'fix'
       - 'bugfix'
       - 'bug'
+  - title: 'Project enhancements'
+    labels:
+      - 'project enhancement'
 change-template: '- $TITLE @$AUTHOR (#$NUMBER)'
 version-resolver:
   major:
