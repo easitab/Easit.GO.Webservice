@@ -45,10 +45,10 @@ jobs:
         id: get-latest-tag
         with:
           semver_only: true
-      - name: genereatdocs.ps1
+      - name: generateDocs.ps1
         shell: pwsh
         run: |
-          ./build/genereatdocs.ps1 -ModuleName "${{ vars.MODULENAME }}" -Tag "${{ steps.get-latest-tag.outputs.tag }}"
+          ./build/generateDocs.ps1 -ModuleName "${{ vars.MODULENAME }}" -Tag "${{ steps.get-latest-tag.outputs.tag }}"
           git commit -m "generated new docs"
           git push
   merge-branch:
