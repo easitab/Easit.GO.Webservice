@@ -153,6 +153,21 @@ process {
     $moduleVersionRoot = Join-Path -Path $moduleRoot -ChildPath $Tag
     $publishedModules = Join-Path -Path $repoDirectory -ChildPath 'publishedModules'
     if (Test-Path -Path $moduleVersionRoot) {
+        
+    } else {
+        try {
+            $null = New-Item -Path $moduleRoot -Name $Tag -ItemType Directory
+        } catch{
+            Write-Warning "Failed to create $moduleVersionRoot"
+            Write-Warning $_
+        }
+    }
+    if (Test-Path -Path $moduleVersionRoot) {
+        try {
+            Get-ChildItem -Path $publishedModules -Recurse -ErrorAction Stop | Remove-Item -Confirm:$false -Recurse -ErrorAction Stop
+        } catch {
+            throw $_
+        }
         try {
             Move-Item -Path $moduleVersionRoot -Destination "$publishedModules\"
         } catch {
