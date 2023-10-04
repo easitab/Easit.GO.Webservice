@@ -10,8 +10,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  update_release_draft:
-    name: update_release_draft
+  updateReleaseNotesDraft:
+    name: Update release notes draft
     runs-on: ubuntu-latest
     steps:
       - name: generate_release_draft
