@@ -36,6 +36,7 @@ jobs:
           git push
   generateDocs:
     name: Generate docs
+    needs: publish
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@main
@@ -53,6 +54,7 @@ jobs:
           git push
   merge-branch:
     name: Merge to main
+    needs: generateDocs
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@main
