@@ -1,0 +1,131 @@
+<Objs Version="1.1.0.1" xmlns="http://schemas.microsoft.com/powershell/2004/04">
+  <Obj RefId="0">
+    <TN RefId="0">
+      <T>Microsoft.PowerShell.Commands.PSRepositoryItemInfo</T>
+      <T>System.Management.Automation.PSCustomObject</T>
+      <T>System.Object</T>
+    </TN>
+    <MS>
+      <S N="Name">Easit.GO.Webservice</S>
+      <S N="Version">1.0.1</S>
+      <S N="Type">Module</S>
+      <S N="Description">Module to be used with Easit GO WebAPI</S>
+      <S N="Author">Anders Thyrsson</S>
+      <S N="CompanyName">easitanth</S>
+      <S N="Copyright">Copyright 2023 Easit AB. All rights reserved.</S>
+      <DT N="PublishedDate">2023-09-06T09:25:12+02:00</DT>
+      <Nil N="InstalledDate" />
+      <Nil N="UpdatedDate" />
+      <URI N="LicenseUri">https://github.com/easitab/Easit.GO.Webservice/blob/main/LICENSE</URI>
+      <URI N="ProjectUri">https://github.com/easitab/Easit.GO.Webservice</URI>
+      <Nil N="IconUri" />
+      <Obj N="Tags" RefId="1">
+        <TN RefId="1">
+          <T>System.Object[]</T>
+          <T>System.Array</T>
+          <T>System.Object</T>
+        </TN>
+        <LST>
+          <S>PSModule</S>
+        </LST>
+      </Obj>
+      <Obj N="Includes" RefId="2">
+        <TN RefId="2">
+          <T>System.Collections.Hashtable</T>
+          <T>System.Object</T>
+        </TN>
+        <DCT>
+          <En>
+            <S N="Key">DscResource</S>
+            <Obj N="Value" RefId="3">
+              <TNRef RefId="1" />
+              <LST />
+            </Obj>
+          </En>
+          <En>
+            <S N="Key">Function</S>
+            <Obj N="Value" RefId="4">
+              <TNRef RefId="1" />
+              <LST>
+                <S>Get-EasitGODatasource</S>
+                <S>Get-EasitGOItem</S>
+                <S>New-ColumnFilter</S>
+                <S>New-EasitGOItemToImport</S>
+                <S>New-SortColumn</S>
+                <S>Send-ToEasitGO</S>
+                <S>Test-EasitGOConnection</S>
+              </LST>
+            </Obj>
+          </En>
+          <En>
+            <S N="Key">Cmdlet</S>
+            <Ref N="Value" RefId="3" />
+          </En>
+          <En>
+            <S N="Key">Workflow</S>
+            <Ref N="Value" RefId="3" />
+          </En>
+          <En>
+            <S N="Key">RoleCapability</S>
+            <Ref N="Value" RefId="3" />
+          </En>
+          <En>
+            <S N="Key">Command</S>
+            <Obj N="Value" RefId="5">
+              <TNRef RefId="1" />
+              <LST>
+                <S>Get-EasitGODatasource</S>
+                <S>Get-EasitGOItem</S>
+                <S>New-ColumnFilter</S>
+                <S>New-EasitGOItemToImport</S>
+                <S>New-SortColumn</S>
+                <S>Send-ToEasitGO</S>
+                <S>Test-EasitGOConnection</S>
+              </LST>
+            </Obj>
+          </En>
+        </DCT>
+      </Obj>
+      <Nil N="PowerShellGetFormatVersion" />
+      <Nil N="ReleaseNotes" />
+      <Obj N="Dependencies" RefId="6">
+        <TNRef RefId="1" />
+        <LST />
+      </Obj>
+      <S N="RepositorySourceLocation">https://www.powershellgallery.com/api/v2</S>
+      <S N="Repository">PSGallery</S>
+      <S N="PackageManagementProvider">NuGet</S>
+      <Obj N="AdditionalMetadata" RefId="7">
+        <TN RefId="3">
+          <T>System.Management.Automation.PSCustomObject</T>
+          <T>System.Object</T>
+        </TN>
+        <MS>
+          <S N="copyright">Copyright 2023 Easit AB. All rights reserved.</S>
+          <S N="description">Module to be used with Easit GO WebAPI</S>
+          <S N="requireLicenseAcceptance">False</S>
+          <S N="isLatestVersion">False</S>
+          <S N="isAbsoluteLatestVersion">False</S>
+          <S N="versionDownloadCount">11</S>
+          <S N="downloadCount">24</S>
+          <S N="packageSize">13059</S>
+          <S N="published">2023-09-06 09:25:12 +02:00</S>
+          <S N="created">2023-09-06 09:25:12 +02:00</S>
+          <S N="lastUpdated">2023-09-27 19:57:41 +02:00</S>
+          <S N="tags">PSModule PSFunction_Get-EasitGODatasource PSCommand_Get-EasitGODatasource PSFunction_Get-EasitGOItem PSCommand_Get-EasitGOItem PSFunction_New-ColumnFilter PSCommand_New-ColumnFilter PSFunction_New-EasitGOItemToImport PSCommand_New-EasitGOItemToImport PSFunction_New-SortColumn PSCommand_New-SortColumn PSFunction_Send-ToEasitGO PSCommand_Send-ToEasitGO PSFunction_Test-EasitGOConnection PSCommand_Test-EasitGOConnection PSIncludes_Function</S>
+          <S N="developmentDependency">False</S>
+          <S N="updated">2023-09-27T19:57:41Z</S>
+          <S N="NormalizedVersion">1.0.1</S>
+          <S N="Authors">Anders Thyrsson</S>
+          <S N="IsPrerelease">false</S>
+          <S N="ItemType">Module</S>
+          <S N="FileList">Easit.GO.Webservice.nuspec|Easit.GO.Webservice.psm1|Easit.GO.Webservice.psd1</S>
+          <S N="GUID">62e9ed96-3b4d-4ea8-bc76-7deded3f835e</S>
+          <S N="PowerShellVersion">7.0</S>
+          <S N="CompanyName">Easit AB</S>
+        </MS>
+      </Obj>
+      <S N="InstalledLocation">C:\Users\anth\GitHub\easitanth\Easit.GO.Webservice\publishedModules\Easit.GO.Webservice\1.0.1</S>
+    </MS>
+  </Obj>
+</Objs>

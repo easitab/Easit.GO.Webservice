@@ -152,6 +152,22 @@ process {
     }
     $moduleVersionRoot = Join-Path -Path $moduleRoot -ChildPath $Tag
     $publishedModules = Join-Path -Path $repoDirectory -ChildPath 'publishedModules'
+    $publishedModulesVersion = Join-Path -Path $publishedModules -ChildPath $Tag
+    if (Test-Path -Path $publishedModulesVersion) {
+        try {
+            Get-ChildItem -Path $publishedModulesVersion -Recurse -ErrorAction Stop | Remove-Item -Confirm:$false -Recurse -ErrorAction Stop
+        } catch {
+            Write-Warning "Failed to clean $publishedModulesVersion"
+            Write-Warning $_
+        }
+    } else {
+        try {
+            $null = New-Item -Path $publishedModules -Name $Tag -ItemType Directory
+        } catch{
+            Write-Warning "Failed to create $moduleVersionRoot"
+            Write-Warning $_
+        }
+    }
     if (Test-Path -Path $moduleVersionRoot) {
         try {
             Move-Item -Path $moduleVersionRoot -Destination "$publishedModules\"

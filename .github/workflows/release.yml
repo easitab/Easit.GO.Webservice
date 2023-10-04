@@ -32,6 +32,9 @@ jobs:
         shell: pwsh
         run: |
           ./build/publishmodule.ps1 -CompanyName "${{ vars.COMPANYNAME }}" -ModuleName "${{ vars.MODULENAME }}" -Tag "${{ steps.get-latest-tag.outputs.tag }}" -PSGalleryKey "${{ secrets.PSGALLERYKEY }}" -GitHubBaseURI "${{ vars.GITHUBBASEURI }}" -TechspaceBaseURI "${{ vars.TECHSPACEBASEURI }}" -ModuleDescription "${{ vars.PSMODULEDESCRIPTION }}" -ModulePSVersion "${{ vars.PSMODULEPOWERSHELLVERSION }}" -ModuleAuthor "${{ vars.MODULEAUTHOR }}" -Copyright "${{ vars.COPYRIGHT }}"
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .
           git commit -m "published new module"
           git push
   generateDocs:
@@ -50,6 +53,9 @@ jobs:
         shell: pwsh
         run: |
           ./build/generateDocs.ps1 -ModuleName "${{ vars.MODULENAME }}" -Tag "${{ steps.get-latest-tag.outputs.tag }}"
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .
           git commit -m "generated new docs"
           git push
   merge-branch:
