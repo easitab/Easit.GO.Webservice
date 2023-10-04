@@ -8,8 +8,6 @@ This is the repository for the PowerShell 7 module for Easit GO webAPI.
 
 [![Release notes](https://github.com/easitab/Easit.GO.Webservice/actions/workflows/release-drafter.yml/badge.svg)](https://github.com/easitab/Easit.GO.Webservice/actions/workflows/release-drafter.yml)
 
-[![Publish module](https://github.com/easitab/Easit.GO.Webservice/actions/workflows/release.yml/badge.svg)](https://github.com/easitab/Easit.GO.Webservice/actions/workflows/release.yml)
-
 ## Docs & Introduction
 
 All documentation regarding Easit.GO.Webservice can be found [here](https://docs.easitgo.com/techspace/psmodules/intro/) and an "intro" to Easit GO WebAPI can be found [here](https://docs.easitgo.com/techspace/easitgo/webapi/v1/intro/)
