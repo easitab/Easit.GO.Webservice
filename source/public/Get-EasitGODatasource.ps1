@@ -52,7 +52,7 @@ function Get-EasitGODatasource {
         [PSCustomObject](https://learn.microsoft.com/en-us/dotnet/api/system.management.automation.pscustomobject)
     #>
     [OutputType('PSCustomObject')]
-    [CmdletBinding()]
+    [CmdletBinding(HelpUri = 'https://docs.easitgo.com/techspace/psmodules/gowebservice/functions/geteasitgodatasource/', SupportsShouldProcess)]
     param (
         [Parameter(Mandatory)]
         [string]$Url,
@@ -68,7 +68,9 @@ function Get-EasitGODatasource {
         [Parameter()]
         [Switch]$ReturnAsSeparateObjects,
         [Parameter()]
-        [System.Collections.Hashtable]$ConvertToJsonParameters
+        [System.Collections.Hashtable]$ConvertToJsonParameters,
+        [Parameter()]
+        [Switch]$WriteBody
     )
     begin {
         Write-Verbose "$($MyInvocation.MyCommand) initialized"
@@ -80,7 +82,7 @@ function Get-EasitGODatasource {
             throw $_
         }
         try {
-            $baseRMParams.Uri = Resolve-EasitGOURL -URL $URL -Endpoint 'datasources'
+            $baseRMParams.Uri = Resolve-EasitGOUrl -URL $URL -Endpoint 'datasources'
         } catch {
             throw $_
         }
@@ -111,27 +113,38 @@ function Get-EasitGODatasource {
         } catch {
             throw $_
         }
-        if ($null -eq $InvokeRestMethodParameters) {
+        if ($WriteBody) {
             try {
-                $response = Invoke-EasitGOWebRequest -BaseParameters $baseRMParams
+                Write-StringToFile -InputString $baseRMParams.Body -FilenamePrefix 'GetEasitGODatasource'
             } catch {
-                throw $_
-            }
-        } else {
-            try {
-                $response = Invoke-EasitGOWebRequest -BaseParameters $baseRMParams -CustomParameters $InvokeRestMethodParameters
-            } catch {
-                throw $_
+                Write-Warning $_
             }
         }
-        if ($ReturnAsSeparateObjects) {
-            try {
-                Convert-EasitGODatasourceResponse -Response $response
-            } catch {
-                throw $_
+        if ($PSCmdlet.ShouldProcess($baseRMParams.Uri)) {
+            if ($null -eq $InvokeRestMethodParameters) {
+                try {
+                    $response = Invoke-EasitGOWebRequest -BaseParameters $baseRMParams
+                } catch {
+                    throw $_
+                }
+            } else {
+                try {
+                    $response = Invoke-EasitGOWebRequest -BaseParameters $baseRMParams -CustomParameters $InvokeRestMethodParameters
+                } catch {
+                    throw $_
+                }
+            }
+            if ($ReturnAsSeparateObjects) {
+                try {
+                    Convert-EasitGODatasourceResponse -Response $response
+                } catch {
+                    throw $_
+                }
+            } else {
+                return $response
             }
         } else {
-            return $response
+            # No data should be sent to URL when -WhatIf is used.
         }
     }
     end {

@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<unknownConfiguration>
+  <itemsPerPosting>10</itemsPerPosting>
+  <sleepBetweenPostings>5</sleepBetweenPostings>
+  <identifier>ldap</identifier>
+  <disabled>false</disabled>
+  <systemName>
+  </systemName>
+  <configurationTags>
+  </configurationTags>
+  <transformationXSL></transformationXSL>
+  <username>userName</username>
+  <password>Password</password>
+  <host>my-host.com</host>
+  <secure>false</secure>
+  <port>389</port>
+  <queries>
+    <ldapQuery>
+      <base>OU=Luleå,OU=Easit AB,DC=easit,DC=lan</base>
+      <filter>(&amp;(objectCategory=person)(objectClass=user)(givenName=*)(sn=*)(mail=*)(sAMAccountName=*)(!(userAccountControl:1.2.840.113556.1.4.803:=2)))</filter>
+      <attributes>sAMAccountName,mail,sn,givenName,distinguishedName,objectGUID</attributes>
+    </ldapQuery>
+  </queries>
+  <pagingDisabled>false</pagingDisabled>
+  <binaryAttributes>
+    <string>attribut,attribut2</string>
+  </binaryAttributes>
+  <multiValueAttributes>
+    <string>attribut5,attribut6</string>
+  </multiValueAttributes>
+  <doNotEncodeAttributes>
+    <string>attribut3,attribut4</string>
+  </doNotEncodeAttributes>
+</unknownConfiguration>

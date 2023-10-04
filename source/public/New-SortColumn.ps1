@@ -6,18 +6,23 @@ function New-SortColumn {
         **New-SortColumn** acts as a wrapper function for the SortColumn class included in the module Easit.GO.Webservice.
         With the provided input it returns an instance of the SortColumn class.
     .EXAMPLE
-        $sortColumn = New-SortColumn -Name 'Updated' -Order 'Descending'
-    .PARAMETER Name
-        Name of the column / field to sort by.
+        try {
+            $sortColumn += New-SortColumn -Property 'Created' -Order 'Descending'
+        } catch {
+            throw $_
+        }
+    .PARAMETER Property
+        Item property in Easit GO to sort on.
     .PARAMETER Order
-        Specifies if sort order should be descending or ascending.
+        Order to sort by.
     .OUTPUTS
-        [SortColumn](https://docs.easitgo.com/techspace/psmodules/)
+        [SortColumn](https://docs.easitgo.com/techspace/psmodules/gowebservice/abouttopics/sortcolumn/)
     #>
-    [CmdletBinding()]
+    [CmdletBinding(HelpUri = 'https://docs.easitgo.com/techspace/psmodules/gowebservice/functions/newsortcolumn/')]
     param (
         [Parameter(Mandatory)]
-        [String]$Name,
+        [Alias('ColumnName','Name','PropertyName')]
+        [String]$Property,
         [Parameter(Mandatory)]
         [ValidateSet('Ascending','Descending')]
         [String]$Order
@@ -27,7 +32,7 @@ function New-SortColumn {
     }
     process {
         try {
-            [SortColumn]::New($Name,$Order)
+            [SortColumn]::New($Property,$Order)
         } catch {
             throw $_
         }

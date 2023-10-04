@@ -54,4 +54,11 @@ Describe "Get-EasitGODatasource" -Tag 'module' {
         $output = Get-EasitGODatasource -Url $url -Apikey $api -ModuleId 1001 -ReturnAsSeparateObjects
         $output.Count | Should -BeExactly 4
     }
+    It 'should not return anything when -WhatIf is used' {
+        $output = Get-EasitGODatasource -Url $url -Apikey $api -ModuleId 1001 -ReturnAsSeparateObjects -WhatIf
+        $output | Should -BeNullOrEmpty
+    }
+    It 'should write body to file when -WriteBody is used' {
+        $output = Get-EasitGODatasource -Url $url -Apikey $api -ModuleId 1001 -ReturnAsSeparateObjects -WriteBody
+    }
 }

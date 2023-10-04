@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<fileConfiguration>
+  <itemsPerPosting>1</itemsPerPosting>
+  <sleepBetweenPostings>1</sleepBetweenPostings>
+  <identifier>fileConfiguration</identifier>
+  <disabled>true</disabled>
+  <systemName>import_clients_file_regtest_importera_importklient</systemName>
+  <configurationTags>
+    <com.easit.core.configurationtag.ConfigurationTag>
+      <name>regtestimport</name>
+      <lowerCaseName>regtestimport</lowerCaseName>
+      <created class="sql-timestamp">2022-11-01 10:03:04.537</created>
+    </com.easit.core.configurationtag.ConfigurationTag>
+  </configurationTags>
+  <transformationXSL>
+  </transformationXSL>
+  <filename>a</filename>
+</fileConfiguration>

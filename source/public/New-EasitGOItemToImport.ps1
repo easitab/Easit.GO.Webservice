@@ -28,7 +28,7 @@ function New-EasitGOItemToImport {
         [PSCustomObject](https://learn.microsoft.com/en-us/dotnet/api/system.management.automation.pscustomobject)
     #>
     [OutputType('PSCustomObject')]
-    [CmdletBinding()]
+    [CmdletBinding(HelpUri = 'https://docs.easitgo.com/techspace/psmodules/gowebservice/functions/neweasitgoitemtoimport/')]
     param (
         [Parameter(Mandatory)]
         [Object]$Item,

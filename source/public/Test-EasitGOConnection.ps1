@@ -13,7 +13,7 @@ function Test-EasitGOConnection {
     .OUTPUTS
         [PSCustomObject](https://learn.microsoft.com/en-us/dotnet/api/system.management.automation.pscustomobject)
     #>
-    [CmdletBinding()]
+    [CmdletBinding(HelpUri = 'https://docs.easitgo.com/techspace/psmodules/gowebservice/functions/testeasitgoconnection/')]
     param (
         [Parameter(Mandatory, Position=0)]
         [String]$URL,
@@ -31,7 +31,7 @@ function Test-EasitGOConnection {
             throw $_
         }
         try {
-            $baseRMParams.Uri = Resolve-EasitGOURL -URL $URL -Endpoint 'ping'
+            $baseRMParams.Uri = Resolve-EasitGOUrl -URL $URL -Endpoint 'ping'
         } catch {
             throw $_
         }

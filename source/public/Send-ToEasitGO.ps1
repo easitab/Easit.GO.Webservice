@@ -92,7 +92,7 @@ function Send-ToEasitGO {
     #>
     [OutputType('PSCustomObject')]
     [Alias('Import-GOCustomItem')]
-    [CmdletBinding()]
+    [CmdletBinding(HelpUri = 'https://docs.easitgo.com/techspace/psmodules/gowebservice/functions/sendtoeasitgo/', SupportsShouldProcess)]
     param (
         [Parameter(Mandatory,Position=0,ParameterSetName='item')]
         [Parameter(Mandatory,Position=0,ParameterSetName='legacy')]
@@ -120,7 +120,9 @@ function Send-ToEasitGO {
         [Alias('irmParams')]
         [System.Collections.Hashtable]$InvokeRestMethodParameters,
         [Parameter()]
-        [System.Collections.Hashtable]$ConvertToJsonParameters
+        [System.Collections.Hashtable]$ConvertToJsonParameters,
+        [Parameter()]
+        [Switch]$WriteBody
     )
     begin {
         Write-Verbose "$($MyInvocation.MyCommand) initialized"
@@ -136,7 +138,7 @@ function Send-ToEasitGO {
             throw $_
         }
         try {
-            $baseRMParams.Uri = Resolve-EasitGOURL -URL $URL -Endpoint 'items'
+            $baseRMParams.Uri = Resolve-EasitGOUrl -URL $URL -Endpoint 'items'
         } catch {
             throw $_
         }
@@ -170,52 +172,63 @@ function Send-ToEasitGO {
                 throw $_
             }
         }
-        do {
-            $newPostEasitGOItemsRequestBodyParams = @{
-                ImportHandlerIdentifier = $ImportHandlerIdentifier
-                IDStart = $IDStart
-                Items = $null
-                ConvertToJsonParameters = $ConvertToJsonParameters
-            }
-            if ($tempItemArray.Count -ge $SendInBatchesOf) {
-                $newPostEasitGOItemsRequestBodyParams.Items = $tempItemArray.GetRange(0,$SendInBatchesOf)
-            } else {
-                $newPostEasitGOItemsRequestBodyParams.Items = $tempItemArray.GetRange(0,$tempItemArray.Count)
-            }
-            try {
-                $baseRMParams.Body = New-PostEasitGOItemRequestBody @newPostEasitGOItemsRequestBodyParams
-            } catch {
-                throw $_
-            }
-            Write-Information "Sending $SendInBatchesOf items wih start at item $IDStart in array"
-            if ($null -eq $InvokeRestMethodParameters) {
+        if ($PSCmdlet.ShouldProcess($baseRMParams.Uri)) {
+            do {
+                $newPostEasitGOItemsRequestBodyParams = @{
+                    ImportHandlerIdentifier = $ImportHandlerIdentifier
+                    IDStart = $IDStart
+                    Items = $null
+                    ConvertToJsonParameters = $ConvertToJsonParameters
+                }
+                if ($tempItemArray.Count -ge $SendInBatchesOf) {
+                    $newPostEasitGOItemsRequestBodyParams.Items = $tempItemArray.GetRange(0,$SendInBatchesOf)
+                } else {
+                    $newPostEasitGOItemsRequestBodyParams.Items = $tempItemArray.GetRange(0,$tempItemArray.Count)
+                }
                 try {
-                    Invoke-EasitGOWebRequest -BaseParameters $baseRMParams
+                    $baseRMParams.Body = New-PostEasitGOItemRequestBody @newPostEasitGOItemsRequestBodyParams
                 } catch {
                     throw $_
                 }
-            } else {
-                try {
-                    Invoke-EasitGOWebRequest -BaseParameters $baseRMParams -CustomParameters $InvokeRestMethodParameters
-                } catch {
-                    throw $_
+                if ($WriteBody) {
+                    try {
+                        Write-StringToFile -InputString $baseRMParams.Body -FilenamePrefix 'SendToEasitGO'
+                    } catch {
+                        Write-Warning $_
+                    }
                 }
-            }
-            if ($tempItemArray.Count -ge $SendInBatchesOf) {
-                try {
-                    $tempItemArray.RemoveRange(0,$SendInBatchesOf)
-                } catch {
-                    throw $_
+                Write-Information "Sending $SendInBatchesOf items wih start at item $IDStart in array"
+                if ($null -eq $InvokeRestMethodParameters) {
+                    try {
+                        Invoke-EasitGOWebRequest -BaseParameters $baseRMParams
+                    } catch {
+                        throw $_
+                    }
+                } else {
+                    try {
+                        Invoke-EasitGOWebRequest -BaseParameters $baseRMParams -CustomParameters $InvokeRestMethodParameters
+                    } catch {
+                        throw $_
+                    }
                 }
-            } else {
-                try {
-                    $tempItemArray.RemoveRange(0,$tempItemArray.Count)
-                } catch {
-                    throw $_
+                if ($tempItemArray.Count -ge $SendInBatchesOf) {
+                    try {
+                        $tempItemArray.RemoveRange(0,$SendInBatchesOf)
+                    } catch {
+                        throw $_
+                    }
+                } else {
+                    try {
+                        $tempItemArray.RemoveRange(0,$tempItemArray.Count)
+                    } catch {
+                        throw $_
+                    }
                 }
-            }
-            [int]$idStart = [int]$idStart + [int]$SendInBatchesOf
-        } while ($tempItemArray.Count -gt 0)
+                [int]$idStart = [int]$idStart + [int]$SendInBatchesOf
+            } while ($tempItemArray.Count -gt 0)
+        } else {
+            # No data should be sent to URL when -WhatIf is used.
+        }
     }
     end {
         [System.GC]::Collect()

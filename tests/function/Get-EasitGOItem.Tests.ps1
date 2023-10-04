@@ -27,7 +27,7 @@ BeforeAll {
             Credential = $null
         }
     }
-    function Resolve-EasitGOURL {
+    function Resolve-EasitGOUrl {
         param (
             [Parameter()]
             [String]$URL,
@@ -102,6 +102,18 @@ Describe "Get-EasitGOItem" -Tag 'function','public' {
     It 'should have a parameter named InvokeRestMethodParameters that accepts a hashtable' {
         Get-Command "$($envSettings.CommandName)" | Should -HaveParameter InvokeRestMethodParameters -Type 'System.Collections.Hashtable'
     }
+    It 'should have a parameter named GetAllPages that is a switch' {
+        Get-Command "$($envSettings.CommandName)" | Should -HaveParameter GetAllPages -Type [Switch]
+    }
+    It 'should have a parameter named ReturnAsSeparateObjects that is a switch' {
+        Get-Command "$($envSettings.CommandName)" | Should -HaveParameter ReturnAsSeparateObjects -Type [Switch]
+    }
+    It 'should have a parameter named FlatReturnObject that is a switch' {
+        Get-Command "$($envSettings.CommandName)" | Should -HaveParameter FlatReturnObject -Type [Switch]
+    }
+    It 'should have a parameter named ThrottleLimit that accepts an integer' {
+        Get-Command "$($envSettings.CommandName)" | Should -HaveParameter ThrottleLimit -Type [int]
+    }
     It 'help section should have a SYNOPSIS' {
         ((Get-Help "$($envSettings.CommandName)" -Full).SYNOPSIS).Length | Should -BeGreaterThan 0
     }
@@ -110,6 +122,9 @@ Describe "Get-EasitGOItem" -Tag 'function','public' {
     }
     It 'help section should have EXAMPLES' {
         ((Get-Help "$($envSettings.CommandName)" -Full).EXAMPLES).Length | Should -BeGreaterThan 0
+    }
+    It 'should have a HelpUri' {
+        ((Get-Command "$($envSettings.CommandName)").HelpUri).Length | Should -BeGreaterThan 0
     }
     It 'should not throw' {
         {Get-EasitGOItem @getFromEasitParams} | Should -Not -Throw

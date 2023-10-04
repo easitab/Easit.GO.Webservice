@@ -101,4 +101,11 @@ Describe "Get-EasitGOItem" -Tag 'module' {
         $output = Get-EasitGOItem -Url $url -Apikey $api -ImportViewIdentifier $ImportViewIdentifier -ReturnAsSeparateObjects
         $output.Count | Should -BeExactly 25
     }
+    It 'should not return anything when -WhatIf is used' {
+        $output = Get-EasitGOItem -Url $url -Apikey $api -ImportViewIdentifier $ImportViewIdentifier -ReturnAsSeparateObjects -WhatIf
+        $output | Should -BeNullOrEmpty
+    }
+    It 'should write body to file when -WriteBody is used' {
+        $output = Get-EasitGOItem -Url $url -Apikey $api -ImportViewIdentifier $ImportViewIdentifier -ReturnAsSeparateObjects -WriteBody
+    }
 }
