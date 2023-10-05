@@ -26,19 +26,15 @@ This class should not be used directly, instead use the previously mentioned cla
 
 ## Properties
 
-### ItemsPerPosting (String)
-
-### SleepBetweenPostings (String)
-
-### Identifier (String)
-
-### Disabled (String)
-
-### SystemName (String)
-
-### TransformationXSL (String)
-
-### ConfigurationTags (String[])
+|Name (Datatype)|Description|
+|:--|:--|
+| ItemsPerPosting (String) | Specifies how many items should be included in each post|
+| SleepBetweenPostings (String) | Specifies how many seconds to sleep between each post is sent|
+| Identifier (String) | Unique name for configuration|
+| Disabled (String) | Specifies if configuration is disabled or enabled|
+| SystemName (String) | Configurations system name|
+| TransformationXSL (String) | XSL to be applied to data sent|
+| ConfigurationTags (String[]) | Tags given to configuration|
 
 ## METHODS
 
