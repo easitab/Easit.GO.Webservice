@@ -16,15 +16,12 @@ Initializes a new instance of the SortColumn class with the provided input.
 
 ## Properties
 
-### PropertyName (String)
+|Name (Datatype)|Description|
+|:--|:--|
+|PropertyName (String)|Name of field in Easit GO to apply filter to|
+|Order (String)|Order to sort by|
 
-Item property in Easit GO to sort on.
-
-### Order (String)
-
-Order to sort by.
-
-Valid input is:
+### Valid sort orders
 
 * Ascending
 * Descending
