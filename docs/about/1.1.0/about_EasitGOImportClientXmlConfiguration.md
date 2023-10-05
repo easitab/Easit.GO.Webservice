@@ -29,7 +29,9 @@ Initializes a new instance of the Import Client LDAP configuration class.
 
 ## Properties
 
-### Filename (String)
+|Name (Datatype)|Description|
+|:--|:--|
+|Filename (String)|Full path to file |
 
 ## METHODS
 
