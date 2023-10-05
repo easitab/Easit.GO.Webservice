@@ -74,7 +74,7 @@ function Send-ToEasitGO {
     .PARAMETER Url
         URL to Easit GO.
     .PARAMETER Apikey
-        Apikey used for authenticating against Easit GO.
+        Apikey used for authenticating to Easit GO.
     .PARAMETER ImportHandlerIdentifier
         ImportHandler to import data with.
     .PARAMETER Item
@@ -89,6 +89,8 @@ function Send-ToEasitGO {
         Set of additional parameters for Invoke-RestMethod. Base parameters sent to Invoke-RestMethod is 'Uri','ContentType', 'Method', 'Body', 'Authentication' and 'Credential'.
     .PARAMETER ConvertToJsonParameters
         Set of additional parameters for ConvertTo-Json. Base parameters sent to ConvertTo-Json is 'Depth = 4', 'EscapeHandling = 'EscapeNonAscii'', 'WarningAction = 'SilentlyContinue''.
+    .PARAMETER WriteBody
+        If specified the function will try to write the request body to a file in the current directory.
     #>
     [OutputType('PSCustomObject')]
     [Alias('Import-GOCustomItem')]

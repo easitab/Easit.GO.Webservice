@@ -138,7 +138,7 @@ Accept wildcard characters: False
 ```
 
 ### -Apikey
-Apikey used for authenticating against Easit GO.
+Apikey used for authenticating to Easit GO.
 
 ```yaml
 Type: String
@@ -260,7 +260,7 @@ Accept wildcard characters: False
 ```
 
 ### -WriteBody
-{{ Fill WriteBody Description }}
+If specified the function will try to write the request body to a file in the current directory.
 
 ```yaml
 Type: SwitchParameter
