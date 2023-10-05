@@ -37,23 +37,17 @@ Initializes a new instance of the Import Client LDAP configuration class.
 
 ## Properties
 
-### Credentials ([System.Management.Automation.PSCredential](https://learn.microsoft.com/en-us/dotnet/api/system.management.automation.pscredential))
-
-### Host (String)
-
-### Secure (String)
-
-### Port (String)
-
-### PagingDisabled (String)
-
-### Queries ([System.Collections.Generic.List[PSCustomObject]](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1))
-
-### BinaryAttributes (String[])
-
-### MultiValueAttributes (String[])
-
-### DoNotEncodeAttributes (String[])
+|Name (Datatype)|Description|
+|:--|:--|
+|Credentials ([System.Management.Automation.PSCredential](https://learn.microsoft.com/en-us/dotnet/api/system.management.automation.pscredential))|Credentials used for authenticating to a source|
+|Host (String)|Uri to or Hostname of LDAP server|
+|Secure (String)|Specifies if connection to host should be encrypted (true/false)|
+|Port (String)|The port on which the host listens|
+|PagingDisabled (String)|Specifies if all responses should be fetched in one round or not. False = all responses fetched in one round|
+|Queries ([System.Collections.Generic.List[PSCustomObject]](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1))|List of queries to query the host with|
+|BinaryAttributes (String[])|Specifies what attributes contain binary data|
+|MultiValueAttributes (String[])|Specifies what attributes that contain multiple values|
+|DoNotEncodeAttributes (String[])|Specifies what attributes NOT to be encoded as a base64 string|
 
 ## METHODS
 
