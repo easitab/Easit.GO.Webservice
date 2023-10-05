@@ -50,6 +50,8 @@ function Get-EasitGODatasource {
         Set of additional parameters for ConvertTo-Json. Base parameters sent to ConvertTo-Json is 'Depth = 4', 'EscapeHandling = 'EscapeNonAscii'', 'WarningAction = 'SilentlyContinue''.
     .PARAMETER WriteBody
         If specified the function will try to write the request body to a file in the current directory.
+    .INPUTS
+        None - You cannot pipe objects to this function
     .OUTPUTS
         [PSCustomObject](https://learn.microsoft.com/en-us/dotnet/api/system.management.automation.pscustomobject)
     #>

@@ -34,6 +34,8 @@ function New-ColumnFilter {
         What comparator to use and filter with.
     .PARAMETER Value
         Value to filter item property by.
+    .INPUTS
+        None - You cannot pipe objects to this function
     .OUTPUTS
         [ColumnFilter](https://docs.easitgo.com/techspace/psmodules/gowebservice/abouttopics/columnfilter/)
     #>

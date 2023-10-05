@@ -6,6 +6,7 @@ function New-EasitGOItemToImport {
         **New-EasitGOItemToImport** creates a new PSCustomObject with properties and arrays in such a way that the result of *ConvertTo-Json -Item $myItem* is formatted as needed by the Easit GO WebAPI.
 
         The new PSCustomObject will have the following properties:
+
         - id (generated number unique for the item/object)
         - uid (generated value unique for the item/object)
         - property (array)
@@ -17,6 +18,7 @@ function New-EasitGOItemToImport {
         $attachments = @(@{name='attachmentName';value='base64string'},@{name='attachmentName2';value='base64string2'})
         $myItem = [PSCustomObject]@{property1='propertyValue1';property2='propertyValue2';attachments=$attachments}
         New-EasitGOItemToImport -Item $myItem -ID 1
+
         id uid                              property                                                                               attachment
         -- ---                              --------                                                                               ----------
         1  0a65061df0814d6394736303587783f7 {@{content=propertyValue1; name=property1}, @{content=propertyValue2; name=property2}} {}
@@ -24,6 +26,8 @@ function New-EasitGOItemToImport {
         Item / Object to be added to *itemToImport* array.
     .PARAMETER ID
         ID to be set as id for item / object.
+    .INPUTS
+        None - You cannot pipe objects to this function
     .OUTPUTS
         [PSCustomObject](https://learn.microsoft.com/en-us/dotnet/api/system.management.automation.pscustomobject)
     #>

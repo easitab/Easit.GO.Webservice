@@ -23,6 +23,8 @@ function Get-EasitGOImportClientConfiguration {
         Specifies the name of the configuration to get.
     .PARAMETER InvokeWebRequestParameters
         Set of additional parameters for Invoke-WebRequest. Base parameters sent to Invoke-WebRequest is 'Uri', 'ContentType', 'ErrorAction'.
+    .INPUTS
+        None - You cannot pipe objects to this function
     .OUTPUTS
         [PSCustomObject](https://learn.microsoft.com/en-us/dotnet/api/system.management.automation.pscustomobject)
     #>

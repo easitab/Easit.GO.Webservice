@@ -91,6 +91,10 @@ function Send-ToEasitGO {
         Set of additional parameters for ConvertTo-Json. Base parameters sent to ConvertTo-Json is 'Depth = 4', 'EscapeHandling = 'EscapeNonAscii'', 'WarningAction = 'SilentlyContinue''.
     .PARAMETER WriteBody
         If specified the function will try to write the request body to a file in the current directory.
+    .INPUTS
+        [System.Object](https://learn.microsoft.com/en-us/dotnet/api/system.object)
+    .OUTPUTS
+        [PSCustomObject](https://learn.microsoft.com/en-us/dotnet/api/system.management.automation.pscustomobject)
     #>
     [OutputType('PSCustomObject')]
     [Alias('Import-GOCustomItem')]
