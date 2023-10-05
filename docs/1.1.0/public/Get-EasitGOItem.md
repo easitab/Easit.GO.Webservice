@@ -184,7 +184,7 @@ Accept wildcard characters: False
 ```
 
 ### -Apikey
-Apikey used for authenticating to Easit GO.
+Apikey used for authenticating against Easit GO.
 
 ```yaml
 Type: String
@@ -350,7 +350,7 @@ Accept wildcard characters: False
 ```
 
 ### -ThrottleLimit
-Specifies the number of script blocks that run in parallel. Input objects are blocked until the running script block count falls below the ThrottleLimit.
+{{ Fill ThrottleLimit Description }}
 
 ```yaml
 Type: Int32
@@ -365,7 +365,7 @@ Accept wildcard characters: False
 ```
 
 ### -FlatReturnObject
-Specifies if a new PSCustomObject should be created with each property from Easit GO as a property on the new PSCustomObject.
+{{ Fill FlatReturnObject Description }}
 
 ```yaml
 Type: SwitchParameter
@@ -396,7 +396,7 @@ Accept wildcard characters: False
 ```
 
 ### -WriteBody
-If specified the function will try to write the request body to a file in the current directory.
+{{ Fill WriteBody Description }}
 
 ```yaml
 Type: SwitchParameter

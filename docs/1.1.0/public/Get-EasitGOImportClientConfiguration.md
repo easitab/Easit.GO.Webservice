@@ -54,7 +54,7 @@ Accept wildcard characters: False
 ```
 
 ### -Apikey
-Apikey used for authenticating to Easit GO.
+Apikey used for authenticating against Easit GO.
 
 ```yaml
 Type: String
@@ -69,7 +69,7 @@ Accept wildcard characters: False
 ```
 
 ### -Identifier
-Specifies the name of the configuration to get.
+Specifies the name of the confguration to get.
 
 ```yaml
 Type: String

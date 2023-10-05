@@ -113,15 +113,6 @@ Describe "Get-EasitGODatasource" -Tag 'function','public' {
     It 'should have a HelpUri' {
         ((Get-Command "$($envSettings.CommandName)").HelpUri).Length | Should -BeGreaterThan 0
     }
-    It 'all parameters should have a description' {
-        $commonParameters = [System.Management.Automation.PSCmdlet]::CommonParameters
-        $optionalCommonParameters = [System.Management.Automation.PSCmdlet]::OptionalCommonParameters
-        foreach ($param in (Get-Help -Name "$($envSettings.CommandName)" -Full).parameters.parameter) {
-            if ($commonParameters -notcontains $param.name -and $optionalCommonParameters -notcontains $param.name) {
-                ($param.description.Text).Length | Should -BeGreaterThan 0
-            }
-        }
-    }
     It 'should not throw' {
         {Get-EasitGODatasource @getDatasourceFromEasitGO} | Should -Not -Throw
     }

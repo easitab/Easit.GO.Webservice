@@ -135,12 +135,6 @@ function Get-EasitGOItem {
         Set of additional parameters for ConvertTo-Json. Base parameters sent to ConvertTo-Json is 'Depth = 4', 'EscapeHandling = 'EscapeNonAscii'', 'WarningAction = 'SilentlyContinue''.
     .PARAMETER GetAllPages
         Specifies if the function should try to get all pages from a view.
-    .PARAMETER ThrottleLimit
-        Specifies the number of script blocks that run in parallel. Input objects are blocked until the running script block count falls below the ThrottleLimit.
-    .PARAMETER FlatReturnObject
-        Specifies if a new PSCustomObject should be created with each property from Easit GO as a property on the new PSCustomObject.
-    .PARAMETER WriteBody
-        If specified the function will try to write the request body to a file in the current directory.
     #>
     [OutputType('PSCustomObject')]
     [Alias('Get-GOItems')]

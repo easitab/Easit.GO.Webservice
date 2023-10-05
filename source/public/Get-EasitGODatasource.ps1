@@ -37,7 +37,7 @@ function Get-EasitGODatasource {
     .PARAMETER Url
         URL to Easit GO.
     .PARAMETER Apikey
-        Apikey used for authenticating to Easit GO.
+        Apikey used for authenticating against Easit GO.
     .PARAMETER ModuleId
         Specifies what module to get datasources from.
     .PARAMETER ParentRawValue
@@ -48,8 +48,6 @@ function Get-EasitGODatasource {
         Specifies if *Get-EasitGOItem* should return each item in the view as its own PSCustomObject.
     .PARAMETER ConvertToJsonParameters
         Set of additional parameters for ConvertTo-Json. Base parameters sent to ConvertTo-Json is 'Depth = 4', 'EscapeHandling = 'EscapeNonAscii'', 'WarningAction = 'SilentlyContinue''.
-    .PARAMETER WriteBody
-        If specified the function will try to write the request body to a file in the current directory.
     .OUTPUTS
         [PSCustomObject](https://learn.microsoft.com/en-us/dotnet/api/system.management.automation.pscustomobject)
     #>
