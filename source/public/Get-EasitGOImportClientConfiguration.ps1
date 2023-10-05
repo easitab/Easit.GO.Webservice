@@ -18,9 +18,9 @@ function Get-EasitGOImportClientConfiguration {
     .PARAMETER Url
         URL to Easit GO.
     .PARAMETER Apikey
-        Apikey used for authenticating against Easit GO.
+        Apikey used for authenticating to Easit GO.
     .PARAMETER Identifier
-        Specifies the name of the confguration to get.
+        Specifies the name of the configuration to get.
     .PARAMETER InvokeWebRequestParameters
         Set of additional parameters for Invoke-WebRequest. Base parameters sent to Invoke-WebRequest is 'Uri', 'ContentType', 'ErrorAction'.
     .OUTPUTS
