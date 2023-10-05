@@ -141,6 +141,10 @@ function Get-EasitGOItem {
         Specifies if a new PSCustomObject should be created with each property from Easit GO as a property on the new PSCustomObject.
     .PARAMETER WriteBody
         If specified the function will try to write the request body to a file in the current directory.
+    .INPUTS
+        None - You cannot pipe objects to this function
+    .OUTPUTS
+        [PSCustomObject](https://learn.microsoft.com/en-us/dotnet/api/system.management.automation.pscustomobject)
     #>
     [OutputType('PSCustomObject')]
     [Alias('Get-GOItems')]

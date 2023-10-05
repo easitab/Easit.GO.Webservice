@@ -64,7 +64,14 @@ process {
     }
     try {
         Write-Information "Generating markdown help for module $ModuleName to $tagDocsDirectory"
-        $null = New-MarkdownHelp -Module $ModuleName -OutputFolder $tagDocsDirectory -Force
+        $nmh = @{
+            Module = $ModuleName
+            OutputFolder = $tagDocsDirectory
+            Force = $true
+            NoMetadata = $true
+            AlphabeticParamsOrder = $true
+        }
+        $null = New-MarkdownHelp @nmh
     } catch {
         throw $_
     }

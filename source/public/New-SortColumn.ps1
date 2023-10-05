@@ -15,6 +15,8 @@ function New-SortColumn {
         Item property in Easit GO to sort on.
     .PARAMETER Order
         Order to sort by.
+    .INPUTS
+        None - You cannot pipe objects to this function
     .OUTPUTS
         [SortColumn](https://docs.easitgo.com/techspace/psmodules/gowebservice/abouttopics/sortcolumn/)
     #>

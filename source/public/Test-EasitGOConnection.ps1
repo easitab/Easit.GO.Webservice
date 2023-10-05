@@ -10,6 +10,8 @@ function Test-EasitGOConnection {
         URL to Easit GO application.
     .PARAMETER InvokeRestMethodParameters
         Additional parameters to be used by *Invoke-RestMethod*. Used to customize how *Invoke-RestMethod* behaves.
+    .INPUTS
+        None - You cannot pipe objects to this function
     .OUTPUTS
         [PSCustomObject](https://learn.microsoft.com/en-us/dotnet/api/system.management.automation.pscustomobject)
     #>
