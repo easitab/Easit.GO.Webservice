@@ -31,11 +31,11 @@ Initializes a new instance of the Import Client LDAP configuration class.
 
 ## Properties
 
-### ConnectionString (String)
-
-### Query (String)
-
-### DriverClassName (String)
+|Name (Datatype)|Description|
+|:--|:--|
+|ConnectionString (String)|Connection string used by ImportClient to connect to a source|
+|Query (String)|Used when querying source for data|
+|DriverClassName (String)|Class to be used by ImportClient for retrieving data from source|
 
 ## METHODS
 
