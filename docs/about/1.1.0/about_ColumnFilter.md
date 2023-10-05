@@ -30,17 +30,14 @@ Initializes a new instance of the ColumnFilter class with the provided input.
 
 ## Properties
 
-### PropertyName (String)
+|Name (Datatype)|Description|
+|:--|:--|
+|PropertyName (String)|Name of field in Easit GO to apply filter to|
+|RawValue (String)|Database ID of item to filter for. Can be used instead of *ColumnValue* for a more exact filter result|
+|Comparator (String)|Sets the comparator to use in filter|
+|PropertyValue (String)|Value of the item property in Easit GO to filter for|
 
-Name of field in Easit GO to apply filter to.
-
-### RawValue (String)
-
-Database ID of item to filter for. Can be used instead of *ColumnValue* for a more exact filter result.
-
-### Comparator (String)
-
-Sets the comparator to use in filter. Valid comparators are:
+### Valid comparators
 
 * EQUALS
 * NOT_EQUALS
@@ -52,10 +49,6 @@ Sets the comparator to use in filter. Valid comparators are:
 * LESS_THAN_OR_EQUALS
 * LIKE
 * NOT_LIKE
-
-### PropertyValue (String)
-
-Value of the item property in Easit GO to filter for.
 
 ## METHODS
 
