@@ -81,7 +81,7 @@ BeforeAll {
             [Parameter()]
             [hashtable]$CustomParameters
         )
-        Get-Content -Path (Join-Path -Path $envSettings.TestDataDirectory -ChildPath 'getDatasourceResponse.json') -Raw | ConvertFrom-Json
+        Get-Content -Path (Join-Path -Path $envSettings.TestDataDirectory -ChildPath 'getItemsResponse_100_items.json') -Raw | ConvertFrom-Json
     }
     $getFromEasitParams = @{
         Url = 'https://go.easit.com'
@@ -121,7 +121,7 @@ Describe "Get-EasitGOItem" -Tag 'function','public' {
         ((Get-Help "$($envSettings.CommandName)" -Full).DESCRIPTION).Length | Should -BeGreaterThan 0
     }
     It 'help section should have EXAMPLES' {
-        ((Get-Help "$($envSettings.CommandName)" -Full).EXAMPLES).Length | Should -BeGreaterThan 0
+        ((Get-Help "$($envSettings.CommandName)" -Full).EXAMPLES).example.Count | Should -BeGreaterThan 0
     }
     It 'should have a HelpUri' {
         ((Get-Command "$($envSettings.CommandName)").HelpUri).Length | Should -BeGreaterThan 0
@@ -137,5 +137,15 @@ Describe "Get-EasitGOItem" -Tag 'function','public' {
     }
     It 'should not throw' {
         {Get-EasitGOItem @getFromEasitParams} | Should -Not -Throw
+    }
+    It 'GetAllPages should not be null or empty' {
+        $pages = @()
+        $pages += Get-EasitGOItem @getFromEasitParams -GetAllPages
+        $pages | Should -Not -BeNullOrEmpty
+    }
+    It 'GetAllPages should not be null or empty' {
+        $pages = @()
+        $pages += Get-EasitGOItem @getFromEasitParams -GetAllPages
+        $pages.Count | Should -BeExactly 5
     }
 }
