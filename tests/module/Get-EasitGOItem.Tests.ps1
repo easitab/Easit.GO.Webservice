@@ -83,6 +83,8 @@ Describe "Get-EasitGOItem" -Tag 'module' {
     }
     It 'requestedPage property should be 0 as no page was specified' {
         $output = Get-EasitGOItem -Url $url -Apikey $api -ImportViewIdentifier $ImportViewIdentifier
+        Write-Host $output.requestedPage
+        Write-Host $output
         $output.requestedPage | Should -BeExactly 0
     }
     It 'page property should be 1 as no page was specified' {
