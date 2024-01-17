@@ -285,7 +285,7 @@ function Get-EasitGOItem {
             } else {
                 Write-Output $response
             }
-            if ($response.requestedPage -eq 0) {
+            if ($response.requestedPage -eq 0 -AND $response.totalNumberOfPages -gt 1)  {
                 $response.requestedPage = 1
             }
             $currentPage = $response.requestedPage
