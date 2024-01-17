@@ -18,7 +18,7 @@ Class ColumnFilter {
         if ($this.RawValue) {
             $returnObject.Add('rawValue',$this.RawValue)
         }
-        if ($this.ColumnValue) {
+        if ($this.PropertyValue) {
             $returnObject.Add('content',"$($this.PropertyValue)")
         }
         return [pscustomobject]$returnObject
