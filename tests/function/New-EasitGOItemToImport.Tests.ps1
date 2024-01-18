@@ -47,6 +47,14 @@ BeforeAll {
         IDStart = 1
         Items = $null
     }
+    $inputWithNull = @{
+        ID = 1
+        Item = [PSCustomObject]@{
+            firstName = 'name'
+            company = $null
+            mail = 'mail@domain.com'
+        }
+    }
     try {
         $output = New-EasitGOItemToImport @validInput
     } catch {
@@ -74,6 +82,9 @@ Describe "New-EasitGOItemToImport" -Tag 'function','public' {
     }
     It 'should throw with invalid input' {
         {New-EasitGOItemToImport @invalidInput} | Should -Throw
+    }
+    It 'should throw with inputWithNull input' {
+        {New-EasitGOItemToImport @inputWithNull} | Should -Not -Throw
     }
     It 'should return a PSCustomObject' {
         $output | Should -BeOfType 'PSCustomObject'
