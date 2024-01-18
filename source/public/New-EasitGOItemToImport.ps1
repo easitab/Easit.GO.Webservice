@@ -66,7 +66,16 @@ function New-EasitGOItemToImport {
                     }
                 }
             } else {
-                if ($property.Value.GetType() -eq [System.Object[]]) {
+                if ($null -eq $property.Value) {
+                    try {
+                        $returnObject.property.Add([PSCustomObject]@{
+                            content = $null
+                            name = $property.Name
+                        })
+                    } catch {
+                        throw $_
+                    }
+                } elseif ($property.Value.GetType() -eq [System.Object[]]) {
                     foreach ($value in $property.Value.GetEnumerator()) {
                         try {
                             $returnObject.property.Add((
