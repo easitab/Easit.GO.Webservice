@@ -70,9 +70,9 @@ function Get-EasitGOItem {
         }
         $easitObjects = Get-EasitGOItem @getEasitGOItemParams
         foreach ($easitObject in $easitObjects.items.item.GetEnumerator()) {
-            Write-Host "Got object with database id $($easitGOObject.id)"
+            Write-Host "Got object with database id $($easitObject.id)"
             Write-Host "The object has the following properties and values"
-            foreach ($propertyObject in $easitGOObject.property.GetEnumerator()) {
+            foreach ($propertyObject in $easitObject.property.GetEnumerator()) {
                 Write-Host "$($propertyObject.name) = $($propertyObject.content) (RawValue: $($propertyObject.rawValue))"
             }
         }
@@ -86,9 +86,9 @@ function Get-EasitGOItem {
         $pages = Get-EasitGOItem @getEasitGOItemParams
         foreach ($page in $pages) {
             foreach ($easitObject in $page.items.item.GetEnumerator()) {
-                Write-Host "Got object with database id $($easitGOObject.id)"
+                Write-Host "Got object with database id $($easitObject.id)"
                 Write-Host "The object has the following properties and values"
-                foreach ($propertyObject in $easitGOObject.property.GetEnumerator()) {
+                foreach ($propertyObject in $easitObject.property.GetEnumerator()) {
                     Write-Host "$($propertyObject.name) = $($propertyObject.content) (RawValue: $($propertyObject.rawValue))"
                 }
             }
@@ -103,9 +103,9 @@ function Get-EasitGOItem {
         }
         $easitObjects = Get-EasitGOItem @getEasitGOItemParams
         foreach ($easitObject in $easitObjects.GetEnumerator()) {
-            Write-Host "Got object with database id $($easitGOObject.id)"
+            Write-Host "Got object with database id $($easitObject.id)"
             Write-Host "The object has the following properties and values"
-            foreach ($propertyObject in $easitGOObject.property.GetEnumerator()) {
+            foreach ($propertyObject in $easitObject.property.GetEnumerator()) {
                 Write-Host "$($propertyObject.name) = $($propertyObject.content) (RawValue: $($propertyObject.rawValue))"
             }
         }
